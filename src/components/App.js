@@ -4,14 +4,13 @@ import * as actionCreators from '../actions/index';
 
 import Main from './Main';
 
-function mapStateToProps(state) {
-	return {
-	};
-}
+const mapStateToProps = state => ({
 
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators(actionCreators, dispatch);
-}
+});
+
+const mapDispatchToProps = dispatch => (
+	bindActionCreators(actionCreators, dispatch)
+)
 
 const App = connect(mapStateToProps, mapDispatchToProps)(Main);
 
