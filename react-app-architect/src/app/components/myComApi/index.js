@@ -12,7 +12,8 @@ class App extends PureComponent {
     }
 
     handleChange(nextReddit) {
-        this.props.dispatch(selectReddit(nextReddit))
+        const { dispatch } = this.props;
+        dispatch(selectReddit(nextReddit));
     }
 
     handleRefreshClick(e) {

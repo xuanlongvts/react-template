@@ -2,15 +2,32 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { combineReducers } from 'redux';
 // import { combineReducers } from 'redux-immutable';
 import createSagaMiddleware from 'redux-saga';
-import { routerReducer, routerMiddleware } from 'react-router-redux'
+import { routerReducer, routerMiddleware } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
+
+import ENV from '../../config';
 
 import rootReducer from '../reducers';
-import rootSaga from '../components/myComApi/saga';
+import rootSaga from '../sagas';
 
 const storeConfig = () => {
     const initState = {};
     const sagaMiddleware = createSagaMiddleware();
-    const routesMiddleware = routerMiddleware();
+    const routesMiddleware = routerMiddleware(createHistory());
+
+    const middlewares = [
+        sagaMiddleware,
+        routesMiddleware,
+    ];
+    
+    const enhancers = [
+        applyMiddleware(...middlewares),
+    ];
+
+    const composeEnhancers = (ENV !== 'production' && typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ? 
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+            shouldHotReload: false,
+        }) : compose;
 
     const store = createStore(
         combineReducers({
@@ -18,10 +35,7 @@ const storeConfig = () => {
             router: routerReducer 
         }),
         initState,
-        compose(
-            applyMiddleware(sagaMiddleware),
-            applyMiddleware(routesMiddleware),
-        )
+        composeEnhancers(...enhancers)
     );
     sagaMiddleware.run(rootSaga);
 
