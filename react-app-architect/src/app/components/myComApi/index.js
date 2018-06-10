@@ -70,8 +70,16 @@ App.propTypes = {
 }
 
 const mapStateToProps = state => {
-    const { selectedReddit, postsByReddit } = state.rootReducer.reducerMyComApi;
-    const { isFetching, lastUpdated, items: posts } = postsByReddit[selectedReddit] || { isFetching: true, items: []}
+    const selectedReddit = state.rootReducer.reducerMyComApi.getIn(['selectedReddit']);
+    const postsByReddit = state.rootReducer.reducerMyComApi.getIn(['postsByReddit']);
+    const postsByRedditGetSelect = postsByReddit.getIn([selectedReddit]);
+
+    let { isFetching, lastUpdated, posts } = { 
+        isFetching: postsByRedditGetSelect.getIn(['isFetching']) || false, 
+        lastUpdated: postsByRedditGetSelect.getIn(['lastUpdated']) || null, 
+        posts: postsByRedditGetSelect.getIn(['items']) || []
+    };
+
     return {
         selectedReddit,
         posts,

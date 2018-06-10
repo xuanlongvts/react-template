@@ -21,7 +21,7 @@ const storeConfig = () => {
     ];
     
     const enhancers = [
-        applyMiddleware(...middlewares),
+        applyMiddleware(...middlewares)
     ];
 
     const composeEnhancers = (ENV !== 'production' && typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ? 
