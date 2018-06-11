@@ -40,9 +40,9 @@ class App extends PureComponent {
                 <p>
                     {lastUpdated && <span>Last updated at {new Date(lastUpdated).toLocaleTimeString()}. </span>}
                     {!isFetching && (
-                        <a href="javascript:;" onClick={this.handleRefreshClick}>
+                        <span onClick={this.handleRefreshClick} style={{cursor: 'pointer', textDecoration: 'underline'}}>
                             Refresh
-                        </a>
+                        </span>
                     )}
                 </p>
                 {isFetching && posts.length === 0 && <h2>Loading...</h2>}
@@ -70,8 +70,8 @@ App.propTypes = {
 }
 
 const mapStateToProps = state => {
-    const selectedReddit = state.rootReducer.reducerMyComApi.getIn(['selectedReddit']);
-    const postsByReddit = state.rootReducer.reducerMyComApi.getIn(['postsByReddit']);
+    const selectedReddit = state.reducerMyComApi.getIn(['selectedReddit']);
+    const postsByReddit = state.reducerMyComApi.getIn(['postsByReddit']);
     const postsByRedditGetSelect = postsByReddit.getIn([selectedReddit]);
 
     let { isFetching, lastUpdated, posts } = { 
