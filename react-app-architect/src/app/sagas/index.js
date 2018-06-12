@@ -1,4 +1,4 @@
-import { fork } from 'redux-saga/effects';
+import { fork, call, race } from 'redux-saga/effects';
 
 import myCompApiSaga from '../components/myComApi/saga';
 

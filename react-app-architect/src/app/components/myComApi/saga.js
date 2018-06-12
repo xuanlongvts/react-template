@@ -1,4 +1,4 @@
-import {put, take, call, fork, select} from 'redux-saga/effects';
+import {put, take, call, fork, select, all} from 'redux-saga/effects';
 import API from '../../_services/api';
 import * as actionList from './actions';
 import * as nameActList from './consts';
@@ -46,7 +46,12 @@ export function* invalidateReddit(){
 }
 
 export default function* root(){
-    yield fork(startup);
-    yield fork(nextRedditChange);
-    yield fork(invalidateReddit);
+    // yield fork(startup);
+    // yield fork(nextRedditChange);
+    // yield fork(invalidateReddit);
+    yield all([
+        fork(startup),
+        fork(nextRedditChange),
+        fork(invalidateReddit)
+    ]);
 }

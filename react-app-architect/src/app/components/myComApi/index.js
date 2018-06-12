@@ -24,6 +24,10 @@ class App extends PureComponent {
 
     render() {
         const { selectedReddit, posts, isFetching, lastUpdated } = this.props;
+        console.log('selectedReddit: ', selectedReddit);
+        console.log('posts: ', posts);
+        console.log('isFetching: ', isFetching);
+        console.log('lastUpdated: ', lastUpdated);
         return (
             <div>
                 <span>
