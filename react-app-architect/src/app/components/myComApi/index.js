@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { selectReddit, invalidateReddit } from './actions';
 
-import { selectedRedditSelector, postsByRedditSelector } from './selectors';
-
 class App extends PureComponent {
 
     constructor(props) {
@@ -33,7 +31,7 @@ class App extends PureComponent {
         const { selectedReddit, posts, isFetching, lastUpdated } = this.props;
         
         return (
-            <div>aaa
+            <div>
                 <span>
                     <h1>{selectedReddit}</h1>
                     <select onChange={e => this.handleChange(e.target.value)} value={selectedReddit}>

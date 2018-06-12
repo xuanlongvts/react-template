@@ -7,7 +7,7 @@ import { selectedRedditSelector, postsByRedditSelector } from './selectors';
 export const fetchPostsApi = (reddit) => {
     const restApi = new API();
     const path = `/r/${reddit}.json`;
-    
+
     return restApi.fetch(path)
         .then(res => {
             return res.data.data.children.map((item) => {
@@ -25,32 +25,15 @@ export function* fetchPosts(){
     }
 }
 
-export function* nextRedditChange(){
-    const prevReddit = yield select(selectedRedditSelector);
-    yield take(nameActList.SELECT_REDDIT);
-    const newReddit = yield select(selectedRedditSelector);
-    const postsByReddit = yield select(postsByRedditSelector);
-    if (prevReddit !== newReddit && !postsByReddit[newReddit]){
-        yield fork(fetchPosts, newReddit);
-    }
-}
-
 export function* invalidateReddit(){
     while(true){
         const { redditRefresh } = yield take(nameActList.INVALIDATE_REDDIT);
-        yield call(fetchPosts, redditRefresh);
-    }
-}
-
-export function* test(){
-    while(true){
-        const {reddit} = yield take(nameActList.SELECT_REDDIT);
-        console.log('reddit: ', reddit);
+        const posts = yield call(fetchPostsApi, redditRefresh);
+        yield put(actionList.receivePosts(redditRefresh, posts));
     }
 }
 
 export default function* root(){
     yield fork(fetchPosts);
-    // yield fork(nextRedditChange);
-    // yield fork(invalidateReddit);
+    yield fork(invalidateReddit);
 }
