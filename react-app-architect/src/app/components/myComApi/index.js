@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { selectReddit, invalidateReddit } from './actions';
 
+import { selectedRedditSelector, postsByRedditSelector } from './selectors';
+
 class App extends PureComponent {
 
     constructor(props) {
@@ -12,24 +14,26 @@ class App extends PureComponent {
     }
 
     handleChange(nextReddit) {
-        const { dispatch } = this.props;
-        dispatch(selectReddit(nextReddit));
+        const { selectReddit } = this.props;
+        selectReddit(nextReddit);
     }
 
     handleRefreshClick(e) {
         e.preventDefault();
-        const { dispatch, selectedReddit } = this.props;
-        dispatch(invalidateReddit(selectedReddit));
+        const { invalidateReddit, selectedReddit } = this.props;
+        invalidateReddit(selectedReddit);
+    }
+
+    componentDidMount(){
+        const { selectReddit, selectedReddit } = this.props;
+        selectReddit(selectedReddit);
     }
 
     render() {
         const { selectedReddit, posts, isFetching, lastUpdated } = this.props;
-        console.log('selectedReddit: ', selectedReddit);
-        console.log('posts: ', posts);
-        console.log('isFetching: ', isFetching);
-        console.log('lastUpdated: ', lastUpdated);
+        
         return (
-            <div>
+            <div>aaa
                 <span>
                     <h1>{selectedReddit}</h1>
                     <select onChange={e => this.handleChange(e.target.value)} value={selectedReddit}>
@@ -70,7 +74,6 @@ App.propTypes = {
     posts: PropTypes.array.isRequired,
     isFetching: PropTypes.bool.isRequired,
     lastUpdated: PropTypes.number,
-    dispatch: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {
@@ -79,17 +82,22 @@ const mapStateToProps = state => {
     const postsByRedditGetSelect = postsByReddit.getIn([selectedReddit]);
 
     let { isFetching, lastUpdated, posts } = { 
-        isFetching: postsByRedditGetSelect.getIn(['isFetching']) || false, 
-        lastUpdated: postsByRedditGetSelect.getIn(['lastUpdated']) || null, 
-        posts: postsByRedditGetSelect.getIn(['items']) || []
+        isFetching: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['isFetching'])) || false, 
+        lastUpdated: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['lastUpdated'])) || null, 
+        posts: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['items'])) || []
     };
 
     return {
         selectedReddit,
         posts,
         isFetching,
-        lastUpdated,
+        lastUpdated
     }
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = {
+    selectReddit,
+    invalidateReddit
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

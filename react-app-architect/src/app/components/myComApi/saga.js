@@ -17,15 +17,12 @@ export const fetchPostsApi = (reddit) => {
         .catch(err => console.log('err: ', err));
 }
 
-export function* fetchPosts(reddit){
-    yield put(actionList.requestPosts(reddit));
-    const posts = yield call(fetchPostsApi, reddit);
-    yield put(actionList.receivePosts(reddit, posts));
-}
-
-export function* startup(){
-    const selectedReddit = yield select(selectedRedditSelector);
-    yield fork(fetchPosts, selectedReddit);
+export function* fetchPosts(){
+    while(true){
+        const {reddit} = yield take(nameActList.SELECT_REDDIT);
+        const posts = yield call(fetchPostsApi, reddit);
+        yield put(actionList.receivePosts(reddit, posts));
+    }
 }
 
 export function* nextRedditChange(){
@@ -45,13 +42,15 @@ export function* invalidateReddit(){
     }
 }
 
+export function* test(){
+    while(true){
+        const {reddit} = yield take(nameActList.SELECT_REDDIT);
+        console.log('reddit: ', reddit);
+    }
+}
+
 export default function* root(){
-    // yield fork(startup);
+    yield fork(fetchPosts);
     // yield fork(nextRedditChange);
     // yield fork(invalidateReddit);
-    yield all([
-        fork(startup),
-        fork(nextRedditChange),
-        fork(invalidateReddit)
-    ]);
 }
