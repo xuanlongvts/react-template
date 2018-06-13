@@ -2,7 +2,7 @@ import {put, take, call, fork, select, all} from 'redux-saga/effects';
 import API from '../../_services/api';
 import * as actionList from './actions';
 import * as nameActList from './consts';
-import { selectedRedditSelector, postsByRedditSelector } from './selectors';
+import { postsByRedditSelector } from './selectors';
 
 export const fetchPostsApi = (reddit) => {
     const restApi = new API();
@@ -28,8 +28,15 @@ export function* fetchPosts(){
 export function* invalidateReddit(){
     while(true){
         const { redditRefresh } = yield take(nameActList.INVALIDATE_REDDIT);
-        const posts = yield call(fetchPostsApi, redditRefresh);
-        yield put(actionList.receivePosts(redditRefresh, posts));
+
+        // Get data from state
+        let getPostsFromState = yield select(postsByRedditSelector);
+        getPostsFromState = getPostsFromState.getIn([redditRefresh, 'items']);
+
+        // Get new data from api
+        // const posts = yield call(fetchPostsApi, redditRefresh); // call api for get new data
+
+        yield put(actionList.receivePosts(redditRefresh, getPostsFromState));
     }
 }
 

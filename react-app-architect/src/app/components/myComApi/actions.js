@@ -22,6 +22,7 @@ export const requestPosts = (reddit) => {
 }
 
 export const receivePosts = (reddit, posts) => {
+    // console.log('posts: ', posts);
     return {
         type: listTypes.RECEIVE_POSTS,
         reddit,
