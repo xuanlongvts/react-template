@@ -8,7 +8,7 @@ class App extends PureComponent {
     constructor(props) {
         super(props)
         this.handleChange = this.handleChange.bind(this)
-        this.handleRefreshClick = this.handleRefreshClick.bind(this)
+        this.handleRefreshClick = this.handleRefreshClick.bind(this);
     }
 
     handleChange(nextReddit) {
@@ -80,10 +80,12 @@ const mapStateToProps = state => {
     const postsByRedditGetSelect = postsByReddit.getIn([selectedReddit]);
 
     let { isFetching, lastUpdated, posts } = { 
-        isFetching: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['isFetching'])) || false, 
+        isFetching: (postsByRedditGetSelect === undefined ? true : postsByRedditGetSelect.getIn(['isFetching'])), 
         lastUpdated: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['lastUpdated'])) || null, 
         posts: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['items'])) || []
     };
+
+    console.log('isFetching: ', isFetching);
 
     return {
         selectedReddit,

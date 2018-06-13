@@ -7,10 +7,10 @@ export const selectReddit = (reddit) => {
     }
 }
 
-export const invalidateReddit = (redditRefresh) => {
+export const invalidateReddit = (reddit) => {
     return {
         type: listTypes.INVALIDATE_REDDIT,
-        redditRefresh
+        reddit
     }
 }
 

@@ -24,19 +24,20 @@ export function* fetchPosts(){
         yield put(actionList.receivePosts(reddit, posts));
     }
 }
-
+const delay = (ms) => new Promise(res => setTimeout(res, ms));
 export function* invalidateReddit(){
     while(true){
-        const { redditRefresh } = yield take(nameActList.INVALIDATE_REDDIT);
+        const { reddit } = yield take(nameActList.INVALIDATE_REDDIT);
 
         // Get data from state
         let getPostsFromState = yield select(postsByRedditSelector);
-        getPostsFromState = getPostsFromState.getIn([redditRefresh, 'items']);
+        getPostsFromState = getPostsFromState.getIn(['items']);
 
+        // yield delay(1300);
         // Get new data from api
-        // const posts = yield call(fetchPostsApi, redditRefresh); // call api for get new data
+        // const posts = yield call(fetchPostsApi, reddit); // call api for get new data
 
-        yield put(actionList.receivePosts(redditRefresh, getPostsFromState));
+        yield put(actionList.receivePosts(reddit, getPostsFromState));
     }
 }
 
