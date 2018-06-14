@@ -29,6 +29,20 @@ export default class API {
         return axios.get(url);
     }
 
+    // fetchMulti(){
+    //     const path1 = 'url1';
+    //     const path2 = 'url2';
+    //     let res1 = ''; let res2 = '';
+    //     promises1 = this.fetch(path1).then((response) => { res1 = response; });
+    //     promises2 = this.fetch(path2).then((response) => { res2 = response; });
+    //     axios.all([promisesSubsidy, promisesDemandVsActual]).then(
+    //         axios.spread(function () {
+    //             console.log(res1, res2);
+    //         })).catch(e => {
+    //             console.log(e);
+    //         });
+    // }
+
     get(url) {
         if (!this.token) {
             throw new Error('The API require token !!!');
