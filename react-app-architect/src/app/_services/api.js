@@ -17,7 +17,7 @@ export default class API {
     establishHeaderRequest() {
         this.headers = {
             'content-type': 'application/json',
-            'x-mirus-auth': `Bearer ${this.token}`,
+            'x-app-auth': `Bearer ${this.token}`,
             'x-csrf-token': SessionStorageAdapter.getItem('csrfToken')
         };
     }
