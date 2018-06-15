@@ -19,10 +19,10 @@ const listConfigs = {
         }
     },
     production: {
-        'API_SERVER': 'https://abc.com',
+        'API_SERVER': 'http://www.reddit.com',
         'SOCKET': {
             secure: true,
-            hostname: 'https://abc.com',
+            hostname: 'http://www.reddit.com',
             port: 443,
             namespace: 'production'
         }
