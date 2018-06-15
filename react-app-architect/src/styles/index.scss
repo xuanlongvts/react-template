@@ -3,3 +3,22 @@
 body{
     color: blue;
 }
+
+@keyframes rot{
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.cssTest{
+    margin-top: 50px;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    box-shadow: 2px 2px #ccc;
+    animation: rot 2s linear infinite;
+}
