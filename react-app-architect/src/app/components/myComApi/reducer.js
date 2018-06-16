@@ -10,7 +10,7 @@ const  selectedReddit = (state = 'reactjs', action) => {
         default:
             return state;
     }
-}
+};
 
 const initialState = fromJS({
     isFetching: true,
@@ -24,13 +24,13 @@ const posts = (state = initialState, action) => {
             return state.set('isFetching', true);
         case RECEIVE_POSTS:
             return state
-            .set('isFetching', false)
-            .set('items', action.posts)
-            .set('lastUpdated', action.receivedAt)
+                .set('isFetching', false)
+                .set('items', action.posts)
+                .set('lastUpdated', action.receivedAt);
         default:
             return state;
     }
-}
+};
 
 const postsByReddit = (state = fromJS({isLoading: true}), action) => {
     const key = action.reddit;
@@ -43,11 +43,11 @@ const postsByReddit = (state = fromJS({isLoading: true}), action) => {
         default:
             return state;
     }
-}
+};
 
 const rootReducer = combineReducers({
     postsByReddit,
     selectedReddit
-})
+});
 
 export default rootReducer;

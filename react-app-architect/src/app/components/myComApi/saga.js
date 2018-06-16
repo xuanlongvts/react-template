@@ -15,7 +15,7 @@ const fetchPostsApi = (reddit) => {
             });
         })
         .catch(err => console.log('err: ', err));
-}
+};
 
 function* fetchPosts(){
     while(true){

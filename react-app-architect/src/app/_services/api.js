@@ -6,7 +6,7 @@ export default class API {
 
     constructor(){
         this.token = undefined;
-        this.headers = {}
+        this.headers = {};
     }
 
     setJwtToken(token) {
@@ -72,4 +72,4 @@ export default class API {
             headers: this.headers
         }); 
     }
-};
+}

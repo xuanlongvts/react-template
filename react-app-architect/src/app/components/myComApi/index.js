@@ -6,9 +6,14 @@ import { selectReddit, invalidateReddit } from './actions';
 class App extends PureComponent {
 
     constructor(props) {
-        super(props)
-        this.handleChange = this.handleChange.bind(this)
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
         this.handleRefreshClick = this.handleRefreshClick.bind(this);
+    }
+
+    componentDidMount(){
+        const { selectReddit, selectedReddit } = this.props;
+        selectReddit(selectedReddit);
     }
 
     handleChange(nextReddit) {
@@ -20,11 +25,6 @@ class App extends PureComponent {
         e.preventDefault();
         const { invalidateReddit, selectedReddit } = this.props;
         invalidateReddit(selectedReddit);
-    }
-
-    componentDidMount(){
-        const { selectReddit, selectedReddit } = this.props;
-        selectReddit(selectedReddit);
     }
 
     render() {
@@ -55,24 +55,27 @@ class App extends PureComponent {
                 {!isFetching && posts.length === 0 && <h2>Empty.</h2>}
                 {posts.length > 0 && (
                     <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-                        <ul>{posts.map((post, i) => 
-                            <li key={i} style={{textAlign: 'left', color: '#000'}}>
+                        <ul>{posts.map((post, key) => (
+                            <li key={key} style={{textAlign: 'left', color: '#000'}}>
                                 {post.title}
-                            </li>)}
+                            </li>
+                        ))}
                         </ul>
                     </div>
                 )}
             </div>
-        )
+        );
     }
 }
 
 App.propTypes = {
     selectedReddit: PropTypes.string.isRequired,
-    posts: PropTypes.array.isRequired,
+    posts: PropTypes.arrayOf.isRequired,
     isFetching: PropTypes.bool.isRequired,
-    lastUpdated: PropTypes.number,
-}
+    selectReddit: PropTypes.func.isRequired,
+    invalidateReddit: PropTypes.func.isRequired,
+    lastUpdated: PropTypes.number.isRequired
+};
 
 const mapStateToProps = state => {
     const selectedReddit = state.reducerMyComApi.getIn(['selectedReddit']);
@@ -85,19 +88,19 @@ const mapStateToProps = state => {
         posts: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['items'])) || []
     };
 
-    console.log('isFetching: ', isFetching);
+    // console.log('isFetching: ', isFetching);
 
     return {
         selectedReddit,
         posts,
         isFetching,
         lastUpdated
-    }
+    };
 };
 
 const mapDispatchToProps = {
     selectReddit,
     invalidateReddit
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

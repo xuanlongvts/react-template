@@ -4,22 +4,22 @@ export const selectReddit = (reddit) => {
     return {
         type: listTypes.SELECT_REDDIT,
         reddit
-    }
-}
+    };
+};
 
 export const invalidateReddit = (reddit) => {
     return {
         type: listTypes.INVALIDATE_REDDIT,
         reddit
-    }
-}
+    };
+};
 
 export const requestPosts = (reddit) => {
     return {
         type: listTypes.REQUEST_POSTS,
         reddit
-    }
-}
+    };
+};
 
 export const receivePosts = (reddit, posts) => {
     // console.log('posts: ', posts);
@@ -28,5 +28,5 @@ export const receivePosts = (reddit, posts) => {
         reddit,
         posts,
         receivedAt: Date.now()
-    }
-}
+    };
+};

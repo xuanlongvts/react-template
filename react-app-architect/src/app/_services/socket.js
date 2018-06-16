@@ -1,5 +1,6 @@
-import { Config } from './../../config';
 import socketCluster from 'socketcluster-client';
+import { Config } from './../../config';
+
 export default class BaseWebsocket {
 
     constructor(){

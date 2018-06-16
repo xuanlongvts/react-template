@@ -6,7 +6,7 @@ const asynComponent = (importComponent) => {
             super(props);
             this.state = {
                 component: null
-            }
+            };
         }
 
         async componentDidMount(){
@@ -14,7 +14,7 @@ const asynComponent = (importComponent) => {
             if(component){
                 this.setState({
                     component: component
-                })
+                });
             }
         }
 

@@ -19,4 +19,4 @@ export default class sessionStorageAdapter {
     removeItem(key) {
         sessionStorage.removeItem(key);
     }
-};
+}

@@ -20,4 +20,4 @@ export default class localStorageAdapter {
         localStorage.removeItem(key);
     }
     
-};
+}
