@@ -4,7 +4,7 @@ import * as actionList from './actions';
 import * as nameActList from './consts';
 import { postsByRedditSelector } from './selectors';
 
-export const fetchPostsApi = (reddit) => {
+const fetchPostsApi = (reddit) => {
     const restApi = new API();
     const path = `/r/${reddit}.json`;
 
@@ -17,7 +17,7 @@ export const fetchPostsApi = (reddit) => {
         .catch(err => console.log('err: ', err));
 }
 
-export function* fetchPosts(){
+function* fetchPosts(){
     while(true){
         const {reddit} = yield take(nameActList.SELECT_REDDIT);
         const posts = yield call(fetchPostsApi, reddit);
@@ -25,7 +25,7 @@ export function* fetchPosts(){
     }
 }
 
-export function* invalidateReddit(){
+function* invalidateReddit(){
     const delay = (ms) => new Promise(res => setTimeout(res, ms));
     while(true){
         const { reddit } = yield take(nameActList.INVALIDATE_REDDIT);
