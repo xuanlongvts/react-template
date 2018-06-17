@@ -8,7 +8,7 @@ class Home extends PureComponent{
                 <p>Home</p>
                 <div className="cssTest">test css</div>
             </div>
-        )
+        );
     }
 }
 

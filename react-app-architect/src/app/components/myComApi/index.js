@@ -70,7 +70,7 @@ class App extends PureComponent {
 
 App.propTypes = {
     selectedReddit: PropTypes.string.isRequired,
-    posts: PropTypes.arrayOf.isRequired,
+    posts: PropTypes.array.isRequired,
     isFetching: PropTypes.bool.isRequired,
     selectReddit: PropTypes.func.isRequired,
     invalidateReddit: PropTypes.func.isRequired,
@@ -84,7 +84,7 @@ const mapStateToProps = state => {
 
     let { isFetching, lastUpdated, posts } = { 
         isFetching: (postsByRedditGetSelect === undefined ? true : postsByRedditGetSelect.getIn(['isFetching'])), 
-        lastUpdated: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['lastUpdated'])) || null, 
+        lastUpdated: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['lastUpdated'])) || (Date.now()), 
         posts: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['items'])) || []
     };
 

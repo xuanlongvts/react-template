@@ -1,4 +1,4 @@
-import {put, take, call, fork, select, all} from 'redux-saga/effects';
+import {put, take, call, fork, select} from 'redux-saga/effects';
 import API from '../../_services/api';
 import * as actionList from './actions';
 import * as nameActList from './consts';
@@ -14,7 +14,15 @@ const fetchPostsApi = (reddit) => {
                 return item.data;
             });
         })
-        .catch(err => console.log('err: ', err));
+        .catch(
+            err => {
+                put({
+                    type: 'ERROR',
+                    err
+                });
+                //console.log('err: ', err)
+            }
+        );
 };
 
 function* fetchPosts(){
@@ -26,13 +34,13 @@ function* fetchPosts(){
 }
 
 function* invalidateReddit(){
-    const delay = (ms) => new Promise(res => setTimeout(res, ms));
+    // const delay = (ms) => new Promise(res => setTimeout(res, ms));
     while(true){
         const { reddit } = yield take(nameActList.INVALIDATE_REDDIT);
 
         // Get data from state
-        // let getPostsFromState = yield select(postsByRedditSelector);
-        // getPostsFromState = getPostsFromState.getIn(['items']);
+        let getPostsFromState = yield select(postsByRedditSelector);
+        getPostsFromState = getPostsFromState.getIn(['items']);
         // yield delay(1000);
 
         // Get new data from api

@@ -1,15 +1,20 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import {Link, Route} from 'react-router-dom';
 
 class Catagories extends PureComponent {
-    state = {
-        subLinkActive: null
+    constructor(props){
+        super(props);
+
+        this.state = {
+            subLinkActive: null
+        };
     }
 
     componentDidMount(){
         this.setState({
             subLinkActive: window.location.pathname
-        })
+        });
     }
 
     handleSubLink(path){
@@ -42,16 +47,18 @@ class Catagories extends PureComponent {
                     {
                         listSubLink.map((item, key) => {
                             let classActive = (subLinkActive === item.path) ? 'curr' : null;
-                            return <li key={key} className={classActive}><Link to={item.path} onClick={() => this.handleSubLink(item.path)}>{item.title}</Link></li>
+                            return <li key={key} className={classActive}><Link to={item.path} onClick={() => this.handleSubLink(item.path)}>{item.title}</Link></li>;
                         })
                     }
                 </ul>
-                <Route path={`${match.path}/:name`}
-                    render={({match}) => <h3>{match.params.name}</h3>}
-                />
+                <Route path={`${match.path}/:name`} render={({match}) => <h3>{match.params.name}</h3>} />
             </div>
-        )
+        );
     }
+}
+
+Catagories.propTypes = {
+    match: PropTypes.object.isRequired
 };
 
 export default Catagories;

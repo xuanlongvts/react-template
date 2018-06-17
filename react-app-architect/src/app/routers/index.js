@@ -1,21 +1,25 @@
 import React, { PureComponent } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+
 import NotFound from '../components/NotFound';
-import RouterUnAuthen from './UnAuthen';
-import RouterAuthen from './Authen';
+import RoutersUnAuthen from './RoutersUnAuthen';
+import RoutersAuthen from './RoutersAuthen';
 
 class Routers extends PureComponent{
-    state = {
-        isLogin: true,
-        routes: RouterUnAuthen
-    };
+    constructor(props){
+        super(props);
+        this.state = {
+            isLogin: true,
+            routes: RoutersUnAuthen
+        };
+    }
 
     componentDidMount(){
         const { isLogin } = this.state;
         if(isLogin){
             this.setState({
-                routes: RouterAuthen
+                routes: RoutersAuthen
             });
         }
     }
@@ -31,7 +35,10 @@ class Routers extends PureComponent{
                     {routes.length && (
                         <ul className="nav">
                             {routes.map((route, key) => (
-                                <Route key={key} path={route.path} exact={route.exact}
+                                <Route 
+                                    key={key} 
+                                    path={route.path} 
+                                    exact={route.exact}
                                     children={({ match }) => (
                                         <li className={match ? 'active' : null}>
                                             <Link to={route.path}>{route.title}</Link>
@@ -47,7 +54,7 @@ class Routers extends PureComponent{
                     </Switch>
                 </div>
             </BrowserRouter>
-        )
+        );
     }
 }
 

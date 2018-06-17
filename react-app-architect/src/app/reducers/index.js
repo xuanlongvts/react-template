@@ -7,6 +7,6 @@ import reducerMyComApi from '../components/myComApi/reducer';
 const rootReducer = combineReducers({
     router: routerReducer,
     reducerMyComApi,
-})
+});
 
 export default rootReducer;

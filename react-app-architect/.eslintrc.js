@@ -8,6 +8,7 @@ module.exports = {
         "eslint:recommended",
         "plugin:react/recommended"
     ],
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
@@ -33,14 +34,19 @@ module.exports = {
             "error",
             "always"
         ],
+        "react/jsx-indent-props": ["error", 4],
         "react/jsx-filename-extension": 0,
         "react/no-did-mount-set-state": 0,
         "react/display-name": 0,
         "react/jsx-indent": 0,
         "react/no-array-index-key": 0,
         "react/prefer-stateless-function": 0,
+        "react/no-children-prop": 0,
+        "react/forbid-prop-types": 0,
 
+        "jsx-a11y/href-no-hash": 0,
         "jsx-a11y/click-events-have-key-events": 0,
-        "jsx-a11y/no-static-element-interactions": 0
+        "jsx-a11y/no-static-element-interactions": 0,
+        "jsx-a11y/anchor-is-valid": 0,
     }
 };
