@@ -7,6 +7,6 @@ export default () => (
             <title>Sign up</title>
             <meta name="description" content="Sign up page" />
         </Helmet>
-        Sign up
+        <p className="txtIntro">Sign up</p>
     </div>
 );

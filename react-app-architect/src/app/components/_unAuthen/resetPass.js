@@ -7,6 +7,6 @@ export default () => (
             <title>Reset password</title>
             <meta name="description" content="reset password page" />
         </Helmet>
-        Reset password
+        <p className="txtIntro">Reset password</p>
     </div>
 );

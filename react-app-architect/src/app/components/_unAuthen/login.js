@@ -7,6 +7,6 @@ export default () => (
             <title>Login</title>
             <meta name="description" content="Login page" />
         </Helmet>
-        Login
+        <p className="txtIntro">Login</p>
     </div>
 );

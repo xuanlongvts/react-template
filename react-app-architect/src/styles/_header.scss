@@ -9,15 +9,15 @@
 
 .App-header {
     background-color: #222;
-    height: 150px;
+    height: 200px;
     padding: 20px;
     color: white;
-    background: url('./imgs/bg.jpg') no-repeat 0 0;
+    background: url('./imgs/bgBlue.svg') no-repeat 0 0;
     background-size: cover;
 }
 
 .App-title {
-    font-size: 1.5em;
+    font-size: 40px;
 }
 
 .App-intro {
@@ -33,6 +33,6 @@
     }
 }
 
-p{
+p {
     font-size: 50px;
 }

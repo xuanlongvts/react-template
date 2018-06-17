@@ -63,7 +63,9 @@ class Catagories extends PureComponent {
                 </ul>
                 <Route
                     path={`${match.path}/:name`}
-                    render={({ match }) => <h3>{match.params.name}</h3>}
+                    render={({ match }) => (
+                        <p className="cataDetail">{match.params.name}</p>
+                    )}
                 />
             </div>
         );

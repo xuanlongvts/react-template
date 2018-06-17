@@ -58,57 +58,32 @@ class Products extends PureComponent {
             }
         ];
         return (
-            <div className="products">
-                <div
-                    style={{
-                        display: 'block',
-                        justifyContent: 'space-between'
-                    }}
-                >
-                    <div
-                        style={{
-                            float: 'left',
-                            padding: '10px',
-                            width: '30%',
-                            background: '#f0f0f0',
-                            marginLeft: 'auto'
-                        }}
-                    >
-                        <h3>Products</h3>
-                        {productsData.length && (
-                            <ul
-                                className="list-products"
-                                style={{
-                                    listStyleType: 'none',
-                                    padding: 0,
-                                    fontSize: '15px'
-                                }}
-                            >
-                                {productsData.map((item, key) => {
-                                    let classActive = null;
-                                    subLinkActive ===
-                                        `${match.url}/${item.id}` &&
-                                        (classActive = 'curr');
-                                    return (
-                                        <li key={key} className={classActive}>
-                                            <Link
-                                                to={`${match.url}/${item.id}`}
-                                                onClick={() =>
-                                                    this.handleSubLink(
-                                                        `${match.url}/${
-                                                            item.id
-                                                        }`
-                                                    )
-                                                }
-                                            >
-                                                {item.name}
-                                            </Link>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        )}
-                    </div>
+            <div className="productsWrap">
+                <div className="siderbar">
+                    <h3>Categories products</h3>
+                    {productsData.length && (
+                        <ul className="list-products">
+                            {productsData.map((item, key) => {
+                                let classActive = null;
+                                subLinkActive === `${match.url}/${item.id}` &&
+                                    (classActive = 'curr');
+                                return (
+                                    <li key={key} className={classActive}>
+                                        <Link
+                                            to={`${match.url}/${item.id}`}
+                                            onClick={() =>
+                                                this.handleSubLink(
+                                                    `${match.url}/${item.id}`
+                                                )
+                                            }
+                                        >
+                                            {item.name}
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    )}
                 </div>
                 <Route
                     path={`${match.url}/:productId`}

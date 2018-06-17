@@ -28,7 +28,7 @@ class Routers extends PureComponent {
         const { routes } = this.state;
         return (
             <BrowserRouter>
-                <div className="router">
+                <div className="main-container">
                     <Helmet
                         titleTemplate="%s - React.js Boilerplate"
                         defaultTitle="Default React.js Boilerplate"

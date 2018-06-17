@@ -52,17 +52,12 @@ class App extends PureComponent {
                             {new Date(lastUpdated).toLocaleTimeString()}.{' '}
                         </span>
                     )}
-                    {!isFetching && (
-                        <span
-                            onClick={this.handleRefreshClick}
-                            style={{
-                                cursor: 'pointer',
-                                textDecoration: 'underline'
-                            }}
-                        >
-                            Refresh
-                        </span>
-                    )}
+                    <span
+                        onClick={!isFetching ? this.handleRefreshClick : null}
+                        className={!isFetching ? 'enable refresh' : 'refresh'}
+                    >
+                        Refresh
+                    </span>
                 </p>
                 {isFetching && posts.length === 0 && <h2>Loading...</h2>}
                 {!isFetching && posts.length === 0 && <h2>Empty.</h2>}

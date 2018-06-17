@@ -7,14 +7,14 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 200px;
   padding: 20px;
   color: white;
-  background: url("./imgs/bg.jpg") no-repeat 0 0;
+  background: url("./imgs/bgBlue.svg") no-repeat 0 0;
   background-size: cover; }
 
 .App-title {
-  font-size: 1.5em; }
+  font-size: 40px; }
 
 .App-intro {
   font-size: large; }
@@ -29,7 +29,11 @@ p {
   font-size: 50px; }
 
 body {
-  color: blue; }
+  padding: 10px;
+  color: #333; }
+
+* {
+  box-sizing: border-box; }
 
 @keyframes rot {
   from {
@@ -37,10 +41,93 @@ body {
   to {
     transform: rotate(360deg); } }
 
+ul {
+  list-style: none;
+  -webkit-padding-start: 0; }
+
+.nav li {
+  display: inline-block; }
+  .nav li.active a {
+    color: #111; }
+  .nav li a {
+    display: inline-block;
+    padding: 5px 15px;
+    color: #e98c00;
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: uppercase; }
+    .nav li a:hover {
+      color: #111; }
+
+.txtIntro {
+  font-size: 30px; }
+
 .cssTest {
   margin-top: 50px;
   display: inline-block;
-  width: 100px;
-  height: 100px;
-  box-shadow: 2px 2px #ccc;
-  animation: rot 2s linear infinite; }
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  line-height: 200px;
+  text-transform: capitalize;
+  font-size: 22px;
+  box-shadow: 2px 2px 5px #ccc;
+  animation: rot 15s linear infinite; }
+
+.list-catagories li {
+  display: inline-block;
+  padding: 0 10px; }
+  .list-catagories li.curr a {
+    color: #555; }
+  .list-catagories li a {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 20px;
+    color: #999;
+    text-decoration: none;
+    text-transform: capitalize; }
+    .list-catagories li a:hover {
+      color: #555; }
+
+.cataDetail {
+  font-size: 20px;
+  margin-top: 50px; }
+
+.productsWrap {
+  overflow: hidden;
+  padding-top: 30px; }
+  .productsWrap .siderbar {
+    width: 25%;
+    padding: 10px;
+    display: block;
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-align: left;
+    font-size: 18px; }
+    .productsWrap .siderbar h3 {
+      color: #111; }
+    .productsWrap .siderbar li {
+      margin-bottom: 15px; }
+      .productsWrap .siderbar li.curr a {
+        text-decoration: underline; }
+    .productsWrap .siderbar a {
+      color: #333;
+      font-size: 15px;
+      text-decoration: none; }
+      .productsWrap .siderbar a:hover {
+        text-decoration: underline; }
+  .productsWrap .products {
+    width: 70%;
+    float: right; }
+  .productsWrap .productDetail p {
+    font-size: 22px; }
+
+.refresh {
+  cursor: default;
+  color: blue;
+  opacity: 0.2;
+  text-decoration: underline; }
+  .refresh.enable {
+    cursor: pointer;
+    opacity: 1; }

@@ -9,7 +9,7 @@ import asyncComponent from '../components/_asynComponent';
 const AsyncHome = asyncComponent(() => import('../components/Home'));
 const AsyncAbout = asyncComponent(() => import('../components/About'));
 const AsyncCatagories = asyncComponent(() =>
-    import('../components/Catagories')
+    import('../components/Categories')
 );
 const AsyncProducts = asyncComponent(() => import('../components/Products'));
 const AsyncMyComApi = asyncComponent(() => import('../components/myComApi'));
@@ -27,8 +27,8 @@ const routersAuthen = [
         component: AsyncAbout
     },
     {
-        title: 'Catagories',
-        path: '/catagories',
+        title: 'Categories',
+        path: '/categories',
         component: AsyncCatagories
     },
     {
@@ -37,7 +37,7 @@ const routersAuthen = [
         component: AsyncProducts
     },
     {
-        title: 'my component api',
+        title: 'Reddit api',
         path: '/mycomapi',
         component: AsyncMyComApi
     }
