@@ -18,22 +18,16 @@ module.exports = {
     },
     "plugins": ["react", "jsx-a11y", "import"],
     "rules": {
-        "indent": [
-            "error",
-            4,
+        "indent": ["error", 4,
             {
                 "SwitchCase": 1
             }
         ],
         "linebreak-style": "off",
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "object-curly-spacing": ["error", "always"],
+
         "react/jsx-indent-props": ["error", 4],
         "react/jsx-filename-extension": 0,
         "react/no-did-mount-set-state": 0,

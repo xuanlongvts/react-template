@@ -1,8 +1,8 @@
 const env = process.env.REACT_APP_ENV;
 const listConfigs = {
     dev: {
-        'API_SERVER': 'http://www.reddit.com',
-        'SOCKET': {
+        API_SERVER: 'http://www.reddit.com',
+        SOCKET: {
             secure: true,
             hostname: 'http://www.reddit.com',
             port: 443,
@@ -10,8 +10,8 @@ const listConfigs = {
         }
     },
     uat: {
-        'API_SERVER': 'https://uat-abc.com',
-        'SOCKET': {
+        API_SERVER: 'https://uat-abc.com',
+        SOCKET: {
             secure: true,
             hostname: 'https://uat-abc',
             port: 443,
@@ -19,8 +19,8 @@ const listConfigs = {
         }
     },
     production: {
-        'API_SERVER': 'http://www.reddit.com',
-        'SOCKET': {
+        API_SERVER: 'http://www.reddit.com',
+        SOCKET: {
             secure: true,
             hostname: 'http://www.reddit.com',
             port: 443,

@@ -1,9 +1,14 @@
 // import { combineReducers } from 'redux';
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
-import { SELECT_REDDIT, REQUEST_POSTS, RECEIVE_POSTS, INVALIDATE_REDDIT } from './consts';
+import {
+    SELECT_REDDIT,
+    REQUEST_POSTS,
+    RECEIVE_POSTS,
+    INVALIDATE_REDDIT
+} from './consts';
 
-const  selectedReddit = (state = 'reactjs', action) => {
+const selectedReddit = (state = 'reactjs', action) => {
     switch (action.type) {
         case SELECT_REDDIT:
             return action.reddit;
@@ -32,7 +37,7 @@ const posts = (state = initialState, action) => {
     }
 };
 
-const postsByReddit = (state = fromJS({isLoading: true}), action) => {
+const postsByReddit = (state = fromJS({ isLoading: true }), action) => {
     const key = action.reddit;
     switch (action.type) {
         case INVALIDATE_REDDIT:

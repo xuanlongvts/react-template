@@ -1,27 +1,31 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 
-const asynComponent = (importComponent) => {
-    class AsyncComponent extends PureComponent{
-        constructor(props){
+const asynComponent = importComponent => {
+    class AsyncComponent extends PureComponent {
+        constructor(props) {
             super(props);
             this.state = {
                 component: null
             };
         }
 
-        async componentDidMount(){
+        async componentDidMount() {
             const { default: component } = await importComponent();
-            if(component){
+            if (component) {
                 this.setState({
                     component: component
                 });
             }
         }
 
-        render(){
+        render() {
             const { component: C } = this.state;
 
-            return C ? <C {...this.props} /> : <div className="loading">Loading...</div>;
+            return C ? (
+                <C {...this.props} />
+            ) : (
+                <div className="loading">Loading...</div>
+            );
         }
     }
 

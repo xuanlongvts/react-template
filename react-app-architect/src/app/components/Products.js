@@ -4,7 +4,7 @@ import { Link, Route } from 'react-router-dom';
 import Product from './Product';
 
 class Products extends PureComponent {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -19,8 +19,8 @@ class Products extends PureComponent {
     }
 
     handleSubLink(path) {
-        this.setState({ 
-            subLinkActive: path 
+        this.setState({
+            subLinkActive: path
         });
     }
 
@@ -58,17 +58,49 @@ class Products extends PureComponent {
             }
         ];
         return (
-            <div className='products'>
-                <div style={{display: 'block',justifyContent: 'space-between'}}>
-                    <div style={{float: 'left', padding: '10px', width: '30%', background: '#f0f0f0', marginLeft: 'auto'}}>
+            <div className="products">
+                <div
+                    style={{
+                        display: 'block',
+                        justifyContent: 'space-between'
+                    }}
+                >
+                    <div
+                        style={{
+                            float: 'left',
+                            padding: '10px',
+                            width: '30%',
+                            background: '#f0f0f0',
+                            marginLeft: 'auto'
+                        }}
+                    >
                         <h3>Products</h3>
                         {productsData.length && (
-                            <ul className='list-products' style={{ listStyleType: 'none', padding: 0, fontSize: '15px' }}>
+                            <ul
+                                className="list-products"
+                                style={{
+                                    listStyleType: 'none',
+                                    padding: 0,
+                                    fontSize: '15px'
+                                }}
+                            >
                                 {productsData.map((item, key) => {
-                                    let classActive = (subLinkActive === `${match.url}/${item.id}`) ? 'curr' : null;
+                                    let classActive = null;
+                                    subLinkActive ===
+                                        `${match.url}/${item.id}` &&
+                                        (classActive = 'curr');
                                     return (
                                         <li key={key} className={classActive}>
-                                            <Link to={`${match.url}/${item.id}`} onClick={() => this.handleSubLink(`${match.url}/${item.id}`)}>
+                                            <Link
+                                                to={`${match.url}/${item.id}`}
+                                                onClick={() =>
+                                                    this.handleSubLink(
+                                                        `${match.url}/${
+                                                            item.id
+                                                        }`
+                                                    )
+                                                }
+                                            >
                                                 {item.name}
                                             </Link>
                                         </li>
@@ -78,8 +110,19 @@ class Products extends PureComponent {
                         )}
                     </div>
                 </div>
-                <Route path={`${match.url}/:productId`} render={props => <Product data={productsData} {...props} />} />
-                <Route exact path={match.url} render={() => <div style={{ textAlign: 'center' }}>Please select a product.</div>} />
+                <Route
+                    path={`${match.url}/:productId`}
+                    render={props => <Product data={productsData} {...props} />}
+                />
+                <Route
+                    exact
+                    path={match.url}
+                    render={() => (
+                        <div style={{ textAlign: 'center' }}>
+                            Please select a product.
+                        </div>
+                    )}
+                />
             </div>
         );
     }

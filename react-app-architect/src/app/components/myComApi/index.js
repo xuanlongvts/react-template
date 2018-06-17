@@ -4,14 +4,13 @@ import { connect } from 'react-redux';
 import { selectReddit, invalidateReddit } from './actions';
 
 class App extends PureComponent {
-
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleRefreshClick = this.handleRefreshClick.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const { selectReddit, selectedReddit } = this.props;
         selectReddit(selectedReddit);
     }
@@ -29,12 +28,15 @@ class App extends PureComponent {
 
     render() {
         const { selectedReddit, posts, isFetching, lastUpdated } = this.props;
-        
+
         return (
             <div>
                 <span>
                     <h1>{selectedReddit}</h1>
-                    <select onChange={e => this.handleChange(e.target.value)} value={selectedReddit}>
+                    <select
+                        onChange={e => this.handleChange(e.target.value)}
+                        value={selectedReddit}
+                    >
                         {['reactjs', 'frontend'].map(option => (
                             <option value={option} key={option}>
                                 {option}
@@ -44,9 +46,20 @@ class App extends PureComponent {
                 </span>
 
                 <p>
-                    {lastUpdated && <span>Last updated at {new Date(lastUpdated).toLocaleTimeString()}. </span>}
+                    {lastUpdated && (
+                        <span>
+                            Last updated at{' '}
+                            {new Date(lastUpdated).toLocaleTimeString()}.{' '}
+                        </span>
+                    )}
                     {!isFetching && (
-                        <span onClick={this.handleRefreshClick} style={{cursor: 'pointer', textDecoration: 'underline'}}>
+                        <span
+                            onClick={this.handleRefreshClick}
+                            style={{
+                                cursor: 'pointer',
+                                textDecoration: 'underline'
+                            }}
+                        >
                             Refresh
                         </span>
                     )}
@@ -55,11 +68,15 @@ class App extends PureComponent {
                 {!isFetching && posts.length === 0 && <h2>Empty.</h2>}
                 {posts.length > 0 && (
                     <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-                        <ul>{posts.map((post, key) => (
-                            <li key={key} style={{textAlign: 'left', color: '#000'}}>
-                                {post.title}
-                            </li>
-                        ))}
+                        <ul>
+                            {posts.map((post, key) => (
+                                <li
+                                    key={key}
+                                    style={{ textAlign: 'left', color: '#000' }}
+                                >
+                                    {post.title}
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 )}
@@ -82,10 +99,19 @@ const mapStateToProps = state => {
     const postsByReddit = state.reducerMyComApi.getIn(['postsByReddit']);
     const postsByRedditGetSelect = postsByReddit.getIn([selectedReddit]);
 
-    let { isFetching, lastUpdated, posts } = { 
-        isFetching: (postsByRedditGetSelect === undefined ? true : postsByRedditGetSelect.getIn(['isFetching'])), 
-        lastUpdated: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['lastUpdated'])) || (Date.now()), 
-        posts: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['items'])) || []
+    let { isFetching, lastUpdated, posts } = {
+        isFetching:
+            postsByRedditGetSelect === undefined
+                ? true
+                : postsByRedditGetSelect.getIn(['isFetching']),
+        lastUpdated:
+            (postsByRedditGetSelect &&
+                postsByRedditGetSelect.getIn(['lastUpdated'])) ||
+            Date.now(),
+        posts:
+            (postsByRedditGetSelect &&
+                postsByRedditGetSelect.getIn(['items'])) ||
+            []
     };
 
     // console.log('isFetching: ', isFetching);
@@ -103,4 +129,7 @@ const mapDispatchToProps = {
     invalidateReddit
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(App);

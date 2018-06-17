@@ -1,41 +1,40 @@
-import {put, take, call, fork, select} from 'redux-saga/effects';
+import { put, take, call, fork, select } from 'redux-saga/effects';
 import API from '../../_services/api';
 import * as actionList from './actions';
 import * as nameActList from './consts';
 import { postsByRedditSelector } from './selectors';
 
-const fetchPostsApi = (reddit) => {
+const fetchPostsApi = reddit => {
     const restApi = new API();
     const path = `/r/${reddit}.json`;
 
-    return restApi.fetch(path)
+    return restApi
+        .fetch(path)
         .then(res => {
-            return res.data.data.children.map((item) => {
+            return res.data.data.children.map(item => {
                 return item.data;
             });
         })
-        .catch(
-            err => {
-                put({
-                    type: 'ERROR',
-                    err
-                });
-                //console.log('err: ', err)
-            }
-        );
+        .catch(err => {
+            put({
+                type: 'ERROR',
+                err
+            });
+            // console.log('err: ', err)
+        });
 };
 
-function* fetchPosts(){
-    while(true){
-        const {reddit} = yield take(nameActList.SELECT_REDDIT);
+function* fetchPosts() {
+    while (true) {
+        const { reddit } = yield take(nameActList.SELECT_REDDIT);
         const posts = yield call(fetchPostsApi, reddit);
         yield put(actionList.receivePosts(reddit, posts));
     }
 }
 
-function* invalidateReddit(){
+function* invalidateReddit() {
     // const delay = (ms) => new Promise(res => setTimeout(res, ms));
-    while(true){
+    while (true) {
         const { reddit } = yield take(nameActList.INVALIDATE_REDDIT);
 
         // Get data from state
@@ -50,7 +49,7 @@ function* invalidateReddit(){
     }
 }
 
-export default function* root(){
+export default function* root() {
     yield fork(fetchPosts);
     yield fork(invalidateReddit);
 }

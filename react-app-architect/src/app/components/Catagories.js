@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import {Link, Route} from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 class Catagories extends PureComponent {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -11,19 +11,19 @@ class Catagories extends PureComponent {
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.setState({
             subLinkActive: window.location.pathname
         });
     }
 
-    handleSubLink(path){
+    handleSubLink(path) {
         this.setState({
             subLinkActive: path
         });
     }
 
-    render(){
+    render() {
         const { match } = this.props;
         const { subLinkActive } = this.state;
         const listSubLink = [
@@ -44,14 +44,27 @@ class Catagories extends PureComponent {
         return (
             <div className="catagories">
                 <ul className="list-catagories">
-                    {
-                        listSubLink.map((item, key) => {
-                            let classActive = (subLinkActive === item.path) ? 'curr' : null;
-                            return <li key={key} className={classActive}><Link to={item.path} onClick={() => this.handleSubLink(item.path)}>{item.title}</Link></li>;
-                        })
-                    }
+                    {listSubLink.map((item, key) => {
+                        let classActive =
+                            subLinkActive === item.path ? 'curr' : null;
+                        return (
+                            <li key={key} className={classActive}>
+                                <Link
+                                    to={item.path}
+                                    onClick={() =>
+                                        this.handleSubLink(item.path)
+                                    }
+                                >
+                                    {item.title}
+                                </Link>
+                            </li>
+                        );
+                    })}
                 </ul>
-                <Route path={`${match.path}/:name`} render={({match}) => <h3>{match.params.name}</h3>} />
+                <Route
+                    path={`${match.path}/:name`}
+                    render={({ match }) => <h3>{match.params.name}</h3>}
+                />
             </div>
         );
     }

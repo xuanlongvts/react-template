@@ -13,24 +13,19 @@ const storeConfig = () => {
     const sagaMiddleware = createSagaMiddleware();
     const routesMiddleware = routerMiddleware(createHistory());
 
-    const middlewares = [
-        sagaMiddleware,
-        routesMiddleware,
-    ];
-    
-    const enhancers = [
-        applyMiddleware(...middlewares)
-    ];
+    const middlewares = [sagaMiddleware, routesMiddleware];
 
-    const composeEnhancers = (ENV !== 'production' && typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ? 
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-            shouldHotReload: false,
-        }) : compose;
+    const enhancers = [applyMiddleware(...middlewares)];
 
-    const store = createStore(
-        rootReducer,
-        composeEnhancers(...enhancers)
-    );
+    let composeEnhancers = compose;
+    ENV !== 'production' &&
+        typeof window === 'object' &&
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
+        (composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+            shouldHotReload: false
+        }));
+
+    const store = createStore(rootReducer, composeEnhancers(...enhancers));
     sagaMiddleware.run(rootSaga);
 
     return store;
