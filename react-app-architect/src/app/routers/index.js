@@ -35,16 +35,13 @@ class Routers extends PureComponent{
                     {routes.length && (
                         <ul className="nav">
                             {routes.map((route, key) => (
-                                <Route 
-                                    key={key} 
-                                    path={route.path} 
-                                    exact={route.exact}
-                                    children={({ match }) => (
+                                <Route key={key} path={route.path} exact={route.exact}>
+                                    {({ match }) => (
                                         <li className={match ? 'active' : null}>
                                             <Link to={route.path}>{route.title}</Link>
                                         </li>
                                     )}
-                                />
+                                </Route>
                             ))}
                         </ul>
                     )}
