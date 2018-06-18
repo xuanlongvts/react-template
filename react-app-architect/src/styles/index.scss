@@ -14,6 +14,11 @@ body {
     padding: 0 20px;
 }
 
+.loading {
+    font-size: 50px;
+    margin-top: 50px;
+}
+
 @keyframes rot {
     from {
         transform: rotate(0deg);

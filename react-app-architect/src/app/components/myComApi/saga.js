@@ -33,13 +33,13 @@ function* fetchPosts() {
 }
 
 function* invalidateReddit() {
-    // const delay = (ms) => new Promise(res => setTimeout(res, ms));
+    // const delay = ms => new Promise(res => setTimeout(res, ms));
     while (true) {
         const { reddit } = yield take(nameActList.INVALIDATE_REDDIT);
 
         // Get data from state
         let getPostsFromState = yield select(postsByRedditSelector);
-        getPostsFromState = getPostsFromState.getIn(['items']);
+        getPostsFromState = getPostsFromState.getIn([reddit, 'items']);
         // yield delay(1000);
 
         // Get new data from api
