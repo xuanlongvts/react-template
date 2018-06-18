@@ -157,6 +157,10 @@ ul {
     ul {
         text-align: left;
 
+        &.loaded {
+            opacity: 0.5;
+        }
+
         li {
             margin-bottom: 10px;
         }

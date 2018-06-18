@@ -129,6 +129,8 @@ ul {
 
 .reddit-api ul {
   text-align: left; }
+  .reddit-api ul.loaded {
+    opacity: 0.5; }
   .reddit-api ul li {
     margin-bottom: 10px; }
 

@@ -62,7 +62,7 @@ class App extends PureComponent {
                 {isFetching && posts.length === 0 && <h2>Loading...</h2>}
                 {!isFetching && posts.length === 0 && <h2>Empty.</h2>}
                 {posts.length > 0 && (
-                    <ul>
+                    <ul className={isFetching ? 'loaded' : ''}>
                         {posts.map((post, key) => (
                             <li key={key}>{post.title}</li>
                         ))}
@@ -101,8 +101,6 @@ const mapStateToProps = state => {
                 postsByRedditGetSelect.getIn(['items'])) ||
             []
     };
-
-    // console.log('isFetching: ', isFetching);
 
     return {
         selectedReddit,
