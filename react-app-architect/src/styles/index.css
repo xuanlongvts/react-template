@@ -29,11 +29,15 @@ p {
   font-size: 50px; }
 
 body {
-  padding: 10px;
+  padding: 0;
+  margin: 0;
   color: #333; }
 
 * {
   box-sizing: border-box; }
+
+.main-container {
+  padding: 0 20px; }
 
 @keyframes rot {
   from {
@@ -122,6 +126,11 @@ ul {
     float: right; }
   .productsWrap .productDetail p {
     font-size: 22px; }
+
+.reddit-api ul {
+  text-align: left; }
+  .reddit-api ul li {
+    margin-bottom: 10px; }
 
 .refresh {
   cursor: default;

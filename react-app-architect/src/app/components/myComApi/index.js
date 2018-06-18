@@ -30,7 +30,7 @@ class App extends PureComponent {
         const { selectedReddit, posts, isFetching, lastUpdated } = this.props;
 
         return (
-            <div>
+            <div className="reddit-api">
                 <span>
                     <h1>{selectedReddit}</h1>
                     <select
@@ -62,18 +62,11 @@ class App extends PureComponent {
                 {isFetching && posts.length === 0 && <h2>Loading...</h2>}
                 {!isFetching && posts.length === 0 && <h2>Empty.</h2>}
                 {posts.length > 0 && (
-                    <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-                        <ul>
-                            {posts.map((post, key) => (
-                                <li
-                                    key={key}
-                                    style={{ textAlign: 'left', color: '#000' }}
-                                >
-                                    {post.title}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    <ul>
+                        {posts.map((post, key) => (
+                            <li key={key}>{post.title}</li>
+                        ))}
+                    </ul>
                 )}
             </div>
         );
