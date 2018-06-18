@@ -4,29 +4,8 @@ import { Link, Route } from 'react-router-dom';
 import Product from './Product';
 
 class Products extends PureComponent {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            subLinkActive: null
-        };
-    }
-
-    componentDidMount() {
-        this.setState({
-            subLinkActive: window.location.pathname
-        });
-    }
-
-    handleSubLink(path) {
-        this.setState({
-            subLinkActive: path
-        });
-    }
-
     render() {
         const { match } = this.props;
-        const { subLinkActive } = this.state;
         const productsData = [
             {
                 id: 1,
@@ -63,23 +42,28 @@ class Products extends PureComponent {
                     <h3>Categories products</h3>
                     {productsData.length && (
                         <ul className="list-products">
-                            {productsData.map((item, key) => {
-                                let classActive = null;
-                                subLinkActive === `${match.url}/${item.id}` &&
-                                    (classActive = 'curr');
+                            {productsData.map((route, key) => {
                                 return (
-                                    <li key={key} className={classActive}>
-                                        <Link
-                                            to={`${match.url}/${item.id}`}
-                                            onClick={() =>
-                                                this.handleSubLink(
-                                                    `${match.url}/${item.id}`
-                                                )
-                                            }
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    </li>
+                                    <Route
+                                        key={key}
+                                        path={`${match.url}/${route.id}`}
+                                    >
+                                        {prop => (
+                                            <li
+                                                className={
+                                                    prop.match ? 'curr' : null
+                                                }
+                                            >
+                                                <Link
+                                                    to={`${match.url}/${
+                                                        route.id
+                                                    }`}
+                                                >
+                                                    {route.name}
+                                                </Link>
+                                            </li>
+                                        )}
+                                    </Route>
                                 );
                             })}
                         </ul>

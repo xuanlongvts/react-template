@@ -14,7 +14,7 @@ const Product = ({ match, data }) => {
                 <h4>{product.status}</h4>
             </div>
         );
-    else productData = <h2> Sorry. Product doesnt exist </h2>;
+    else productData = <h2> Sorry. Product does not exist </h2>;
 
     return <div className="products">{productData}</div>;
 };

@@ -1,72 +1,52 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
+
+import NotFound from '../components/NotFound';
 
 class Catagories extends PureComponent {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            subLinkActive: null
-        };
-    }
-
-    componentDidMount() {
-        this.setState({
-            subLinkActive: window.location.pathname
-        });
-    }
-
-    handleSubLink(path) {
-        this.setState({
-            subLinkActive: path
-        });
-    }
-
     render() {
         const { match } = this.props;
-        const { subLinkActive } = this.state;
         const listSubLink = [
             {
                 title: 'Shoes',
-                path: `${match.url}/shoes`
+                path: `${match.url}`,
+                exact: true,
+                component: () => <p className="cataDetail">Shoe</p>
             },
             {
                 title: 'Boots',
-                path: `${match.url}/boots`
+                path: `${match.url}/boots`,
+                component: () => <p className="cataDetail">Boots</p>
             },
             {
                 title: 'Footwear',
-                path: `${match.url}/footwear`
+                path: `${match.url}/footwear`,
+                component: () => <p className="cataDetail">Footwear</p>
             }
         ];
 
         return (
             <div className="catagories">
                 <ul className="list-catagories">
-                    {listSubLink.map((item, key) => {
-                        let classActive =
-                            subLinkActive === item.path ? 'curr' : null;
-                        return (
-                            <li key={key} className={classActive}>
-                                <Link
-                                    to={item.path}
-                                    onClick={() =>
-                                        this.handleSubLink(item.path)
-                                    }
-                                >
-                                    {item.title}
-                                </Link>
-                            </li>
-                        );
-                    })}
+                    {listSubLink.map((route, key) => (
+                        <Route key={key} path={route.path} exact={route.exact}>
+                            {({ match }) => (
+                                <li className={match ? 'curr' : null}>
+                                    <Link to={route.path}>{route.title}</Link>
+                                </li>
+                            )}
+                        </Route>
+                    ))}
                 </ul>
-                <Route
-                    path={`${match.path}/:name`}
-                    render={({ match }) => (
-                        <p className="cataDetail">{match.params.name}</p>
-                    )}
-                />
+
+                <Switch>
+                    {listSubLink.length &&
+                        listSubLink.map((route, key) => (
+                            <Route key={key} {...route} />
+                        ))}
+                    <Route component={NotFound} />
+                </Switch>
             </div>
         );
     }
