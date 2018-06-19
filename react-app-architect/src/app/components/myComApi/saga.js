@@ -26,26 +26,37 @@ const fetchPostsApi = reddit => {
 
 function* fetchPosts() {
     while (true) {
+        const isOnline = navigator.onLine ? true : false;
         const { reddit } = yield take(nameActList.SELECT_REDDIT);
-        const posts = yield call(fetchPostsApi, reddit);
-        yield put(actionList.receivePosts(reddit, posts));
+
+        let dataPosts = null;
+        let getPostsFromState = yield select(postsByRedditSelector);
+        getPostsFromState = getPostsFromState.getIn([reddit, 'items']);
+        console.log('getPostsFromState 11: ', getPostsFromState);
+        !isOnline && getPostsFromState
+            ? (dataPosts = getPostsFromState)
+            : (dataPosts = yield call(fetchPostsApi, reddit));
+
+        yield put(actionList.receivePosts(reddit, dataPosts));
     }
 }
 
 function* invalidateReddit() {
     // const delay = ms => new Promise(res => setTimeout(res, ms));
     while (true) {
+        const isOnline = navigator.onLine ? true : false;
+        console.log('isOnline: ', isOnline);
         const { reddit } = yield take(nameActList.INVALIDATE_REDDIT);
 
-        // Get data from state
+        let dataPosts = null;
         let getPostsFromState = yield select(postsByRedditSelector);
         getPostsFromState = getPostsFromState.getIn([reddit, 'items']);
-        // yield delay(1000);
+        console.log('getPostsFromState 22: ', getPostsFromState);
+        !isOnline && getPostsFromState
+            ? (dataPosts = getPostsFromState)
+            : (dataPosts = yield call(fetchPostsApi, reddit));
 
-        // Get new data from api
-        const posts = yield call(fetchPostsApi, reddit); // call api for get new data
-
-        yield put(actionList.receivePosts(reddit, posts));
+        yield put(actionList.receivePosts(reddit, dataPosts));
     }
 }
 
