@@ -8,9 +8,7 @@ import asyncComponent from '../components/_asynComponent';
 
 const AsyncHome = asyncComponent(() => import('../components/Home'));
 const AsyncAbout = asyncComponent(() => import('../components/About'));
-const AsyncCatagories = asyncComponent(() =>
-    import('../components/Categories')
-);
+const AsyncCatagories = asyncComponent(() => import('../components/Categories'));
 const AsyncProducts = asyncComponent(() => import('../components/Products'));
 const AsyncMyComApi = asyncComponent(() => import('../components/myComApi'));
 

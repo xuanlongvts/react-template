@@ -29,28 +29,16 @@ class Routers extends PureComponent {
         return (
             <BrowserRouter>
                 <div className="main-container">
-                    <Helmet
-                        titleTemplate="%s - React.js Boilerplate"
-                        defaultTitle="Default React.js Boilerplate"
-                    >
-                        <meta
-                            name="description"
-                            content="A React.js Boilerplate application"
-                        />
+                    <Helmet titleTemplate="%s - React.js Boilerplate" defaultTitle="Default React.js Boilerplate">
+                        <meta name="description" content="A React.js Boilerplate application" />
                     </Helmet>
                     {routes.length && (
                         <ul className="nav">
                             {routes.map((route, key) => (
-                                <Route
-                                    key={key}
-                                    path={route.path}
-                                    exact={route.exact}
-                                >
+                                <Route key={key} path={route.path} exact={route.exact}>
                                     {({ match }) => (
                                         <li className={match ? 'active' : null}>
-                                            <Link to={route.path}>
-                                                {route.title}
-                                            </Link>
+                                            <Link to={route.path}>{route.title}</Link>
                                         </li>
                                     )}
                                 </Route>
@@ -58,10 +46,7 @@ class Routers extends PureComponent {
                         </ul>
                     )}
                     <Switch>
-                        {routes.length &&
-                            routes.map((route, key) => (
-                                <Route key={key} {...route} />
-                            ))}
+                        {routes.length && routes.map((route, key) => <Route key={key} {...route} />)}
                         <Route component={NotFound} />
                     </Switch>
                 </div>

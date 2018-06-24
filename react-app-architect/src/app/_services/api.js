@@ -3,8 +3,7 @@ import { Config } from '../../config';
 import SessionStorageAdapter from '../_utils/sessionStorage';
 
 export default class API {
-
-    constructor(){
+    constructor() {
         this.token = undefined;
         this.headers = {};
     }
@@ -22,10 +21,10 @@ export default class API {
         };
     }
 
-    fetch(url){
+    fetch(url) {
         axios.defaults.baseURL = Config.API_SERVER;
         // axios.defaults.withCredentials = true;
-        
+
         return axios.get(url);
     }
 
@@ -49,7 +48,7 @@ export default class API {
         }
         axios.defaults.baseURL = Config.API_SERVER;
         const options = { headers: this.headers };
-        
+
         return axios.get(url, options);
     }
 
@@ -60,7 +59,7 @@ export default class API {
             method: 'PUT',
             url: path,
             headers: this.headers
-        }); 
+        });
     }
 
     post({ path = '', payload }) {
@@ -70,6 +69,6 @@ export default class API {
             method: 'POST',
             url: path,
             headers: this.headers
-        }); 
+        });
     }
 }

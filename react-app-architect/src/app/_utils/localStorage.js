@@ -1,7 +1,6 @@
 export default class localStorageAdapter {
-
     setItem(key, value) {
-        localStorage.setItem(key,value);
+        localStorage.setItem(key, value);
     }
 
     getItem(key) {
@@ -19,5 +18,4 @@ export default class localStorageAdapter {
     removeItem(key) {
         localStorage.removeItem(key);
     }
-    
 }

@@ -21,11 +21,7 @@ const asynComponent = importComponent => {
         render() {
             const { component: C } = this.state;
 
-            return C ? (
-                <C {...this.props} />
-            ) : (
-                <div className="loading">Loading...</div>
-            );
+            return C ? <C {...this.props} /> : <div className="loading">Loading...</div>;
         }
     }
 

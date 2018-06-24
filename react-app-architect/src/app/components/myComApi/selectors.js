@@ -5,5 +5,4 @@ export const selectedRedditSelector = state => {
     console.log(state.reducerMyComApi);
     return state.reducerMyComApi.getIn(['selectedReddit']);
 };
-export const postsByRedditSelector = state =>
-    state.reducerMyComApi.getIn(['postsByReddit']);
+export const postsByRedditSelector = state => state.reducerMyComApi.getIn(['postsByReddit']);

@@ -33,9 +33,7 @@ function* fetchPosts() {
         let getPostsFromState = yield select(postsByRedditSelector);
         getPostsFromState = getPostsFromState.getIn([reddit, 'items']);
         console.log('getPostsFromState 11: ', getPostsFromState);
-        !isOnline && getPostsFromState
-            ? (dataPosts = getPostsFromState)
-            : (dataPosts = yield call(fetchPostsApi, reddit));
+        !isOnline && getPostsFromState ? (dataPosts = getPostsFromState) : (dataPosts = yield call(fetchPostsApi, reddit));
 
         yield put(actionList.receivePosts(reddit, dataPosts));
     }
@@ -52,9 +50,7 @@ function* invalidateReddit() {
         let getPostsFromState = yield select(postsByRedditSelector);
         getPostsFromState = getPostsFromState.getIn([reddit, 'items']);
         console.log('getPostsFromState 22: ', getPostsFromState);
-        !isOnline && getPostsFromState
-            ? (dataPosts = getPostsFromState)
-            : (dataPosts = yield call(fetchPostsApi, reddit));
+        !isOnline && getPostsFromState ? (dataPosts = getPostsFromState) : (dataPosts = yield call(fetchPostsApi, reddit));
 
         yield put(actionList.receivePosts(reddit, dataPosts));
     }

@@ -33,10 +33,7 @@ class App extends PureComponent {
             <div className="reddit-api">
                 <span>
                     <h1>{selectedReddit}</h1>
-                    <select
-                        onChange={e => this.handleChange(e.target.value)}
-                        value={selectedReddit}
-                    >
+                    <select onChange={e => this.handleChange(e.target.value)} value={selectedReddit}>
                         {['reactjs', 'frontend'].map(option => (
                             <option value={option} key={option}>
                                 {option}
@@ -46,27 +43,15 @@ class App extends PureComponent {
                 </span>
 
                 <p>
-                    {lastUpdated && (
-                        <span>
-                            Last updated at{' '}
-                            {new Date(lastUpdated).toLocaleTimeString()}.{' '}
-                        </span>
-                    )}
-                    <span
-                        onClick={!isFetching ? this.handleRefreshClick : null}
-                        className={!isFetching ? 'enable refresh' : 'refresh'}
-                    >
+                    {lastUpdated && <span>Last updated at {new Date(lastUpdated).toLocaleTimeString()}. </span>}
+                    <span onClick={!isFetching ? this.handleRefreshClick : null} className={!isFetching ? 'enable refresh' : 'refresh'}>
                         Refresh
                     </span>
                 </p>
                 {isFetching && posts.length === 0 && <h2>Loading...</h2>}
                 {!isFetching && posts.length === 0 && <h2>Empty.</h2>}
                 {posts.length > 0 && (
-                    <ul className={isFetching ? 'loaded' : ''}>
-                        {posts.map((post, key) => (
-                            <li key={key}>{post.title}</li>
-                        ))}
-                    </ul>
+                    <ul className={isFetching ? 'loaded' : ''}>{posts.map((post, key) => <li key={key}>{post.title}</li>)}</ul>
                 )}
             </div>
         );
@@ -88,18 +73,9 @@ const mapStateToProps = state => {
     const postsByRedditGetSelect = postsByReddit.getIn([selectedReddit]);
 
     let { isFetching, lastUpdated, posts } = {
-        isFetching:
-            postsByRedditGetSelect === undefined
-                ? true
-                : postsByRedditGetSelect.getIn(['isFetching']),
-        lastUpdated:
-            (postsByRedditGetSelect &&
-                postsByRedditGetSelect.getIn(['lastUpdated'])) ||
-            Date.now(),
-        posts:
-            (postsByRedditGetSelect &&
-                postsByRedditGetSelect.getIn(['items'])) ||
-            []
+        isFetching: postsByRedditGetSelect === undefined ? true : postsByRedditGetSelect.getIn(['isFetching']),
+        lastUpdated: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['lastUpdated'])) || Date.now(),
+        posts: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['items'])) || []
     };
 
     return {

@@ -41,10 +41,7 @@ class Catagories extends PureComponent {
                 </ul>
 
                 <Switch>
-                    {listSubLink.length &&
-                        listSubLink.map((route, key) => (
-                            <Route key={key} {...route} />
-                        ))}
+                    {listSubLink.length && listSubLink.map((route, key) => <Route key={key} {...route} />)}
                     <Route component={NotFound} />
                 </Switch>
             </div>

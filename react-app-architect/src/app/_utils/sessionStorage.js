@@ -1,7 +1,6 @@
 export default class sessionStorageAdapter {
-
     setItem(key, value) {
-        sessionStorage.setItem(key,value);
+        sessionStorage.setItem(key, value);
     }
 
     getItem(key) {
