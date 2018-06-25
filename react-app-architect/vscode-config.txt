@@ -1,0 +1,22 @@
+{
+    "editor.fontSize": 13,
+    "files.autoSave": "off",
+    "window.zoomLevel": 0,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/.vscode": true,
+        "**/node_modules": true
+    },
+    "editor.tabSize": 4,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false,
+    "prettier.tabWidth": 4,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "prettier.singleQuote": true,
+    "prettier.printWidth": 140
+}
