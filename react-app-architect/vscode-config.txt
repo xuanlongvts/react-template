@@ -18,5 +18,6 @@
     "prettier.tabWidth": 4,
     "javascript.updateImportsOnFileMove.enabled": "always",
     "prettier.singleQuote": true,
-    "prettier.printWidth": 140
+    "prettier.printWidth": 140,
+    "html.format.wrapLineLength": 140
 }
