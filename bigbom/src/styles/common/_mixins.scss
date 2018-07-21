@@ -1,0 +1,137 @@
+$iphone: 375px;
+$iphonePlus: 414px;
+$phone: 576px;
+$tablet: 768px;
+$desktop: 992px;
+$wideDesktop: 1200px;
+
+@mixin iphone {
+    @media screen and (min-width: #{$iphone}) {
+        @content;
+    }
+}
+
+@mixin iphonePlus {
+    @media screen and (min-width: #{$iphonePlus}) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media screen and (min-width: #{$phone}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (min-width: #{$tablet}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: #{$desktop}) {
+        @content;
+    }
+}
+
+@mixin wideDesktop {
+    @media screen and (min-width: #{$wideDesktop}) {
+        @content;
+    }
+}
+
+@mixin cycleBox {
+    display: inline-block;
+    border-radius: 50%;
+    text-align: center;
+    overflow: hidden;
+    vertical-align: top;
+
+    @content;
+}
+
+@mixin button {
+    border-radius: 5px;
+    display: inline-block;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    min-width: 180px;
+    padding: 0 50px;
+    border: none;
+    outline: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active,
+    &:focus,
+    &:visited {
+        outline: none;
+    }
+
+    @content;
+}
+
+@mixin inforPersonComm {
+    width: 169px;
+    margin: 25px 10px;
+    transition: all 0.2s ease-in-out;
+
+    @include wideDesktop {
+        &:nth-child(5n + 1) {
+            margin-left: 0;
+        }
+
+        &:nth-child(5n) {
+            margin-right: 0;
+        }
+    }
+
+    @include phone {
+        margin: 25px;
+    }
+
+    @include desktop {
+        margin: 25px 33px;
+    }
+
+    @content;
+}
+
+@mixin bannerTitle {
+    @include gradientComm {
+        font-size: 30px;
+        color: $white;
+        font-weight: 700;
+        text-align: center;
+        height: 100px;
+        line-height: 100px;
+        width: 100%;
+        letter-spacing: 3px;
+    }
+
+    @include tablet {
+        font-size: 60px;
+        height: 200px;
+        line-height: 200px;
+    }
+
+    @content;
+}
+
+@mixin gradientComm {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#aff57a+0,54d169+100 */
+    background: #aff57a; /* Old browsers */
+    background: -moz-linear-gradient(348.69deg, #aff57a 0%, #54d169 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(348.69deg, #aff57a 0%, #54d169 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(
+        to right,
+        #aff57a 0%,
+        #54d169 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aff57a', endColorstr='#54d169',GradientType=0 ); /* IE6-9 */
+    @content;
+}

@@ -1,0 +1,449 @@
+@import './setting';
+@import './mixins';
+@import './animate';
+@import './header';
+@import './footer';
+
+ul,
+ol {
+    list-style: none;
+    padding-left: 0;
+}
+
+a {
+    outline: none;
+}
+
+input {
+    outline: none;
+}
+
+.app {
+    padding-top: 80px;
+}
+
+.notFound {
+    background: #ebeff2;
+    text-align: center;
+    padding: 50px 0 150px;
+    margin-bottom: -70px;
+
+    @include desktop {
+        padding: 80px 0 200px;
+    }
+
+    .txt {
+        color: #8c9ba0;
+        font-size: 24px;
+
+        @include tablet {
+            margin-top: -24px;
+        }
+    }
+}
+
+.buttonWhite {
+    @include button {
+        background: $white;
+        color: #4dae4a;
+        font-weight: 700;
+        font-size: 18px;
+        text-transform: capitalize;
+
+        &:hover {
+            color: #4dae4a;
+            text-decoration: none;
+            box-shadow: 0px 10px 25px rgba(37, 15, 138, 0.2);
+        }
+    }
+}
+
+.buttonGreen {
+    transition: all 0.25s ease;
+    @include button {
+        @include gradientComm {
+            font-size: 15px;
+            color: $white;
+            text-transform: uppercase;
+
+            &:hover {
+                color: $white;
+                text-decoration: none;
+                box-shadow: 0px 6px 18px rgba(16, 223, 10, 0.3);
+                //margin-top: 42px !important;
+            }
+        }
+
+        &:active {
+            background-image: linear-gradient(
+                to right,
+                rgba(173, 234, 132, 1) 0%,
+                rgba(135, 215, 121, 1) 100%
+            ) !important;
+        }
+
+        &:focus-within {
+            text-decoration: none;
+        }
+    }
+}
+
+.buttonGrey {
+    @include button {
+        background: #8c9ba0;
+        color: $white;
+        text-transform: uppercase;
+
+        &:hover {
+            @include gradientComm {
+                color: $white;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.cycleSlider {
+    @include cycleBox {
+        width: 70px;
+        height: 70px;
+        background: $white;
+        line-height: 70px;
+        box-shadow: 0px 10px 25px rgba(37, 15, 139, 0.1);
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    svg {
+        width: 12px;
+        height: 18px;
+        color: $black;
+    }
+}
+
+.listPersons {
+    text-align: center;
+
+    @include wideDesktop {
+        text-align: left;
+    }
+}
+
+.inforPerson {
+    @include inforPersonComm {
+        color: $black-grey;
+        text-align: center;
+        display: inline-block;
+        vertical-align: top;
+        animation: fadeIn 0.9s;
+    }
+
+    .imgAva {
+        @include cycleBox {
+            border: 1px solid transparent;
+        }
+    }
+
+    .imgLinked {
+        position: relative;
+        width: 100%;
+        height: 169px;
+
+        .ico-linked {
+            @include cycleBox {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                z-index: 5;
+                width: 38px;
+                height: 38px;
+                line-height: 36px;
+                background-color: $linkedIn;
+                border: 1px solid $white;
+                transition: all 0.2s ease-in-out;
+
+                &:hover {
+                    background-color: $white;
+                    border: 1px solid $linkedIn;
+                    cursor: pointer;
+                    transform: scale(1.1);
+
+                    svg {
+                        color: $linkedIn;
+                    }
+                }
+            }
+
+            svg {
+                color: $white;
+            }
+        }
+    }
+
+    .name {
+        font-weight: 700;
+        font-size: 18px;
+        margin-top: 40px;
+        margin-bottom: 0;
+    }
+
+    .position {
+        font-size: 15px;
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+}
+
+.viewAll {
+    @include inforPersonComm {
+        height: 169px;
+        color: $white;
+        font-size: 18px;
+        background-image: url('./imgs/viewAll.jpg');
+        background-position: center center;
+        background-size: cover;
+        position: relative;
+        border-radius: 50%;
+        overflow: hidden;
+
+        &:hover {
+            cursor: pointer;
+            margin-top: 23px;
+            color: #fff;
+            box-shadow: 0px 4px 19px rgba(50, 234, 135, 0.75);
+            transform: scale(1);
+        }
+
+        &::after {
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            content: '';
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(318.32deg, rgba(84, 209, 105, 0.8) 5.77%, rgba(175, 245, 122, 0.8) 105.77%);
+        }
+    }
+
+    p {
+        position: absolute;
+        z-index: 5;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-transform: uppercase;
+    }
+}
+
+.bannerTitle {
+    @include bannerTitle {
+        background: url('./imgs/bg.png') no-repeat center top;
+
+        .title {
+            text-align: center;
+
+            img {
+                max-width: 60%;
+
+                @include tablet {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.slick-slider {
+    .slick-list {
+        z-index: 4;
+    }
+
+    button {
+        transition: all 0.25s ease;
+        border: 3px solid #dbead3;
+        border-radius: 50%;
+        z-index: 5;
+        width: 55px;
+        height: 55px;
+        &::before {
+            display: none;
+        }
+        &:hover {
+            transition: all 0.25s ease;
+            @include gradientComm {
+                border: none;
+                //box-shadow: 0px 6px 18px rgba(16, 223, 10, 0.3);
+            }
+            svg {
+                color: $white;
+            }
+        }
+        svg {
+            color: #dbead3;
+            width: 20px !important;
+            height: 30px;
+        }
+    }
+
+    @media screen and (max-width: $phone - 1) {
+        .slick-prev {
+            left: -15px;
+        }
+
+        .slick-next {
+            right: -15px;
+        }
+    }
+}
+
+.boxLoading,
+.loadingComponent {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+
+    .loading {
+        position: absolute;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #4dae4a;
+        width: 60px;
+        height: 60px;
+        left: 50%;
+        top: 50%;
+        animation: spin 2s linear infinite;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+}
+
+.loadingComponent {
+    position: relative;
+    height: 230px;
+    background: #fff;
+    margin-bottom: 50px;
+
+    @include desktop {
+        height: 500px;
+    }
+}
+
+.boxPaging {
+    text-align: center;
+
+    .pagination {
+        display: inline-block;
+        margin: 0;
+
+        li {
+            display: inline-block;
+            vertical-align: top;
+
+            &:first-child {
+                a {
+                    margin-left: 0;
+                }
+            }
+
+            &:last-child {
+                a {
+                    margin-right: 0;
+                }
+            }
+
+            &.previous,
+            &.next {
+                a {
+                    line-height: 35px;
+                }
+            }
+
+            &.active {
+                a {
+                    background: #f1ffeb;
+                    color: $green;
+
+                    &:hover {
+                        cursor: default;
+                    }
+                }
+            }
+
+            &.disabled {
+                opacity: 0.3;
+
+                a {
+                    &:hover {
+                        cursor: default;
+                    }
+                }
+            }
+
+            a {
+                margin: 0 10px;
+                padding: 5px;
+                width: 50px;
+                height: 50px;
+                display: inline-block;
+                border: 1px solid #dbead3;
+                line-height: 40px;
+                color: #dbead3;
+                border-radius: 50%;
+                font-size: 18px;
+                user-select: none;
+
+                &:hover {
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.modalMessEmail {
+    .modal-header {
+        border-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .modal-body {
+        text-align: center;
+        padding-bottom: 40px;
+        padding-top: 0;
+
+        .contentMess {
+            .mess {
+                font-size: 24px;
+                color: $green;
+                margin-bottom: 20px;
+
+                .ico {
+                    display: inline-block;
+                    width: 30px;
+                    height: 30px;
+                    background: #eef9f6;
+                    border-radius: 50%;
+                    margin-right: 15px;
+                    line-height: 24px;
+
+                    svg {
+                        font-size: 15px;
+                    }
+                }
+
+                .err {
+                    color: #d24e4e;
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}

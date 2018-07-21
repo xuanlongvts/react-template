@@ -1,0 +1,50 @@
+#news-page {
+    section {
+        padding: 40px 0;
+
+        @include desktop {
+            padding: 60px 0;
+        }
+
+        .item {
+            a {
+                vertical-align: top;
+                display: inline-block;
+                margin-bottom: 20px;
+
+                img {
+                    border-radius: 5px;
+
+                    @include phone {
+                        height: 130px;
+                    }
+
+                    @include tablet {
+                        height: 177px;
+                    }
+
+                    @include desktop {
+                        height: 154px;
+                    }
+
+                    @include wideDesktop {
+                        height: 186px;
+                    }
+                }
+
+                p {
+                    font-size: 14px;
+                    color: $black-grey;
+                    font-weight: 700;
+                    margin-top: 15px;
+                }
+            }
+        }
+    }
+
+    #news {
+    }
+
+    #blog {
+    }
+}

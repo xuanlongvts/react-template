@@ -1,0 +1,230 @@
+$cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99);
+
+#header {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: $white;
+    z-index: 100;
+    transition: all 0.5s ease-out, background 1s ease-out;
+    transition-delay: 0.2s;
+    // box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+
+    .logo {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .burger-container {
+        position: relative;
+        height: 40px;
+        width: 40px;
+        cursor: pointer;
+        transform: rotate(0deg);
+        transition: all 0.3s $cubic;
+        user-select: none;
+        float: right;
+        -webkit-tap-highlight-color: transparent;
+
+        @include desktop {
+            display: none;
+        }
+
+        #burger {
+            width: 25px;
+            height: 8px;
+            position: relative;
+            display: block;
+            margin: -4px auto 0;
+            top: 50%;
+
+            .bar {
+                width: 100%;
+                height: 1px;
+                display: block;
+                position: relative;
+                background: $black-grey;
+                transition: all 0.3s $cubic;
+                transition-delay: 0s;
+
+                &.topBar {
+                    transform: translateY(0px) rotate(0deg);
+                }
+                &.btmBar {
+                    transform: translateY(8px) rotate(0deg);
+                }
+            }
+        }
+    }
+
+    .nav {
+        text-align: center;
+        padding-top: 20px;
+        float: right;
+        width: 100%;
+
+        @include desktop {
+            padding-top: 0;
+            width: auto;
+        }
+
+        li {
+            display: block;
+            width: 100%;
+            border-bottom: 1px solid rgba(27, 27, 27, 0.1);
+            text-align: left;
+            margin-bottom: 5px;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &.active,
+            &:hover {
+                a {
+                    color: $green;
+                }
+            }
+
+            @include desktop {
+                display: inline-block;
+                width: auto;
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+        }
+
+        a {
+            width: 100%;
+            color: $black-grey;
+            display: inline-block;
+            padding: 10px 0;
+            text-decoration: none;
+
+            @include desktop {
+                padding: 8px 11px;
+            }
+        }
+    }
+}
+
+#menuSub {
+    display: none;
+    float: right;
+    width: 100%;
+
+    @include desktop {
+        display: block !important;
+        width: auto;
+    }
+}
+
+#chooseLanguage {
+    float: right;
+    position: relative;
+    margin-top: 25px;
+    margin-left: 17px;
+
+    @include desktop {
+        margin-top: 0;
+    }
+
+    &.hover {
+        .languageCurr {
+            svg {
+                transform: rotate(180deg);
+                transition: all 0.2s ease-in;
+            }
+        }
+    }
+
+    .languageCurr {
+        display: inline-block;
+        width: 90px;
+        padding: 6px 15px;
+        height: 40px;
+        overflow: hidden;
+        border: 1px solid $black-grey;
+        border-radius: 100px;
+        float: right;
+
+        img {
+            width: 22px;
+        }
+
+        svg {
+            float: right;
+            margin-top: 5px;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .listLanguages {
+        position: absolute;
+        background: #fff;
+        top: 40px;
+        right: 0;
+        clear: both;
+        display: none;
+        border-radius: 5px;
+        padding: 5px 0;
+        box-shadow: 0px 0px 10px rgba(44, 104, 175, 0.1);
+        max-width: 200px;
+        min-width: 130px;
+        overflow: hidden;
+
+        li {
+            margin-bottom: 5px;
+            padding: 2px 10px;
+
+            img {
+                width: 22px;
+                margin-right: 10px;
+            }
+
+            span {
+                font-size: 13px;
+            }
+
+            &:hover {
+                cursor: pointer;
+
+                span {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+body.menu-opened {
+    overflow: hidden;
+
+    #header {
+        height: 100%;
+        overflow: hidden;
+
+        .burger-container {
+            transform: rotate(90deg);
+
+            #burger {
+                .bar {
+                    transition: all 0.4s $cubic;
+                    transition-delay: 0.2s;
+                    &.topBar {
+                        transform: translateY(4px) rotate(45deg);
+                    }
+                    &.btmBar {
+                        transform: translateY(3px) rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,479 @@
+#home {
+    section {
+        text-align: center;
+    }
+
+    .title {
+        margin-top: 70px;
+        margin-bottom: 20px;
+        color: $black-grey;
+        font-size: 38px;
+        font-weight: 700;
+
+        @include phone {
+            font-size: 48px;
+            margin-bottom: 50px;
+        }
+    }
+
+    .brand-rela {
+        a {
+            display: inline-block;
+            vertical-align: top;
+            width: 40%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 5%;
+            margin-right: 5%;
+            animation: fadeIn 0.5s;
+            transition: all 0.2s ease-in-out;
+
+            @include phone {
+                width: 29%;
+                margin-left: 2%;
+                margin-right: 2%;
+            }
+
+            @include desktop {
+                width: 18%;
+            }
+
+            @include wideDesktop {
+                width: 12%;
+            }
+        }
+    }
+
+    .intro {
+        // @include gradientComm {
+        // }
+
+        position: relative;
+        color: #fff;
+        padding: 30px 0;
+
+        @include desktop {
+            padding: 70px 0;
+        }
+
+        .bgTmp {
+            @include desktop {
+                background: url('./imgs/bb_banner.png') no-repeat right 0;
+                background-size: contain;
+            }
+        }
+
+        .infor {
+            display: inline-block;
+            max-width: 500px;
+            padding-right: 15px;
+
+            h1 {
+                font-size: 30px;
+                margin-bottom: 22px;
+                color: #62b861;
+                font-weight: 700;
+
+                @include desktop {
+                    font-size: 60px;
+                }
+            }
+
+            .buttonGreen {
+                text-transform: capitalize;
+            }
+        }
+
+        .intro-des {
+            font-size: 14px;
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 5;
+            color: $black-grey;
+
+            @include desktop {
+                font-size: 18px;
+            }
+        }
+
+        .animate-intro {
+            min-width: 430px;
+            display: none;
+            vertical-align: top;
+            text-align: center;
+            position: absolute;
+            right: 0;
+
+            @include desktop {
+                display: inline-block;
+            }
+
+            @include wideDesktop {
+                width: 610px;
+                padding-bottom: 50px;
+            }
+        }
+
+        .cycleSlider {
+            position: absolute;
+            left: 50%;
+            bottom: -35px;
+            transform: translateX(-50%);
+
+            &:hover {
+                cursor: pointer;
+
+                svg {
+                    transform: translateY(3px);
+                }
+            }
+        }
+    }
+}
+
+#our-products {
+    @include desktop {
+        padding: 40px 0;
+    }
+
+    .each-box {
+        max-width: 400px;
+        padding-bottom: 20px;
+        margin: 0 auto;
+    }
+
+    h3 {
+        margin-top: 34px;
+        font-size: 24px;
+    }
+
+    .des {
+        margin-top: 15px;
+        margin-bottom: 30px;
+        font-size: 15px;
+        opacity: 0.7;
+    }
+}
+
+#newsLetter {
+    background: #f5f5f5;
+    padding: 10px 0 150px;
+    margin-top: 50px;
+    margin-bottom: -80px;
+
+    @include wideDesktop {
+        padding: 10px 0 220px;
+        margin-bottom: -130px;
+    }
+
+    .des {
+        font-size: 18px;
+        color: $black;
+    }
+
+    .box-mail {
+        margin-top: 30px;
+
+        .fakeInput {
+            box-shadow: 0px 0px 20px rgba(19, 209, 165, 0.1);
+            border-radius: 5px;
+            background: $white;
+            height: 50px;
+            overflow: hidden;
+            position: relative;
+
+            @include tablet {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            input {
+                font-size: 14px;
+                position: absolute;
+                border: none;
+                left: 15px;
+                top: 13px;
+                width: 200px;
+                color: $black;
+
+                @include tablet {
+                    font-size: 17px;
+                    width: 290px;
+                    left: 20px;
+                    top: 10px;
+                }
+            }
+        }
+
+        .buttonGreen {
+            position: absolute;
+            right: 0;
+            top: 0;
+            min-width: 120px;
+
+            @include tablet {
+                min-width: 180px;
+            }
+
+            &.disabled {
+                cursor: default;
+                opacity: 0.7;
+            }
+        }
+    }
+}
+
+#roadmap {
+    @include gradientComm {
+        padding-bottom: 30px;
+        overflow: hidden;
+        background: url('./imgs/roadmap_bg.png') no-repeat center 0;
+
+        @include desktop {
+            padding-bottom: 50px;
+        }
+    }
+
+    .title {
+        color: $white;
+    }
+
+    .listPeriod {
+        .year {
+            display: inline-block;
+            width: 130px;
+            height: 50px;
+            line-height: 48px;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 100px;
+            color: $white;
+            margin: 0 10px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+
+            &.curr,
+            &:hover {
+                cursor: pointer;
+                color: $green;
+                background: $white;
+            }
+        }
+    }
+
+    .listPoints {
+        position: relative;
+
+        &::before {
+            height: 0;
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 18px;
+            z-index: 4;
+            width: 100%;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+        }
+    }
+
+    .each-point {
+        width: 120px;
+        margin-bottom: 30px;
+        padding-left: 5px;
+        padding-right: 5px;
+
+        &.curr {
+            width: 130px;
+
+            .boxDesc {
+                background: $white;
+                color: $green;
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    top: -10px;
+                    transform: translateX(-50%);
+                    width: 0;
+                    border-left: 10px solid transparent;
+                    border-right: 10px solid transparent;
+                    border-bottom: 10px solid $white;
+                }
+            }
+        }
+
+        .cycle {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: #00ff38;
+            border: 5px solid #00e732;
+            border-radius: 100%;
+
+            &.future {
+                background: $white;
+                border: 5px solid #d3f7e2;
+            }
+        }
+
+        .boxDesc {
+            text-align: center;
+            color: $white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            position: relative;
+
+            .date {
+                font-size: 13px;
+                font-weight: 700;
+                margin-bottom: 20px;
+            }
+
+            .des {
+                font-size: 12px;
+                height: 54px;
+                overflow: hidden;
+            }
+        }
+    }
+}
+
+#echoLayer {
+    background: #f9fff6;
+    padding-bottom: 50px;
+    overflow: hidden;
+
+    .each-box {
+        position: relative;
+
+        @include desktop {
+            &.customer {
+                background: url('./imgs/cus-des.png') no-repeat 275px 60px;
+
+                .box-des {
+                    margin-top: 55px;
+                }
+            }
+
+            &.application {
+                background: url('./imgs/app-des.png') no-repeat 370px 60px;
+
+                .box-des {
+                    margin-top: 55px;
+                    margin-left: 50px;
+                }
+            }
+
+            &.smart {
+                background: url('./imgs/smart-des.png') no-repeat 235px 60px;
+
+                .box-des {
+                    margin-top: 55px;
+                }
+            }
+
+            &.blockchain {
+                background: url('./imgs/block-des.png') no-repeat 370px 60px;
+
+                .box-des {
+                    margin-top: 55px;
+                    margin-left: 50px;
+                }
+            }
+        }
+
+        @include wideDesktop {
+            &.application {
+                background-position: 510px 60px;
+            }
+
+            &.blockchain {
+                background-position: 510px 60px;
+            }
+        }
+
+        &.customer,
+        &.smart {
+            @include desktop {
+                width: 690px;
+                float: left;
+                padding-left: 240px;
+                z-index: 5;
+
+                h5 {
+                    margin-top: 0;
+                }
+
+                .box-des {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 230px;
+                    text-align: right;
+                }
+            }
+
+            @include wideDesktop {
+                width: 840px;
+                padding-left: 270px;
+            }
+        }
+
+        &.smart {
+            z-index: 3;
+            margin-top: -150px;
+        }
+
+        &.application,
+        &.blockchain {
+            @include desktop {
+                float: right;
+                width: 690px;
+                padding-right: 240px;
+                z-index: 4;
+                margin-top: -160px;
+
+                h5 {
+                    margin-top: 0;
+                }
+
+                .box-des {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    width: 230px;
+                    text-align: left;
+                }
+            }
+
+            @include wideDesktop {
+                width: 840px;
+                padding-right: 270px;
+            }
+        }
+
+        &.blockchain {
+            z-index: 2;
+            margin-top: -170px;
+        }
+
+        .box-des {
+            max-width: 568px;
+            margin: 0 auto;
+        }
+
+        h5 {
+            font-size: 18px;
+            font-weight: 700;
+            color: $black;
+            margin: 50px 0 20px;
+        }
+
+        p {
+            color: $black-grey;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+    }
+}
