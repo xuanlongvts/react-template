@@ -5,6 +5,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CareersApply from './careers-apply';
 
 class CareersDetails extends PureComponent {
+    static getDerivedStateFromProps(nextProps) {
+        const {
+            location,
+            history: { action }
+        } = nextProps;
+
+        if (location && action === 'PUSH') {
+            window.scrollTo(0, 0);
+        }
+
+        return null;
+    }
+
     render() {
         return (
             <div id="careers-details">
@@ -74,14 +87,14 @@ class CareersDetails extends PureComponent {
                         <div className="section-title">Job Description</div>
                         <div className="section-details">
                             <div className="sd-row">
-                                We are seeking an experienced Blockchain Lead with high enthusiasm in developing ICO
-                                smart contract system while ensuring our fast-growing in cryptocurrency market.
+                                We are seeking an experienced Blockchain Lead with high enthusiasm in developing ICO smart contract system
+                                while ensuring our fast-growing in cryptocurrency market.
                             </div>
                             <div className="sd-row">
                                 <span className="sign">-</span>
                                 <span className="pharse">
-                                    Leading, planning the work flows and teams of developers to design and develop
-                                    applications in Ethereum blockchain platform
+                                    Leading, planning the work flows and teams of developers to design and develop applications in Ethereum
+                                    blockchain platform
                                 </span>
                             </div>
                             <div className="sd-row">
@@ -90,9 +103,7 @@ class CareersDetails extends PureComponent {
                             </div>
                             <div className="sd-row">
                                 <span className="sign">-</span>
-                                <span className="pharse">
-                                    Having abilities in communication and technical documents contributions
-                                </span>
+                                <span className="pharse">Having abilities in communication and technical documents contributions</span>
                             </div>
                             <div className="sd-row">
                                 <span className="sign">-</span>
@@ -101,8 +112,7 @@ class CareersDetails extends PureComponent {
                             <div className="sd-row">
                                 <span className="sign">-</span>
                                 <span className="pharse">
-                                    With customer-centric mindset you will have chance to work and coorporate with
-                                    investors worldwide
+                                    With customer-centric mindset you will have chance to work and coorporate with investors worldwide
                                 </span>
                             </div>
                         </div>
@@ -118,21 +128,15 @@ class CareersDetails extends PureComponent {
                             </div>
                             <div className="sd-row">
                                 <span className="sign">-</span>
-                                <span className="pharse">
-                                    At least 2 years experience as leader position in related field
-                                </span>
+                                <span className="pharse">At least 2 years experience as leader position in related field</span>
                             </div>
                             <div className="sd-row">
                                 <span className="sign">-</span>
-                                <span className="pharse">
-                                    Advanced experience and knowledge in C++, Python, Java, Solidy
-                                </span>
+                                <span className="pharse">Advanced experience and knowledge in C++, Python, Java, Solidy</span>
                             </div>
                             <div className="sd-row">
                                 <span className="sign">-</span>
-                                <span className="pharse">
-                                    Good understanding about the latest cryptocurrency exchange market
-                                </span>
+                                <span className="pharse">Good understanding about the latest cryptocurrency exchange market</span>
                             </div>
                             <div className="sd-row">
                                 <span className="sign">-</span>

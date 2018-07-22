@@ -1,19 +1,12 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import Slider from 'react-slick';
 import LazyLoad from 'react-lazyload';
-
+import $ from 'jquery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faPlane,
-    faHeart,
-    faSmile,
-    faGift,
-    faDollarSign,
-    faAngleRight,
-    faAngleLeft
-} from '@fortawesome/free-solid-svg-icons';
-import { faFly } from '@fortawesome/free-brands-svg-icons';
 
+import RenderNextArrow from '../../_utils/arrowNext';
+import RenderPrevArrow from '../../_utils/arrowPrev';
 import CareersPosition from './carees-position';
 
 import eventCareer from '../../../images/event-career.jpg';
@@ -27,28 +20,15 @@ import careerIntro41 from '../../../images/career-intro-4.1.jpg';
 import careerIntro42 from '../../../images/career-intro-4.2.jpg';
 import Member from './members';
 
-function RenderNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <button className={className} style={{ ...style, display: 'block' }} onClick={onClick}>
-            <FontAwesomeIcon icon={faAngleRight} />
-        </button>
-    );
-}
-
-function RenderPrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-        <button className={className} style={{ ...style, display: 'block' }} onClick={onClick}>
-            <FontAwesomeIcon icon={faAngleLeft} />
-        </button>
-    );
-}
-
 class Careers extends PureComponent {
     componentDidMount() {
         this.onResponsive();
         window.addEventListener('resize', this.onResponsive);
+
+        $('.btnFindJob').click(function() {
+            let offsetT = $('.position-container').offset().top - 80;
+            $('body, html').animate({ scrollTop: offsetT }, 300);
+        });
     }
 
     componentWillUnmount() {
@@ -104,7 +84,7 @@ class Careers extends PureComponent {
                         <div className="txt-intro">
                             We’re extending invitations to join our Bigbom Eco Come and make a difference with us!
                         </div>
-                        <button className="buttonGreen">See open positions</button>
+                        <button className="buttonGreen btnFindJob">See open positions</button>
                         <div className="intro-grid-images-row">
                             <div className="column first">
                                 <img src={careerIntro1} width="100%" alt="" />
@@ -135,8 +115,8 @@ class Careers extends PureComponent {
                                     Our core <span>values</span>
                                 </h3>
                                 <div className="block-description">
-                                    At Bigbom Eco, we don’t just accept difference - we celebrate it, we support it, and
-                                    we thrive on it for the benefit of our employees, our products, and our community
+                                    At Bigbom Eco, we don’t just accept difference - we celebrate it, we support it, and we thrive on it for
+                                    the benefit of our employees, our products, and our community
                                 </div>
                                 <div className="listBenifits">
                                     <ul>
@@ -234,5 +214,11 @@ class Careers extends PureComponent {
         );
     }
 }
+
+Careers.protypes = {
+    className: PropTypes.string.isRequired,
+    style: PropTypes.object.isRequired,
+    onClick: PropTypes.func.isRequired
+};
 
 export default Careers;

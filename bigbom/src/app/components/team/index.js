@@ -18,6 +18,19 @@ class Team extends PureComponent {
         };
     }
 
+    static getDerivedStateFromProps(nextProps) {
+        const {
+            location,
+            history: { action }
+        } = nextProps;
+
+        if (location && action === 'PUSH') {
+            window.scrollTo(0, 0);
+        }
+
+        return null;
+    }
+
     render() {
         const { listPersons } = this.state;
 

@@ -51,7 +51,8 @@ class CareersIndex extends PureComponent {
 
         return (
             <div id="careers">
-            	<Helmet />
+                <Helmet />
+
                 <Switch>
                     {listSubLink.length && listSubLink.map((route, key) => <Route key={key} {...route} />)}
                     <Route component={NotFound} />
