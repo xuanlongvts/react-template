@@ -2,6 +2,9 @@ import React, { PureComponent } from 'react';
 import Slider from 'react-slick';
 import { phone, tablet, desktop, wideDesktop } from '../../_utils/func';
 
+import RenderNextArrow from '../../_utils/arrowNext';
+import RenderPrevArrow from '../../_utils/arrowPrev';
+
 class roadMap extends PureComponent {
     constructor(props) {
         super(props);
@@ -27,6 +30,8 @@ class roadMap extends PureComponent {
             speed: 300,
             slidesToShow: 8,
             slidesToScroll: 4,
+            nextArrow: <RenderNextArrow />,
+            prevArrow: <RenderPrevArrow />,
             responsive: [
                 {
                     breakpoint: wideDesktop,

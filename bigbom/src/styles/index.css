@@ -1014,9 +1014,10 @@ input {
       #echoLayer .each-box.customer, #echoLayer .each-box.smart {
         width: 840px;
         padding-left: 270px; } }
-    #echoLayer .each-box.smart {
-      z-index: 3;
-      margin-top: -150px; }
+    @media screen and (min-width: 992px) {
+      #echoLayer .each-box.smart {
+        z-index: 3;
+        margin-top: -150px; } }
     @media screen and (min-width: 992px) {
       #echoLayer .each-box.application, #echoLayer .each-box.blockchain {
         float: right;
@@ -1036,9 +1037,10 @@ input {
       #echoLayer .each-box.application, #echoLayer .each-box.blockchain {
         width: 840px;
         padding-right: 270px; } }
-    #echoLayer .each-box.blockchain {
-      z-index: 2;
-      margin-top: -170px; }
+    @media screen and (min-width: 992px) {
+      #echoLayer .each-box.blockchain {
+        z-index: 2;
+        margin-top: -170px; } }
     #echoLayer .each-box .box-des {
       max-width: 568px;
       margin: 0 auto; }

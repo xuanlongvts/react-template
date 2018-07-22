@@ -420,9 +420,11 @@
             }
         }
 
-        &.smart {
-            z-index: 3;
-            margin-top: -150px;
+        @include desktop {
+            &.smart {
+                z-index: 3;
+                margin-top: -150px;
+            }
         }
 
         &.application,
@@ -453,9 +455,11 @@
             }
         }
 
-        &.blockchain {
-            z-index: 2;
-            margin-top: -170px;
+        @include desktop {
+            &.blockchain {
+                z-index: 2;
+                margin-top: -170px;
+            }
         }
 
         .box-des {
