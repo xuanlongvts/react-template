@@ -9,6 +9,8 @@ import locale_vi from 'react-intl/locale-data/vi';
 import locale_ko from 'react-intl/locale-data/ko';
 import locale_zh from 'react-intl/locale-data/zh';
 
+import ScrollToTop from './scrollToTop';
+
 import Header from './header';
 import Footer from './footer';
 import NotFound from '../components/NotFound';
@@ -63,12 +65,14 @@ class Routers extends PureComponent {
                     <div className="app">
                         <Header handleLanguage={this.handleLanguage} lang={lang} />
 
-                        <Switch>
-                            {routes.length && routes.map((route, key) => <Route key={key} {...route} />)}
-                            <Route component={NotFound} />
-                        </Switch>
-                        <Footer />
+                        <ScrollToTop>
+                            <Switch>
+                                {routes.length && routes.map((route, key) => <Route key={key} {...route} />)}
+                                <Route component={NotFound} />
+                            </Switch>
+                        </ScrollToTop>
 
+                        <Footer />
                         <Loading />
                     </div>
                 </BrowserRouter>

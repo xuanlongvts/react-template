@@ -5,19 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CareersApply from './careers-apply';
 
 class CareersDetails extends PureComponent {
-    static getDerivedStateFromProps(nextProps) {
-        const {
-            location,
-            history: { action }
-        } = nextProps;
-
-        if (location && action === 'PUSH') {
-            window.scrollTo(0, 0);
-        }
-
-        return null;
-    }
-
     render() {
         return (
             <div id="careers-details">

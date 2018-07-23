@@ -4,20 +4,6 @@
 @import './header';
 @import './footer';
 
-ul,
-ol {
-    list-style: none;
-    padding-left: 0;
-}
-
-a {
-    outline: none;
-}
-
-input {
-    outline: none;
-}
-
 .app {
     padding-top: 80px;
 }
@@ -75,11 +61,7 @@ input {
         }
 
         &:active {
-            background-image: linear-gradient(
-                to right,
-                rgba(173, 234, 132, 1) 0%,
-                rgba(135, 215, 121, 1) 100%
-            ) !important;
+            background-image: linear-gradient(to right, rgba(173, 234, 132, 1) 0%, rgba(135, 215, 121, 1) 100%) !important;
         }
 
         &:focus-within {

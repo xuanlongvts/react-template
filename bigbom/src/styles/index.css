@@ -2,6 +2,17 @@
 * {
   font-family: 'Open Sans', sans-serif; }
 
+ul,
+ol {
+  list-style: none;
+  padding-left: 0; }
+
+a {
+  outline: none; }
+
+input {
+  outline: none; }
+
 img {
   max-width: 100%; }
 
@@ -279,17 +290,6 @@ body.menu-opened {
     @media screen and (min-width: 414px) {
       #footer .cpyRight {
         font-size: 14px; } }
-
-ul,
-ol {
-  list-style: none;
-  padding-left: 0; }
-
-a {
-  outline: none; }
-
-input {
-  outline: none; }
 
 .app {
   padding-top: 80px; }
