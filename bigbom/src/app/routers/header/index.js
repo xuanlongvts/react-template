@@ -6,6 +6,7 @@ import _ from 'lodash';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 import { isDesktop, whitepaper } from '../../_utils/func';
 
@@ -23,14 +24,16 @@ class Header extends PureComponent {
         this.state = {
             routes: RoutersAuthen,
             isMenuToggle: false,
-            langImg: null
+            langImg: null,
+            dropdownOpen: false
         };
 
         this.handleMenu = this.handleMenu.bind(this);
+        this.handleLangDropdown = this.handleLangDropdown.bind(this);
     }
 
     componentDidMount() {
-        const { handleLanguage, lang } = this.props;
+        const { lang } = this.props;
 
         let imgSrc = null;
         imgSrc = APP_LOCALES.length && APP_LOCALES.filter(item => item.code === lang);
@@ -38,23 +41,6 @@ class Header extends PureComponent {
             this.setState({
                 langImg: imgSrc[0].imgSrc
             });
-
-        $('.listLanguages li').click(function() {
-            let getSrc = $(this)
-                .children('img')
-                .attr('src');
-            $('.languageCurr img').attr('src', getSrc);
-
-            let getLang = $(this).attr('rel');
-            handleLanguage(getLang);
-        });
-
-        $('#chooseLanguage').click(function() {
-            $(this).toggleClass('hover');
-            $(this)
-                .children('.listLanguages')
-                .slideToggle(200);
-        });
 
         $(window).on('resize', function() {
             if (isDesktop()) {
@@ -81,8 +67,23 @@ class Header extends PureComponent {
         $('body').toggleClass('menu-opened');
     }
 
+    handleLangDropdown() {
+        const { dropdownOpen } = this.state;
+        this.setState({
+            dropdownOpen: !dropdownOpen
+        });
+    }
+
+    selectedLanguage(lang, srcImg) {
+        const { handleLanguage } = this.props;
+
+        $('.languageCurr img').attr('src', srcImg);
+
+        handleLanguage(lang);
+    }
+
     render() {
-        const { routes, langImg } = this.state;
+        const { routes, langImg, dropdownOpen } = this.state;
         const { lang } = this.props;
 
         return (
@@ -100,21 +101,23 @@ class Header extends PureComponent {
 
                     <div id="menuSub">
                         <div id="chooseLanguage">
-                            <div className="languageCurr">
-                                <img src={langImg} alt="language" />
-                                <FontAwesomeIcon icon={faChevronDown} />
-                            </div>
-                            <ul className="listLanguages">
-                                {APP_LOCALES.length &&
-                                    APP_LOCALES.map((item, key) => {
-                                        return (
-                                            <li key={key} rel={item.code}>
-                                                <img src={item.imgSrc} alt={item.name} />
-                                                <span>{item.name}</span>
-                                            </li>
-                                        );
-                                    })}
-                            </ul>
+                            <ButtonDropdown isOpen={dropdownOpen} toggle={this.handleLangDropdown}>
+                                <DropdownToggle className="languageCurr">
+                                    <img src={langImg} alt="language" />
+                                    <FontAwesomeIcon icon={faChevronDown} />
+                                </DropdownToggle>
+                                <DropdownMenu>
+                                    {APP_LOCALES.length &&
+                                        APP_LOCALES.map((item, key) => {
+                                            return item.code !== lang ? (
+                                                <DropdownItem key={key} onClick={() => this.selectedLanguage(item.code, item.imgSrc)}>
+                                                    <img src={item.imgSrc} alt={item.name} />
+                                                    <span>{item.name}</span>
+                                                </DropdownItem>
+                                            ) : null;
+                                        })}
+                                </DropdownMenu>
+                            </ButtonDropdown>
                         </div>
 
                         {routes.length && (
@@ -139,9 +142,7 @@ class Header extends PureComponent {
                                                     <li className={match ? 'active' : null}>
                                                         <Link to={route.path}>
                                                             <FormattedMessage
-                                                                id={`${
-                                                                    langConfig.commNav
-                                                                }.${route.title.toLowerCase()}`}
+                                                                id={`${langConfig.commNav}.${route.title.toLowerCase()}`}
                                                                 defaultMessage={route.title}
                                                             />
                                                         </Link>
