@@ -1,0 +1,69 @@
+@mixin iphone {
+    @media screen and (min-width: #{$iphone}) {
+        @content;
+    }
+}
+
+@mixin iphonePlus {
+    @media screen and (min-width: #{$iphonePlus}) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media screen and (min-width: #{$phone}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (min-width: #{$tablet}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: #{$desktop}) {
+        @content;
+    }
+}
+
+@mixin wideDesktop {
+    @media screen and (min-width: #{$wideDesktop}) {
+        @content;
+    }
+}
+
+@mixin cycleBox {
+    display: inline-block;
+    border-radius: 50%;
+    text-align: center;
+    overflow: hidden;
+    vertical-align: top;
+
+    @content;
+}
+
+@mixin button {
+    border-radius: 5px;
+    display: inline-block;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    min-width: 180px;
+    padding: 0 50px;
+    border: none;
+    outline: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active,
+    &:focus,
+    &:visited {
+        outline: none;
+    }
+
+    @content;
+}

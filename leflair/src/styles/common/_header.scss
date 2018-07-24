@@ -1,0 +1,173 @@
+$cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99);
+
+#header {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: $white;
+    z-index: 100;
+    transition: all 0.5s ease-out, background 1s ease-out;
+    transition-delay: 0.2s;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+
+    .logo {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .burger-container {
+        position: relative;
+        height: 40px;
+        width: 40px;
+        cursor: pointer;
+        transform: rotate(0deg);
+        transition: all 0.3s $cubic;
+        user-select: none;
+        float: right;
+        -webkit-tap-highlight-color: transparent;
+
+        @include desktop {
+            display: none;
+        }
+
+        #burger {
+            width: 25px;
+            height: 8px;
+            position: relative;
+            display: block;
+            margin: -4px auto 0;
+            top: 50%;
+
+            .bar {
+                width: 100%;
+                height: 1px;
+                display: block;
+                position: relative;
+                background: $black-grey;
+                transition: all 0.3s $cubic;
+                transition-delay: 0s;
+
+                &.topBar {
+                    transform: translateY(0px) rotate(0deg);
+                }
+                &.btmBar {
+                    transform: translateY(8px) rotate(0deg);
+                }
+            }
+        }
+    }
+
+    .nav {
+        text-align: center;
+        padding-top: 20px;
+        float: right;
+        width: 100%;
+
+        @include desktop {
+            padding-top: 0;
+            width: auto;
+        }
+
+        li {
+            display: block;
+            width: 100%;
+            border-bottom: 1px solid rgba(27, 27, 27, 0.1);
+            text-align: left;
+            margin-bottom: 5px;
+
+            &:last-child {
+                border-bottom: none;
+
+                a {
+                    padding-right: 0;
+                }
+            }
+
+            &.active,
+            &:hover {
+                a {
+                    color: $linkAct;
+                }
+            }
+
+            @include desktop {
+                display: inline-block;
+                width: auto;
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+        }
+
+        a {
+            width: 100%;
+            color: $black-grey;
+            display: inline-block;
+            padding: 10px 0;
+            text-decoration: none;
+
+            @include desktop {
+                padding: 8px 11px;
+            }
+
+            span {
+                vertical-align: top;
+            }
+        }
+    }
+
+    .numberCart {
+        display: inline-block;
+        overflow: hidden;
+        max-width: 32px;
+        min-width: 20px;
+        height: 22px;
+        background: red;
+        color: $white;
+        text-align: center;
+        line-height: 20px;
+        border-radius: 2px;
+        margin-left: 5px;
+        font-size: 13px;
+        padding: 0 3px;
+    }
+}
+
+#menuSub {
+    display: none;
+    float: right;
+    width: 100%;
+
+    @include desktop {
+        display: block !important;
+        width: auto;
+    }
+}
+
+body.menu-opened {
+    overflow: hidden;
+
+    #header {
+        height: 100%;
+        overflow: hidden;
+
+        .burger-container {
+            transform: rotate(90deg);
+
+            #burger {
+                .bar {
+                    transition: all 0.4s $cubic;
+                    transition-delay: 0.2s;
+                    &.topBar {
+                        transform: translateY(4px) rotate(45deg);
+                    }
+                    &.btmBar {
+                        transform: translateY(3px) rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+}

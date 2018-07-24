@@ -1,0 +1,31 @@
+#homePage {
+    padding-bottom: 50px;
+
+    section {
+        text-align: center;
+    }
+
+    .item {
+        margin: 10px 0 30px;
+
+        .img {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .infor {
+            margin-top: 10px;
+
+            .title {
+                font-size: 14px;
+            }
+
+            .price {
+                margin-bottom: 10px;
+            }
+
+            .btn-buy {
+            }
+        }
+    }
+}

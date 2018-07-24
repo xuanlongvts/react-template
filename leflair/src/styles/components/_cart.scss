@@ -1,0 +1,26 @@
+#cartPage {
+    padding: 0 0 50px;
+
+    .eachRow {
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+
+        hr {
+            width: 100%;
+            border-top: 1px solid rgba(0, 0, 0, 0.3);
+        }
+
+        h6 {
+            margin-top: 7px;
+            margin-bottom: 0;
+        }
+
+        .btn-group {
+            margin-top: 10px;
+
+            @include tablet {
+                margin-top: 0;
+            }
+        }
+    }
+}

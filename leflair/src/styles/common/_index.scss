@@ -1,0 +1,113 @@
+@import './setting';
+@import './mixins';
+@import './animate';
+@import './header';
+@import './footer';
+
+.app {
+    padding-top: 80px;
+}
+
+.notFound {
+    background: #ebeff2;
+    text-align: center;
+    padding: 50px 0 150px;
+    margin-bottom: -70px;
+
+    @include desktop {
+        padding: 80px 0 200px;
+    }
+
+    .txt {
+        color: #8c9ba0;
+        font-size: 24px;
+
+        @include tablet {
+            margin-top: -24px;
+        }
+    }
+}
+
+.buttonWhite {
+    @include button {
+        background: $white;
+        color: #4dae4a;
+        font-weight: 700;
+        font-size: 18px;
+        text-transform: capitalize;
+
+        &:hover {
+            color: #4dae4a;
+            text-decoration: none;
+            box-shadow: 0px 10px 25px rgba(37, 15, 138, 0.2);
+        }
+    }
+}
+
+.cycleSlider {
+    @include cycleBox {
+        width: 70px;
+        height: 70px;
+        background: $white;
+        line-height: 70px;
+        box-shadow: 0px 10px 25px rgba(37, 15, 139, 0.1);
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    svg {
+        width: 12px;
+        height: 18px;
+        color: $black;
+    }
+}
+
+.boxLoading,
+.loadingComponent {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+
+    .loading {
+        position: absolute;
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #4dae4a;
+        width: 60px;
+        height: 60px;
+        left: 50%;
+        top: 50%;
+        animation: spin 2s linear infinite;
+        margin-left: -30px;
+        margin-top: -30px;
+    }
+}
+
+.loadingComponent {
+    position: relative;
+    height: 230px;
+    background: #fff;
+    margin-bottom: 50px;
+
+    @include desktop {
+        height: 500px;
+    }
+}
+
+.titlePage {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: $black-grey;
+    font-size: 22px;
+    text-align: center;
+
+    @include phone {
+        font-size: 28px;
+    }
+}
