@@ -1,14 +1,21 @@
-'use strict';
-
-const cart = 'cart';
-
 export default {
-    set cart(cart) {
-        localStorage.setItem(cart, cart);
+    setItem(key, value) {
+        localStorage.setItem(key, value);
     },
 
-    get cart() {
-        const cartCurr = localStorage.getItem(cart);
-        return cartCurr ? cartCurr : null;
+    getItem(key) {
+        return localStorage.getItem(key);
+    },
+
+    getItemJson(key) {
+        return JSON.parse(localStorage.getItem(key));
+    },
+
+    setItemJson(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+    },
+
+    removeItem(key) {
+        localStorage.removeItem(key);
     }
 };

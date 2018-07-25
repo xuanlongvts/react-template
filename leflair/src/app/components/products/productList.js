@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import _ from 'lodash';
 
+import localStogeAdapter from '../../_utils/localStorage';
+
 import { requestAddToCart } from '../cart/actions';
 import dataBooks from '../../_data/dataBooks';
 
@@ -13,19 +15,34 @@ class ProductList extends PureComponent {
         super(props);
 
         this.state = {
-            dataBooksStore: dataBooks,
             reRender: 0
         };
     }
 
+    componentDidUpdate(prevProps) {
+        let { reRender } = this.state;
+        const { quantity } = this.props;
+
+        if (prevProps.quantity !== quantity) {
+            this.setState({
+                reRender: ++reRender
+            });
+        }
+    }
+
     handleCart(id) {
         let { reRender } = this.state;
-        const { dataBooksStore } = this.state;
         const { requestAddToCart } = this.props;
 
         const quantityBuy = 1;
         let stock = 0;
         let stockLeft = null;
+
+        let dataBooksStore = null;
+        localStogeAdapter.getItemJson('dataBooks')
+            ? (dataBooksStore = localStogeAdapter.getItemJson('dataBooks'))
+            : (dataBooksStore = dataBooks);
+
         dataBooksStore.length &&
             dataBooksStore.map(item => {
                 if (item.id === id) {
@@ -43,6 +60,8 @@ class ProductList extends PureComponent {
                 return null;
             });
 
+        localStogeAdapter.setItemJson('dataBooks', dataBooksStore);
+
         this.setState({
             reRender: ++reRender
         });
@@ -59,7 +78,11 @@ class ProductList extends PureComponent {
 
     render() {
         const { match } = this.props;
-        const { dataBooksStore } = this.state;
+
+        let dataBooksStore = null;
+        localStogeAdapter.getItemJson('dataBooks')
+            ? (dataBooksStore = localStogeAdapter.getItemJson('dataBooks'))
+            : (dataBooksStore = dataBooks);
 
         return (
             <div className="container prodList">
@@ -118,7 +141,14 @@ class ProductList extends PureComponent {
 
 ProductList.propTypes = {
     requestAddToCart: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
+    quantity: PropTypes.number
+};
+
+const mapStateToProps = state => {
+    return {
+        quantity: state.reducCart.getIn(['carts', 'quantityTotal'])
+    };
 };
 
 const mapDispatchToProps = {
@@ -126,6 +156,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(ProductList);

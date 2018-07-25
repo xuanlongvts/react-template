@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Route, Link, withRouter } from 'react-router-dom';
 import $ from 'jquery';
 import _ from 'lodash';
-
+import localStogeAdapter from '../../_utils/localStorage';
 import { isDesktop } from '../../_utils/func';
 
 import RoutersAuthen from '../RoutersAuthen';
@@ -63,7 +63,10 @@ class Header extends PureComponent {
 
     render() {
         const { routes } = this.state;
-        const { quantity } = this.props;
+        const { quantity, carts } = this.props;
+
+        carts.length && localStogeAdapter.setItemJson('carts', carts);
+        quantity && localStogeAdapter.setItem('quantity', quantity);
 
         return (
             <header id="header">
@@ -118,11 +121,13 @@ class Header extends PureComponent {
 
 Header.propTypes = {
     quantity: PropTypes.number.isRequired,
+    carts: PropTypes.array.isRequired,
     openCart: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
     return {
+        carts: state.reducCart.getIn(['carts', 'listCarts']).toJS(),
         quantity: state.reducCart.getIn(['carts', 'quantityTotal'])
     };
 };

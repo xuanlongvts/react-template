@@ -291,8 +291,6 @@ body.menu-opened {
       text-decoration: none; }
       #prodPage .item .infor .title {
         font-size: 14px; }
-      #prodPage .item .infor .price-stock {
-        margin-bottom: 10px; }
       #prodPage .item .infor .stock {
         margin-left: 20px; }
     #prodPage .item .stock {
@@ -304,6 +302,11 @@ body.menu-opened {
       vertical-align: top; }
     #prodPage .detailProd .des {
       margin-bottom: 10px; }
+    #prodPage .detailProd .stock {
+      margin-left: 20px;
+      color: red; }
+  #prodPage .price-stock {
+    margin-bottom: 10px; }
 
 body.openCart {
   overflow: hidden; }
@@ -328,6 +331,9 @@ body.openCart {
   @media screen and (min-width: 992px) {
     #cartPage {
       width: 80%; } }
+  @media screen and (min-width: 1200px) {
+    #cartPage {
+      width: 70%; } }
   #cartPage #btn-close {
     position: absolute;
     top: 10px;

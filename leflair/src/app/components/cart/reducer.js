@@ -1,10 +1,11 @@
 import { fromJS } from 'immutable';
 import * as actList from './consts';
+import localStogeAdapter from '../../_utils/localStorage';
 
 const initialState = fromJS({
     carts: {
-        listCarts: [],
-        quantityTotal: 0
+        listCarts: localStogeAdapter.getItemJson('carts') || [],
+        quantityTotal: parseInt(localStogeAdapter.getItem('quantity'), 10) || 0
     },
     isOpen: false
 });
@@ -22,7 +23,7 @@ const cart = (state = initialState, action) => {
                 .setIn(['carts', 'listCarts'], state.getIn(['carts', 'listCarts']).concat(action.cart))
                 .setIn(['carts', 'quantityTotal'], ++quantity);
         case actList.UPDATE_CART_ONE:
-            var cartUpdate = state.getIn(['carts', 'listCarts', action.index]);
+            var cartUpdate = localStogeAdapter.getItemJson('carts')[action.index] || state.getIn(['carts', 'listCarts', action.index]);
             cartUpdate.quantity = action.unit + cartUpdate.quantity;
             cartUpdate.stockLeft = cartUpdate.stockLeft - action.stock;
             return state.setIn(['carts', 'listCarts', action.index], cartUpdate).setIn(['carts', 'quantityTotal'], action.unit + quantity);

@@ -32,10 +32,6 @@
                 font-size: 14px;
             }
 
-            .price-stock {
-                margin-bottom: 10px;
-            }
-
             .stock {
                 margin-left: 20px;
             }
@@ -56,5 +52,14 @@
         .des {
             margin-bottom: 10px;
         }
+
+        .stock {
+            margin-left: 20px;
+            color: red;
+        }
+    }
+
+    .price-stock {
+        margin-bottom: 10px;
     }
 }
