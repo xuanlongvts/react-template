@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 class Loading extends PureComponent {
     render() {
         const { isLoading } = this.props;
+
         return isLoading ? (
             <div className="boxLoading">
                 <p className="loading" />

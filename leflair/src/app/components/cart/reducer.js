@@ -5,13 +5,18 @@ const initialState = fromJS({
     carts: {
         listCarts: [],
         quantityTotal: 0
-    }
+    },
+    isOpen: false
 });
 
 const cart = (state = initialState, action) => {
     let quantity = state.getIn(['carts', 'quantityTotal']);
 
     switch (action.type) {
+        case actList.OPEN_CART:
+            return state.set('isOpen', true);
+        case actList.CLOSE_CART:
+            return state.set('isOpen', false);
         case actList.ADD_TO_CART:
             return state
                 .setIn(['carts', 'listCarts'], state.getIn(['carts', 'listCarts']).concat(action.cart))

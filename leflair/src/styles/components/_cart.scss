@@ -1,5 +1,49 @@
+body {
+    &.openCart {
+        overflow: hidden;
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 101;
+            left: 0;
+            top: 0;
+        }
+    }
+}
+
 #cartPage {
     padding: 0 0 50px;
+    position: fixed;
+    z-index: 102;
+    right: 0;
+    top: 0;
+    background: $white;
+    width: 100%;
+    height: 100%;
+
+    @include desktop {
+        width: 80%;
+    }
+
+    #btn-close {
+        position: absolute;
+        top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .numberCart {
+        margin-top: 5px;
+    }
 
     .eachRow {
         margin-bottom: 20px;

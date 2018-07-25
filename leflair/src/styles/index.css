@@ -16,6 +16,9 @@ input {
 img {
   max-width: 100%; }
 
+body {
+  position: relative; }
+
 @keyframes fadeIn {
   0% {
     opacity: 0; }
@@ -113,20 +116,21 @@ img {
           padding: 8px 11px; } }
       #header .nav a span {
         vertical-align: top; }
-  #header .numberCart {
-    display: inline-block;
-    overflow: hidden;
-    max-width: 32px;
-    min-width: 20px;
-    height: 22px;
-    background: red;
-    color: #fff;
-    text-align: center;
-    line-height: 20px;
-    border-radius: 2px;
-    margin-left: 5px;
-    font-size: 13px;
-    padding: 0 3px; }
+
+.numberCart {
+  display: inline-block;
+  overflow: hidden;
+  max-width: 32px;
+  min-width: 20px;
+  height: 22px;
+  background: red;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  border-radius: 2px;
+  margin-left: 5px;
+  font-size: 13px;
+  padding: 0 3px; }
 
 #menuSub {
   display: none;
@@ -301,8 +305,40 @@ body.menu-opened {
     #prodPage .detailProd .des {
       margin-bottom: 10px; }
 
+body.openCart {
+  overflow: hidden; }
+  body.openCart .overlay {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 101;
+    left: 0;
+    top: 0; }
+
 #cartPage {
-  padding: 0 0 50px; }
+  padding: 0 0 50px;
+  position: fixed;
+  z-index: 102;
+  right: 0;
+  top: 0;
+  background: #fff;
+  width: 100%;
+  height: 100%; }
+  @media screen and (min-width: 992px) {
+    #cartPage {
+      width: 80%; } }
+  #cartPage #btn-close {
+    position: absolute;
+    top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px; }
+    #cartPage #btn-close:hover {
+      cursor: pointer; }
+  #cartPage .numberCart {
+    margin-top: 5px; }
   #cartPage .eachRow {
     margin-bottom: 20px;
     padding-bottom: 5px; }

@@ -117,22 +117,22 @@ $cubic: cubic-bezier(0.4, 0.01, 0.165, 0.99);
             }
         }
     }
+}
 
-    .numberCart {
-        display: inline-block;
-        overflow: hidden;
-        max-width: 32px;
-        min-width: 20px;
-        height: 22px;
-        background: red;
-        color: $white;
-        text-align: center;
-        line-height: 20px;
-        border-radius: 2px;
-        margin-left: 5px;
-        font-size: 13px;
-        padding: 0 3px;
-    }
+.numberCart {
+    display: inline-block;
+    overflow: hidden;
+    max-width: 32px;
+    min-width: 20px;
+    height: 22px;
+    background: red;
+    color: $white;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 2px;
+    margin-left: 5px;
+    font-size: 13px;
+    padding: 0 3px;
 }
 
 #menuSub {

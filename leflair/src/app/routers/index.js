@@ -7,6 +7,7 @@ import Header from './header';
 import Footer from './footer';
 import NotFound from '../components/NotFound';
 import Loading from '../components/_base/loading';
+import Carts from '../components/cart';
 import RoutersAuthen from './RoutersAuthen';
 
 class Routers extends PureComponent {
@@ -31,8 +32,9 @@ class Routers extends PureComponent {
                             <Route component={NotFound} />
                         </Switch>
                     </ScrollToTop>
-
                     <Footer />
+
+                    <Carts />
                     <Loading />
                 </div>
             </BrowserRouter>

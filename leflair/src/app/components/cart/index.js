@@ -1,21 +1,46 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import $ from 'jquery';
 import dataBooks from '../../_data/dataBooks';
 import { addDots } from '../../_utils/func';
-import { updateCartItemOne } from './actions';
+import { updateCartItemOne, closeCart } from './actions';
 
 class Cart extends PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.handleCloseCart = this.handleCloseCart.bind(this);
+    }
+
+    componentDidMount() {
+        $('body').on('click', '.overlay', () => {
+            this.handleCloseCart();
+        });
+    }
+
     handleUpdateCart(unit, stock, index) {
         const { updateCartItemOne } = this.props;
 
         updateCartItemOne(unit, stock, index);
     }
 
-    render() {
-        const { carts } = this.props;
-        let totalMoney = 0;
+    handleCloseCart() {
+        const { closeCart } = this.props;
 
+        closeCart();
+        $('body').removeClass('openCart');
+        $('.overlay').remove();
+    }
+
+    render() {
+        const { carts, isOpen, quantity } = this.props;
+
+        if (!isOpen) {
+            return null;
+        }
+
+        let totalMoney = 0;
         const cartItemsList =
             dataBooks.length &&
             dataBooks.map(each => {
@@ -52,7 +77,7 @@ class Cart extends PureComponent {
                                                 +
                                             </button>
                                         )}
-                                        <button className="btn btn-danger btn-delete">DELETE</button>
+                                        <button className="btn btn-info btn-delete">DELETE</button>
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +90,13 @@ class Cart extends PureComponent {
         return (
             <div id="cartPage">
                 <div className="container">
-                    <h2 className="titlePage">Cart</h2>
+                    <button type="button" id="btn-close" onClick={this.handleCloseCart}>
+                        X
+                    </button>
+
+                    <h2 className="titlePage">
+                        your cart <span className="numberCart">{quantity}</span>
+                    </h2>
                     {cartItemsList}
                 </div>
 
@@ -83,17 +114,23 @@ class Cart extends PureComponent {
 
 Cart.propTypes = {
     updateCartItemOne: PropTypes.func.isRequired,
-    carts: PropTypes.array.isRequired
+    carts: PropTypes.array.isRequired,
+    quantity: PropTypes.number.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    closeCart: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
     return {
-        carts: state.reducCart.getIn(['carts', 'listCarts']).toArray()
+        carts: state.reducCart.getIn(['carts', 'listCarts']).toArray(),
+        quantity: state.reducCart.getIn(['carts', 'quantityTotal']),
+        isOpen: state.reducCart.get('isOpen')
     };
 };
 
 const mapDispatchToProps = {
-    updateCartItemOne
+    updateCartItemOne,
+    closeCart
 };
 
 export default connect(

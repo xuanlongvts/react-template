@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Link, withRouter } from 'react-router-dom';
 import $ from 'jquery';
@@ -10,6 +11,8 @@ import RoutersAuthen from '../RoutersAuthen';
 
 import imgLogo from '../../../images/logo.png';
 
+import { openCart } from '../../components/cart/actions';
+
 class Header extends PureComponent {
     constructor(props) {
         super(props);
@@ -20,6 +23,7 @@ class Header extends PureComponent {
         };
 
         this.handleMenu = this.handleMenu.bind(this);
+        this.handleOpenCart = this.handleOpenCart.bind(this);
     }
 
     componentDidMount() {
@@ -48,6 +52,15 @@ class Header extends PureComponent {
         $('body').toggleClass('menu-opened');
     }
 
+    handleOpenCart() {
+        const { openCart } = this.props;
+        openCart();
+
+        $('body')
+            .addClass('openCart')
+            .append('<div class="overlay">&nbsp;</div>');
+    }
+
     render() {
         const { routes } = this.state;
         const { quantity } = this.props;
@@ -69,6 +82,16 @@ class Header extends PureComponent {
                         {routes.length && (
                             <ul className="nav">
                                 {routes.map((route, key) => {
+                                    if (route.path === '/cart') {
+                                        return (
+                                            <li key={key}>
+                                                <a href="javascript:;" onClick={this.handleOpenCart}>
+                                                    <span className="link">{route.title}</span>
+                                                    <span className="numberCart">{quantity}</span>
+                                                </a>
+                                            </li>
+                                        );
+                                    }
                                     return (
                                         <Route key={key} path={route.path} exact={route.exact}>
                                             {({ match }) => {
@@ -93,14 +116,24 @@ class Header extends PureComponent {
     }
 }
 
+Header.propTypes = {
+    quantity: PropTypes.number.isRequired,
+    openCart: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => {
     return {
         quantity: state.reducCart.getIn(['carts', 'quantityTotal'])
     };
 };
 
-// const mapDispatchToProps = {
-//     addToCart
-// };
+const mapDispatchToProps = {
+    openCart
+};
 
-export default withRouter(connect(mapStateToProps)(Header));
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(Header)
+);

@@ -7,7 +7,7 @@ import NotFound from '../NotFound';
 import ProductList from './productList';
 import ProductDetail from './productDetail';
 
-class Home extends PureComponent {
+class Products extends PureComponent {
     render() {
         const { match } = this.props;
 
@@ -36,8 +36,8 @@ class Home extends PureComponent {
     }
 }
 
-Home.propTypes = {
+Products.propTypes = {
     match: PropTypes.object.isRequired
 };
 
-export default Home;
+export default Products;

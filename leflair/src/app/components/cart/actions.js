@@ -1,5 +1,17 @@
 import * as actList from './consts';
 
+export const openCart = () => {
+    return {
+        type: actList.OPEN_CART
+    };
+};
+
+export const closeCart = () => {
+    return {
+        type: actList.CLOSE_CART
+    };
+};
+
 export const requestAddToCart = cart => {
     return {
         type: actList.REQUEST_ADD_TO_CART,
