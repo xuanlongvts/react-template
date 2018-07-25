@@ -266,28 +266,40 @@ body.menu-opened {
     .titlePage {
       font-size: 28px; } }
 
-#homePage {
+#prodPage {
   padding-bottom: 50px; }
-  #homePage section {
+  #prodPage section {
     text-align: center; }
-  #homePage .item {
+  #prodPage .item {
     margin: 10px 0 30px;
     border: 1px solid #ccc;
     border-radius: 3px;
     padding: 10px 10px 20px; }
-    #homePage .item .img {
+    #prodPage .item > a {
+      color: #1b1b1b; }
+      #prodPage .item > a:hover {
+        text-decoration: none; }
+    #prodPage .item .img {
       width: 100%;
       overflow: hidden; }
-    #homePage .item .infor {
-      margin-top: 10px; }
-      #homePage .item .infor .title {
+    #prodPage .item .infor {
+      margin-top: 10px;
+      text-decoration: none; }
+      #prodPage .item .infor .title {
         font-size: 14px; }
-      #homePage .item .infor .price-stock {
+      #prodPage .item .infor .price-stock {
         margin-bottom: 10px; }
-      #homePage .item .infor .stock {
+      #prodPage .item .infor .stock {
         margin-left: 20px; }
-    #homePage .item .stock {
+    #prodPage .item .stock {
       color: red; }
+  #prodPage .detailProd {
+    padding: 50px 0; }
+    #prodPage .detailProd .img {
+      margin-bottom: 10px;
+      vertical-align: top; }
+    #prodPage .detailProd .des {
+      margin-bottom: 10px; }
 
 #cartPage {
   padding: 0 0 50px; }
@@ -296,12 +308,20 @@ body.menu-opened {
     padding-bottom: 5px; }
     #cartPage .eachRow hr {
       width: 100%;
-      border-top: 1px solid rgba(0, 0, 0, 0.3); }
+      border-top: 1px solid rgba(0, 0, 0, 0.1); }
     #cartPage .eachRow h6 {
       margin-top: 7px;
       margin-bottom: 0; }
-    #cartPage .eachRow .btn-group {
+    #cartPage .eachRow .list-btn {
       margin-top: 10px; }
       @media screen and (min-width: 768px) {
-        #cartPage .eachRow .btn-group {
+        #cartPage .eachRow .list-btn {
           margin-top: 0; } }
+    #cartPage .eachRow .btn {
+      margin-right: 1px;
+      padding: 5px 15px; }
+      #cartPage .eachRow .btn.btn-delete {
+        float: right;
+        margin-right: 0; }
+  #cartPage .hrTotal {
+    border-top: 1px solid rgba(0, 0, 0, 0.3); }

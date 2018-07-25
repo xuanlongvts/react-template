@@ -7,7 +7,7 @@
 
         hr {
             width: 100%;
-            border-top: 1px solid rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         h6 {
@@ -15,12 +15,26 @@
             margin-bottom: 0;
         }
 
-        .btn-group {
+        .list-btn {
             margin-top: 10px;
 
             @include tablet {
                 margin-top: 0;
             }
         }
+
+        .btn {
+            margin-right: 1px;
+            padding: 5px 15px;
+
+            &.btn-delete {
+                float: right;
+                margin-right: 0;
+            }
+        }
+    }
+
+    .hrTotal {
+        border-top: 1px solid rgba(0, 0, 0, 0.3);
     }
 }

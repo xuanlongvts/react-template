@@ -8,6 +8,7 @@ import asyncComponent from '../components/_asynComponent';
 // import AsyncFaq from '../components/faq';
 
 const AsyncHome = asyncComponent(() => import('../components/home/'));
+const AsyncProducts = asyncComponent(() => import('../components/products/'));
 const AsyncCart = asyncComponent(() => import('../components/cart/'));
 const AsyncAbout = asyncComponent(() => import('../components/about/'));
 
@@ -17,6 +18,11 @@ const routersAuthen = [
         path: '/',
         component: AsyncHome,
         exact: true
+    },
+    {
+        title: 'Products',
+        path: '/products',
+        component: AsyncProducts
     },
     {
         title: 'About',

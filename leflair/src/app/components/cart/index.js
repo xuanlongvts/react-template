@@ -23,7 +23,6 @@ class Cart extends PureComponent {
                     if (each.id === item.id) {
                         let eachItem = item.quantity * each.price;
                         totalMoney = totalMoney + eachItem;
-
                         return (
                             <div className="row eachRow" key={item.id}>
                                 <div className="container">
@@ -42,19 +41,18 @@ class Cart extends PureComponent {
                                     </h6>
                                 </div>
                                 <div className="col-sm-12 col-md-4">
-                                    <div className="btn-group">
-                                        <button
-                                            className="btn btn-secondary"
-                                            onClick={item.quantity > 1 ? () => this.handleUpdateCart(-1, -1, key) : null}
-                                        >
-                                            -
-                                        </button>
+                                    <div className="list-btn">
+                                        {item.quantity > 1 && (
+                                            <button className="btn btn-secondary" onClick={() => this.handleUpdateCart(-1, -1, key)}>
+                                                -
+                                            </button>
+                                        )}
                                         {item.stockLeft > 0 && (
                                             <button className="btn btn-secondary" onClick={() => this.handleUpdateCart(1, 1, key)}>
                                                 +
                                             </button>
                                         )}
-                                        <button className="btn btn-danger">DELETE</button>
+                                        <button className="btn btn-danger btn-delete">DELETE</button>
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +70,7 @@ class Cart extends PureComponent {
                 </div>
 
                 <div className="container">
-                    <hr />
+                    <hr className="hrTotal" />
                     <h6 className="totalAmount">
                         <span>Total amount:</span> $. <strong>{addDots(totalMoney)}</strong>
                     </h6>
