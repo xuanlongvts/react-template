@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import imgNotFound from '../../images/not-found.png';

@@ -1,5 +1,3 @@
-'use strict';
-
 import imgGreen from '../../images/prod/green.jpg';
 import imgIfYou from '../../images/prod/if_you_could_see_me_now.jpg';
 import imgNaoko from '../../images/prod/naoko.jpg';
@@ -15,7 +13,7 @@ export default [
         des:
             'A coming-of-age novel about race, privilege, and the struggle to rise in America, written by a former Obama campaign staffer and propelled by an exuberant, unforgettable narrator.',
         img: imgGreen,
-        stock: 10
+        stock: 5
     },
     {
         id: 2,
@@ -24,7 +22,7 @@ export default [
         des:
             "What if love was right there in front of you – you just couldn't see it. Elizabeth Egan is too busy for friends. As a reluctant mother to her sister Saoirse's young son Luke and with her own business to run, every precious moment is made to count.",
         img: imgIfYou,
-        stock: 5
+        stock: 4
     },
     {
         id: 3,
@@ -33,7 +31,7 @@ export default [
         des:
             'Winner of the Japan Mystery Writers Award, Naoko is a black comedy of hidden minds and lives. Navigating the interstices between the real and the unreal with perfect plot twists, this page-turner is also a critique of gender relations by a male Japanese writer, one of their best-sellng.',
         img: imgNaoko,
-        stock: 30
+        stock: 7
     },
     {
         id: 4,
@@ -51,7 +49,7 @@ export default [
         des:
             'A NATIONAL INDIEBOUND BESTSELLER From the author of The Guest Room, a powerful story about the ways an entire life can change in one night: A flight attendant wakes up in the wrong hotel, in the wrong bed, with a dead man - and no idea what happened.',
         img: imgTheflight,
-        stock: 2
+        stock: 1
     },
     {
         id: 6,

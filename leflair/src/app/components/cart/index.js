@@ -1,26 +1,29 @@
-'use strict';
-
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import dataBooks from '../../_data/dataBooks';
 import { addDots } from '../../_utils/func';
 import { updateCartItemOne } from './actions';
 
 class Cart extends PureComponent {
-    handleUpdateCart(unit, index) {
+    handleUpdateCart(unit, stock, index) {
         const { updateCartItemOne } = this.props;
 
-        updateCartItemOne(unit, index);
+        updateCartItemOne(unit, stock, index);
     }
 
     render() {
         const { carts } = this.props;
+        let totalMoney = 0;
 
         const cartItemsList =
             dataBooks.length &&
             dataBooks.map(each => {
                 return carts.map((item, key) => {
                     if (each.id === item.id) {
+                        let eachItem = item.quantity * each.price;
+                        totalMoney = totalMoney + eachItem;
+
                         return (
                             <div className="row eachRow" key={item.id}>
                                 <div className="container">
@@ -42,22 +45,22 @@ class Cart extends PureComponent {
                                     <div className="btn-group">
                                         <button
                                             className="btn btn-secondary"
-                                            onClick={item.quantity > 1 ? () => this.handleUpdateCart(-1, key) : null}
+                                            onClick={item.quantity > 1 ? () => this.handleUpdateCart(-1, -1, key) : null}
                                         >
-                                            {' '}
-                                            -{' '}
+                                            -
                                         </button>
-                                        <button className="btn btn-secondary" onClick={() => this.handleUpdateCart(1, key)}>
-                                            {' '}
-                                            +{' '}
-                                        </button>
-                                        <span> </span>
-                                        <button className="btn btn-danger"> DELETE </button>
+                                        {item.stockLeft > 0 && (
+                                            <button className="btn btn-secondary" onClick={() => this.handleUpdateCart(1, 1, key)}>
+                                                +
+                                            </button>
+                                        )}
+                                        <button className="btn btn-danger">DELETE</button>
                                     </div>
                                 </div>
                             </div>
                         );
                     }
+                    return null;
                 });
             });
 
@@ -71,7 +74,7 @@ class Cart extends PureComponent {
                 <div className="container">
                     <hr />
                     <h6 className="totalAmount">
-                        <span>Total amount:</span> $. <strong>{addDots(3)}</strong>
+                        <span>Total amount:</span> $. <strong>{addDots(totalMoney)}</strong>
                     </h6>
                     <button className="btn btn-success"> PROCEED TO CHECKOUT </button>
                 </div>
@@ -79,6 +82,11 @@ class Cart extends PureComponent {
         );
     }
 }
+
+Cart.propTypes = {
+    updateCartItemOne: PropTypes.func.isRequired,
+    carts: PropTypes.array.isRequired
+};
 
 const mapStateToProps = state => {
     return {

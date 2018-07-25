@@ -17,8 +17,9 @@ const cart = (state = initialState, action) => {
                 .setIn(['carts', 'listCarts'], state.getIn(['carts', 'listCarts']).concat(action.cart))
                 .setIn(['carts', 'quantityTotal'], ++quantity);
         case actList.UPDATE_CART_ONE:
-            const cartUpdate = state.getIn(['carts', 'listCarts', action.index]);
+            var cartUpdate = state.getIn(['carts', 'listCarts', action.index]);
             cartUpdate.quantity = action.unit + cartUpdate.quantity;
+            cartUpdate.stockLeft = cartUpdate.stockLeft - action.stock;
             return state.setIn(['carts', 'listCarts', action.index], cartUpdate).setIn(['carts', 'quantityTotal'], action.unit + quantity);
         default:
             return state;

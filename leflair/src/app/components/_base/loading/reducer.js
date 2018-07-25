@@ -1,5 +1,3 @@
-'use strict';
-
 import { fromJS } from 'immutable';
 import { COMMON_LOADING_OPEN, COMMON_LOADING_CLOSE } from './consts';
 

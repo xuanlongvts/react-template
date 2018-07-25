@@ -1,5 +1,3 @@
-'use strict';
-
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Route, Link, withRouter } from 'react-router-dom';
@@ -18,8 +16,7 @@ class Header extends PureComponent {
 
         this.state = {
             routes: RoutersAuthen,
-            isMenuToggle: false,
-            dropdownOpen: false
+            isMenuToggle: false
         };
 
         this.handleMenu = this.handleMenu.bind(this);

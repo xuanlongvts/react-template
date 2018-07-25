@@ -271,7 +271,10 @@ body.menu-opened {
   #homePage section {
     text-align: center; }
   #homePage .item {
-    margin: 10px 0 30px; }
+    margin: 10px 0 30px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 10px 10px 20px; }
     #homePage .item .img {
       width: 100%;
       overflow: hidden; }
@@ -279,8 +282,12 @@ body.menu-opened {
       margin-top: 10px; }
       #homePage .item .infor .title {
         font-size: 14px; }
-      #homePage .item .infor .price {
+      #homePage .item .infor .price-stock {
         margin-bottom: 10px; }
+      #homePage .item .infor .stock {
+        margin-left: 20px; }
+    #homePage .item .stock {
+      color: red; }
 
 #cartPage {
   padding: 0 0 50px; }

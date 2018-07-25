@@ -1,5 +1,3 @@
-'use strict';
-
 import * as actList from './consts';
 
 export const requestAddToCart = cart => {
@@ -24,10 +22,11 @@ export const deleteCartItem = id => {
     return {};
 };
 
-export const updateCartItemOne = (unit, index) => {
+export const updateCartItemOne = (unit, stock, index) => {
     return {
         type: actList.UPDATE_CART_ONE,
         unit,
+        stock,
         index
     };
 };

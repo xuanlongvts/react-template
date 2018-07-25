@@ -1,5 +1,3 @@
-'use strict';
-
 import asyncComponent from '../components/_asynComponent';
 
 // import AsyncHome from '../components/home';

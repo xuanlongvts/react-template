@@ -7,6 +7,9 @@
 
     .item {
         margin: 10px 0 30px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 10px 10px 20px;
 
         .img {
             width: 100%;
@@ -20,12 +23,17 @@
                 font-size: 14px;
             }
 
-            .price {
+            .price-stock {
                 margin-bottom: 10px;
             }
 
-            .btn-buy {
+            .stock {
+                margin-left: 20px;
             }
+        }
+
+        .stock {
+            color: red;
         }
     }
 }

@@ -23,7 +23,7 @@ function* addToCart() {
             if (cartIndex === -1) {
                 yield put(actList.addToCartNew(cart));
             } else {
-                yield put(actList.updateCartItemOne(cart.quantity, cartIndex));
+                yield put(actList.updateCartItemOne(cart.quantity, 1, cartIndex));
             }
         }
     }
