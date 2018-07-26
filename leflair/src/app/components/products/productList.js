@@ -5,134 +5,87 @@ import { connect } from 'react-redux';
 
 import _ from 'lodash';
 
-import localStogeAdapter from '../../_utils/localStorage';
-
-import { requestAddToCart } from '../cart/actions';
+import { requestAddToCart, updateCartItemOne } from '../cart/actions';
 import dataBooks from '../../_data/dataBooks';
 
 class ProductList extends PureComponent {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            reRender: 0
-        };
-    }
-
-    componentDidUpdate(prevProps) {
-        let { reRender } = this.state;
-        const { quantity } = this.props;
-
-        if (prevProps.quantity !== quantity) {
-            this.setState({
-                reRender: ++reRender
-            });
-        }
-    }
-
     handleCart(id) {
-        let { reRender } = this.state;
-        const { requestAddToCart } = this.props;
+        const { requestAddToCart, updateCartItemOne, carts } = this.props;
 
-        const quantityBuy = 1;
-        let stock = 0;
-        let stockLeft = null;
-
-        let dataBooksStore = null;
-        localStogeAdapter.getItemJson('dataBooks')
-            ? (dataBooksStore = localStogeAdapter.getItemJson('dataBooks'))
-            : (dataBooksStore = dataBooks);
-
-        dataBooksStore.length &&
-            dataBooksStore.map(item => {
+        let isUpdate = false;
+        carts.length &&
+            carts.some((item, key) => {
                 if (item.id === id) {
-                    stock = item.stock;
-                    if (_.isInteger(item.quantity)) {
-                        item.quantity += 1;
-                    } else {
-                        item.quantity = quantityBuy;
-                    }
-
-                    stockLeft = item.stock - item.quantity;
-                    item.stockLeft = stockLeft;
+                    updateCartItemOne(1, 1, key);
+                    isUpdate = true;
                 }
-
                 return null;
             });
 
-        localStogeAdapter.setItemJson('dataBooks', dataBooksStore);
-
-        this.setState({
-            reRender: ++reRender
-        });
-
         const book = {
             id,
-            stock,
-            stockLeft,
-            quantity: quantityBuy
+            quantity: 1
         };
-
-        requestAddToCart(book);
+        !isUpdate && requestAddToCart(book);
     }
 
     render() {
-        const { match } = this.props;
-
-        let dataBooksStore = null;
-        localStogeAdapter.getItemJson('dataBooks')
-            ? (dataBooksStore = localStogeAdapter.getItemJson('dataBooks'))
-            : (dataBooksStore = dataBooks);
+        const { match, carts } = this.props;
 
         return (
             <div className="container prodList">
                 <h2 className="titlePage">Products list</h2>
                 <div className="row">
-                    {dataBooksStore.length &&
-                        dataBooksStore.map(item => {
-                            let stock = null;
-                            let classButtonBuy = 'btn btn-danger';
-                            let isBuy = true;
-                            if (item.stock < 3) {
-                                stock = <span className="stock">Stock: {item.stock}</span>;
-                            }
+                    {dataBooks.map(item => {
+                        let stock = null;
+                        let classButtonBuy = 'btn btn-danger';
+                        let isBuy = true;
+                        carts.length &&
+                            carts.map(itemCart => {
+                                if (item.id === itemCart.id) {
+                                    let stockLeft = parseInt(item.stock, 10) - parseInt(itemCart.quantity, 10);
 
-                            if (_.isInteger(item.stockLeft)) {
-                                if (item.stockLeft < 3 && item.stockLeft > 0) {
-                                    stock = <span className="stock">Stock: {item.stockLeft}</span>;
-                                } else if (item.stockLeft <= 0) {
-                                    stock = <span className="stock">Out of stock</span>;
-                                    classButtonBuy = 'btn btn-secondary';
-                                    isBuy = false;
+                                    if (stockLeft <= 0) {
+                                        stock = <span className="stock">Out of stock</span>;
+                                        classButtonBuy = 'btn btn-secondary';
+                                        isBuy = false;
+
+                                        return false;
+                                    }
+
+                                    if (stockLeft < 3) {
+                                        stock = <span className="stock">Stock: {stockLeft}</span>;
+                                    }
                                 }
-                            }
+                                return null;
+                            });
 
-                            return (
-                                <div className="col-sm-12 col-md-6 col-lg-4" key={item.id}>
-                                    <section className="item">
-                                        <Link to={`${match.url}/${item.id}`} key={item.id}>
-                                            <div className="img">
-                                                <img src={item.img} alt={item.title} />
+                        return (
+                            <div className="col-sm-12 col-md-6 col-lg-4" key={item.id}>
+                                <section className="item">
+                                    <Link to={`${match.url}/${item.id}`} key={item.id}>
+                                        <div className="img">
+                                            <img src={item.img} alt={item.title} />
+                                        </div>
+                                        <div className="infor">
+                                            <h4 className="title">{item.title}</h4>
+                                            <div className="price-stock">
+                                                <span className="price">$ {item.price}</span>
+                                                {stock}
                                             </div>
-                                            <div className="infor">
-                                                <h4 className="title">{item.title}</h4>
-                                                <div className="price-stock">
-                                                    <span className="price">$ {item.price}</span>
-                                                    {stock}
-                                                </div>
-                                            </div>
-                                        </Link>
-                                        <button
-                                            type="button"
-                                            className={classButtonBuy}
-                                            onClick={isBuy ? _.debounce(() => this.handleCart(item.id), 150) : null}
-                                        >
-                                            Buy now
-                                        </button>
-                                    </section>
-                                </div>
-                            );
-                        })}
+                                        </div>
+                                    </Link>
+                                    <button
+                                        type="button"
+                                        className={classButtonBuy}
+                                        onClick={isBuy ? _.debounce(() => this.handleCart(item.id), 150) : null}
+                                    >
+                                        Buy now
+                                    </button>
+                                </section>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         );
@@ -141,18 +94,20 @@ class ProductList extends PureComponent {
 
 ProductList.propTypes = {
     requestAddToCart: PropTypes.func.isRequired,
+    updateCartItemOne: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
-    quantity: PropTypes.number
+    carts: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => {
     return {
-        quantity: state.reducCart.getIn(['carts', 'quantityTotal'])
+        carts: state.reducCart.getIn(['carts', 'listCarts']).toJS()
     };
 };
 
 const mapDispatchToProps = {
-    requestAddToCart
+    requestAddToCart,
+    updateCartItemOne
 };
 
 export default connect(

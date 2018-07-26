@@ -2,10 +2,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import $ from 'jquery';
+import _ from 'lodash';
 
-import localStogeAdapter from '../../_utils/localStorage';
+import { totalQuantity } from '../../_utils/func';
 import dataBooks from '../../_data/dataBooks';
-import { updateCartItemOne, closeCart } from './actions';
+import { updateCartItemOne, updateCartItemMulti, deleteCartItem, closeCart } from './actions';
 
 class Cart extends PureComponent {
     constructor(props) {
@@ -20,30 +21,13 @@ class Cart extends PureComponent {
         });
     }
 
-    handleUpdateCart(id, unit, stock, index) {
+    handleUpdateCart(unit, stock, index) {
         const { updateCartItemOne } = this.props;
 
         updateCartItemOne(unit, stock, index);
 
-        let stockLeft = null;
-        let dataBooksStore = null;
-        localStogeAdapter.getItemJson('dataBooks')
-            ? (dataBooksStore = localStogeAdapter.getItemJson('dataBooks'))
-            : (dataBooksStore = dataBooks);
-
-        dataBooksStore.length &&
-            dataBooksStore.map(item => {
-                if (item.id === id) {
-                    item.quantity = item.quantity + unit;
-
-                    stockLeft = item.stock - item.quantity;
-                    item.stockLeft = stockLeft;
-                }
-
-                return null;
-            });
-
-        localStogeAdapter.setItemJson('dataBooks', dataBooksStore);
+        let getVal = parseInt($(`.quantityChange.num${index}`).val(), 10);
+        $(`.quantityChange.num${index}`).val(getVal + unit);
     }
 
     handleCloseCart() {
@@ -54,65 +38,104 @@ class Cart extends PureComponent {
         $('.overlay').remove();
     }
 
-    render() {
-        const { carts, isOpen, quantity } = this.props;
+    handleKeyUpQuantity(maxQuantity, e) {
+        let getValue = parseInt(e.target.value, 10);
 
-        let dataBooksStore = localStogeAdapter.getItemJson('dataBooks') ? localStogeAdapter.getItemJson('dataBooks') : dataBooks;
+        if (_.isNaN(getValue)) {
+            e.target.value = 1;
+        }
+        if (getValue > parseInt(maxQuantity, 10)) {
+            e.target.value = maxQuantity;
+        }
+    }
+
+    handleBlurQuantity(e, index) {
+        var getValue = e.target.value;
+        const { updateCartItemMulti } = this.props;
+
+        updateCartItemMulti(getValue, index);
+    }
+
+    handleDeleteCart(index) {
+        const { deleteCartItem } = this.props;
+
+        deleteCartItem(index);
+    }
+
+    render() {
+        const { carts, isOpen } = this.props;
+        let quantity = totalQuantity(carts);
 
         if (!isOpen) {
             return null;
         }
 
         let totalMoney = 0;
-        const cartItemsList =
-            dataBooksStore.length &&
-            dataBooksStore.map(each => {
-                return carts.map((item, key) => {
-                    if (each.id === item.id) {
-                        let eachItem = item.quantity * each.price;
-                        totalMoney = totalMoney + eachItem;
+        const cartItemsList = dataBooks.map(each => {
+            return carts.map((item, key) => {
+                if (each.id === item.id) {
+                    let eachItem = item.quantity * each.price;
+                    totalMoney = totalMoney + eachItem;
 
-                        return (
-                            <div className="row eachRow" key={key}>
-                                <div className="container">
-                                    <hr />
-                                </div>
+                    let stock = null;
+                    let stockLeft = parseInt(each.stock, 10) - parseInt(item.quantity, 10);
 
-                                <div className="col-sm-12 col-md-4">
-                                    <h6>{each.title}</h6>
-                                </div>
-                                <div className="col-sm-12 col-md-2">
-                                    <h6>$. {each.price}</h6>
-                                </div>
-                                <div className="col-sm-12 col-md-2">
-                                    <h6>
-                                        qty. <span className="badge badge-success">{item.quantity}</span>
-                                    </h6>
-                                </div>
-                                <div className="col-sm-12 col-md-4">
-                                    <div className="list-btn">
-                                        {item.quantity > 1 && (
-                                            <button
-                                                className="btn btn-secondary"
-                                                onClick={() => this.handleUpdateCart(item.id, -1, -1, key)}
-                                            >
-                                                -
-                                            </button>
-                                        )}
-                                        {item.stockLeft > 0 && (
-                                            <button className="btn btn-secondary" onClick={() => this.handleUpdateCart(item.id, 1, 1, key)}>
-                                                +
-                                            </button>
-                                        )}
-                                        <button className="btn btn-info btn-delete">DELETE</button>
-                                    </div>
+                    if (stockLeft <= 0) {
+                        stock = <span className="stock">Out of stock</span>;
+                    } else if (stockLeft < 3) {
+                        stock = <span className="stock">Stock: {stockLeft}</span>;
+                    }
+
+                    return (
+                        <div className="row eachRow" key={key}>
+                            <div className="container">
+                                <hr />
+                            </div>
+
+                            <div className="col-sm-12 col-lg-4">
+                                <span className="title">{each.title}</span>
+                            </div>
+                            <div className="col-sm-12 col-lg-1">
+                                <span className="price">$. {each.price}</span>
+                            </div>
+                            <div className="col-sm-12 col-lg-4">
+                                <span className="quantity">
+                                    qty.
+                                    <input
+                                        type="number"
+                                        className={`quantityChange num${key}`}
+                                        min={1}
+                                        max={each.stock}
+                                        defaultValue={item.quantity}
+                                        onKeyUp={e => this.handleKeyUpQuantity(each.stock, e)}
+                                        onBlur={e => this.handleBlurQuantity(e, key)}
+                                    />
+                                    {stock}
+                                </span>
+                            </div>
+                            <div className="col-sm-12 col-lg-3">
+                                <div className="list-btn">
+                                    {item.quantity > 1 && (
+                                        <button className="btn btn-secondary" onClick={() => this.handleUpdateCart(-1, -1, key)}>
+                                            -
+                                        </button>
+                                    )}
+                                    {each.stock - item.quantity > 0 && (
+                                        <button className="btn btn-secondary" onClick={() => this.handleUpdateCart(1, 1, key)}>
+                                            +
+                                        </button>
+                                    )}
+                                    <button className="btn btn-info btn-delete" onClick={() => this.handleDeleteCart(key)}>
+                                        DELETE
+                                    </button>
                                 </div>
                             </div>
-                        );
-                    }
-                    return null;
-                });
+                        </div>
+                    );
+                }
+                return null;
             });
+        });
 
         return (
             <div id="cartPage">
@@ -130,7 +153,10 @@ class Cart extends PureComponent {
                 <div className="container">
                     <hr className="hrTotal" />
                     <h6 className="totalAmount">
-                        <span>Total amount:</span> $. <strong>{totalMoney}</strong>
+                        <span>Total amount:</span>
+                        <span className="color-red totalMoney">
+                            $. <strong>{totalMoney}</strong>
+                        </span>
                     </h6>
                     <button className="btn btn-success"> PROCEED TO CHECKOUT </button>
                 </div>
@@ -141,8 +167,9 @@ class Cart extends PureComponent {
 
 Cart.propTypes = {
     updateCartItemOne: PropTypes.func.isRequired,
+    updateCartItemMulti: PropTypes.func.isRequired,
+    deleteCartItem: PropTypes.func.isRequired,
     carts: PropTypes.array.isRequired,
-    quantity: PropTypes.number.isRequired,
     isOpen: PropTypes.bool.isRequired,
     closeCart: PropTypes.func.isRequired
 };
@@ -150,13 +177,14 @@ Cart.propTypes = {
 const mapStateToProps = state => {
     return {
         carts: state.reducCart.getIn(['carts', 'listCarts']).toJS(),
-        quantity: state.reducCart.getIn(['carts', 'quantityTotal']),
         isOpen: state.reducCart.get('isOpen')
     };
 };
 
 const mapDispatchToProps = {
     updateCartItemOne,
+    updateCartItemMulti,
+    deleteCartItem,
     closeCart
 };
 

@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { Route, Link, withRouter } from 'react-router-dom';
 import $ from 'jquery';
 import _ from 'lodash';
-import localStogeAdapter from '../../_utils/localStorage';
-import { isDesktop } from '../../_utils/func';
-
-import RoutersAuthen from '../RoutersAuthen';
 
 import imgLogo from '../../../images/logo.png';
+
+import localStogeAdapter from '../../_utils/localStorage';
+import { isDesktop, totalQuantity } from '../../_utils/func';
+
+import RoutersAuthen from '../RoutersAuthen';
 
 import { openCart } from '../../components/cart/actions';
 
@@ -63,10 +64,11 @@ class Header extends PureComponent {
 
     render() {
         const { routes } = this.state;
-        const { quantity, carts } = this.props;
+        const { carts } = this.props;
 
         carts.length && localStogeAdapter.setItemJson('carts', carts);
-        quantity && localStogeAdapter.setItem('quantity', quantity);
+
+        let quantity = totalQuantity(carts);
 
         return (
             <header id="header">
@@ -102,7 +104,6 @@ class Header extends PureComponent {
                                                     <li className={match ? 'active' : null}>
                                                         <Link to={route.path}>
                                                             <span className="link">{route.title}</span>
-                                                            {route.path === '/cart' && <span className="numberCart">{quantity}</span>}
                                                         </Link>
                                                     </li>
                                                 );
@@ -120,15 +121,13 @@ class Header extends PureComponent {
 }
 
 Header.propTypes = {
-    quantity: PropTypes.number.isRequired,
     carts: PropTypes.array.isRequired,
     openCart: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
     return {
-        carts: state.reducCart.getIn(['carts', 'listCarts']).toJS(),
-        quantity: state.reducCart.getIn(['carts', 'quantityTotal'])
+        carts: state.reducCart.getIn(['carts', 'listCarts']).toJS()
     };
 };
 

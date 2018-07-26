@@ -14,3 +14,13 @@ export const isDesktop = () => {
 export const isWideDesktop = () => {
     return $(window).width() >= wideDesktop ? true : false;
 };
+
+export const totalQuantity = carts => {
+    let totalNumber = 0;
+    carts.map(item => {
+        totalNumber += item.quantity;
+        return null;
+    });
+
+    return totalNumber;
+};

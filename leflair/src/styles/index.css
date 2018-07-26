@@ -270,6 +270,9 @@ body.menu-opened {
     .titlePage {
       font-size: 28px; } }
 
+.color-red {
+  color: red; }
+
 #prodPage {
   padding-bottom: 50px; }
   #prodPage section {
@@ -291,10 +294,6 @@ body.menu-opened {
       text-decoration: none; }
       #prodPage .item .infor .title {
         font-size: 14px; }
-      #prodPage .item .infor .stock {
-        margin-left: 20px; }
-    #prodPage .item .stock {
-      color: red; }
   #prodPage .detailProd {
     padding: 50px 0; }
     #prodPage .detailProd .img {
@@ -307,6 +306,10 @@ body.menu-opened {
       color: red; }
   #prodPage .price-stock {
     margin-bottom: 10px; }
+
+.stock {
+  margin-left: 20px;
+  color: red; }
 
 body.openCart {
   overflow: hidden; }
@@ -356,7 +359,7 @@ body.openCart {
       margin-bottom: 0; }
     #cartPage .eachRow .list-btn {
       margin-top: 10px; }
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: 992px) {
         #cartPage .eachRow .list-btn {
           margin-top: 0; } }
     #cartPage .eachRow .btn {
@@ -365,5 +368,22 @@ body.openCart {
       #cartPage .eachRow .btn.btn-delete {
         float: right;
         margin-right: 0; }
+    #cartPage .eachRow .title,
+    #cartPage .eachRow .price {
+      margin-top: 7px;
+      display: inline-block; }
+    #cartPage .eachRow .quantity {
+      margin-top: 3px;
+      display: inline-block; }
+    #cartPage .eachRow .quantityChange {
+      display: inline-block;
+      width: 50px;
+      padding: 2px 4px;
+      margin-left: 10px;
+      border-radius: 3px;
+      text-align: center;
+      border: 1px solid #ccc; }
   #cartPage .hrTotal {
     border-top: 1px solid rgba(0, 0, 0, 0.3); }
+  #cartPage .totalAmount .totalMoney {
+    margin-left: 15px; }

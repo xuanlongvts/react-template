@@ -19,10 +19,6 @@ export const requestAddToCart = cart => {
     };
 };
 
-export const getCart = () => {
-    return {};
-};
-
 export const addToCartNew = cart => {
     return {
         type: actList.ADD_TO_CART,
@@ -30,8 +26,11 @@ export const addToCartNew = cart => {
     };
 };
 
-export const deleteCartItem = id => {
-    return {};
+export const deleteCartItem = index => {
+    return {
+        type: actList.DELETE_CART,
+        index
+    };
 };
 
 export const updateCartItemOne = (unit, stock, index) => {
@@ -39,6 +38,14 @@ export const updateCartItemOne = (unit, stock, index) => {
         type: actList.UPDATE_CART_ONE,
         unit,
         stock,
+        index
+    };
+};
+
+export const updateCartItemMulti = (unit, index) => {
+    return {
+        type: actList.UPDATE_CART_MULTI,
+        unit,
         index
     };
 };

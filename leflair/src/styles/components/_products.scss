@@ -31,14 +31,6 @@
             .title {
                 font-size: 14px;
             }
-
-            .stock {
-                margin-left: 20px;
-            }
-        }
-
-        .stock {
-            color: red;
         }
     }
 
@@ -62,4 +54,9 @@
     .price-stock {
         margin-bottom: 10px;
     }
+}
+
+.stock {
+    margin-left: 20px;
+    color: red;
 }
