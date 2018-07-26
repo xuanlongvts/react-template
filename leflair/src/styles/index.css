@@ -1,6 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
+html,
+body {
+  min-height: 100%;
+  height: 100%; }
+
 * {
   font-family: 'Open Sans', sans-serif; }
+
+div {
+  max-width: initial; }
 
 ul,
 ol {
@@ -387,3 +395,12 @@ body.openCart {
     border-top: 1px solid rgba(0, 0, 0, 0.3); }
   #cartPage .totalAmount .totalMoney {
     margin-left: 15px; }
+  #cartPage .btn-success a {
+    color: #fff; }
+    #cartPage .btn-success a:hover {
+      text-decoration: none; }
+
+#checkoutPage .eachRow .lbl {
+  display: inline-block;
+  width: 100px;
+  padding-right: 10px; }

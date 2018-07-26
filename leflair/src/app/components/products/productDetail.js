@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
+import Helmet from '../../_utils/helmet';
 import { requestAddToCart, updateCartItemOne } from '../cart/actions';
 
 import dataBooks from '../../_data/dataBooks';
@@ -34,11 +35,16 @@ class ProductDetail extends PureComponent {
 
         return (
             <div className="container prodList">
+                <Helmet title="Product detail" description="Product detail" />
                 {dataBooks.map(item => {
                     if (parseInt(idproduct, 10) === item.id) {
                         let stock = null;
                         let classButtonBuy = 'btn btn-danger';
                         let isBuy = true;
+
+                        if (item.stock < 3) {
+                            stock = <span className="stock">Stock: {item.stock}</span>;
+                        }
 
                         carts.length &&
                             carts.map(itemCart => {

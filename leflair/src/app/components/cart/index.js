@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import $ from 'jquery';
 import _ from 'lodash';
@@ -13,6 +14,7 @@ class Cart extends PureComponent {
         super(props);
 
         this.handleCloseCart = this.handleCloseCart.bind(this);
+        this.handleProcessCart = this.handleProcessCart.bind(this);
     }
 
     componentDidMount() {
@@ -62,6 +64,10 @@ class Cart extends PureComponent {
         deleteCartItem(index);
     }
 
+    handleProcessCart() {
+        this.handleCloseCart();
+    }
+
     render() {
         const { carts, isOpen } = this.props;
         let quantity = totalQuantity(carts);
@@ -93,13 +99,13 @@ class Cart extends PureComponent {
                             </div>
 
                             <div className="col-sm-12 col-lg-4">
-                                <span className="title">{each.title}</span>
+                                <div className="title">{each.title}</div>
                             </div>
                             <div className="col-sm-12 col-lg-1">
-                                <span className="price">$. {each.price}</span>
+                                <div className="price">$. {each.price}</div>
                             </div>
                             <div className="col-sm-12 col-lg-4">
-                                <span className="quantity">
+                                <div className="quantity">
                                     qty.
                                     <input
                                         type="number"
@@ -111,7 +117,7 @@ class Cart extends PureComponent {
                                         onBlur={e => this.handleBlurQuantity(e, key)}
                                     />
                                     {stock}
-                                </span>
+                                </div>
                             </div>
                             <div className="col-sm-12 col-lg-3">
                                 <div className="list-btn">
@@ -158,7 +164,12 @@ class Cart extends PureComponent {
                             $. <strong>{totalMoney}</strong>
                         </span>
                     </h6>
-                    <button className="btn btn-success"> PROCEED TO CHECKOUT </button>
+                    <button className="btn btn-success">
+                        <Link to="/checkout" onClick={this.handleProcessCart}>
+                            {' '}
+                            PROCEED TO CHECKOUT{' '}
+                        </Link>
+                    </button>
                 </div>
             </div>
         );
@@ -188,7 +199,9 @@ const mapDispatchToProps = {
     closeCart
 };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Cart);
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(Cart)
+);

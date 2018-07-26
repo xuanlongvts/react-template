@@ -87,29 +87,33 @@ class Header extends PureComponent {
                         {routes.length && (
                             <ul className="nav">
                                 {routes.map((route, key) => {
-                                    if (route.path === '/cart') {
+                                    if (!route.isNotMenu) {
+                                        if (route.path === '/cart') {
+                                            return (
+                                                <li key={key}>
+                                                    <a href="javascript:;" onClick={this.handleOpenCart}>
+                                                        <span className="link">{route.title}</span>
+                                                        <span className="numberCart">{quantity}</span>
+                                                    </a>
+                                                </li>
+                                            );
+                                        }
                                         return (
-                                            <li key={key}>
-                                                <a href="javascript:;" onClick={this.handleOpenCart}>
-                                                    <span className="link">{route.title}</span>
-                                                    <span className="numberCart">{quantity}</span>
-                                                </a>
-                                            </li>
+                                            <Route key={key} path={route.path} exact={route.exact}>
+                                                {({ match }) => {
+                                                    return (
+                                                        <li className={match ? 'active' : null}>
+                                                            <Link to={route.path}>
+                                                                <span className="link">{route.title}</span>
+                                                            </Link>
+                                                        </li>
+                                                    );
+                                                }}
+                                            </Route>
                                         );
                                     }
-                                    return (
-                                        <Route key={key} path={route.path} exact={route.exact}>
-                                            {({ match }) => {
-                                                return (
-                                                    <li className={match ? 'active' : null}>
-                                                        <Link to={route.path}>
-                                                            <span className="link">{route.title}</span>
-                                                        </Link>
-                                                    </li>
-                                                );
-                                            }}
-                                        </Route>
-                                    );
+
+                                    return null;
                                 })}
                             </ul>
                         )}

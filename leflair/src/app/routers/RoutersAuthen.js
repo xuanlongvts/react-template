@@ -1,5 +1,6 @@
 import AsyncHome from '../components/home';
 import AsyncProducts from '../components/products';
+import AsyncCheckout from '../components/checkout';
 
 const routersAuthen = [
     {
@@ -12,6 +13,12 @@ const routersAuthen = [
         title: 'Products',
         path: '/products',
         component: AsyncProducts
+    },
+    {
+        title: 'Checkout',
+        path: '/checkout',
+        component: AsyncCheckout,
+        isNotMenu: true
     },
     {
         title: 'Your cart',
