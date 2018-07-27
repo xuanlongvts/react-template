@@ -1,4 +1,6 @@
 #checkoutPage {
+    padding: 20px 0;
+
     .frmCheckout {
     }
 
@@ -83,5 +85,10 @@
         .roundMethod {
             float: left;
         }
+    }
+
+    .fillInfo {
+        display: flex;
+        justify-content: center;
     }
 }

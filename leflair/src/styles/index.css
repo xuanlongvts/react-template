@@ -422,49 +422,52 @@ html.openCart {
       #cartPage .btn-success a:hover {
         text-decoration: none; }
 
-#checkoutPage .eachRow .lbl {
-  display: inline-block;
-  width: 100px;
-  padding-right: 10px; }
-
-#checkoutPage .boxInfor {
-  margin-bottom: 25px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  padding: 15px 10px; }
-  #checkoutPage .boxInfor h3 {
-    font-size: 26px;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(220, 220, 220, 0.5); }
-  #checkoutPage .boxInfor.customer p strong {
-    font-size: 13px; }
-  #checkoutPage .boxInfor.products .item {
+#checkoutPage {
+  padding: 20px 0; }
+  #checkoutPage .eachRow .lbl {
+    display: inline-block;
+    width: 100px;
+    padding-right: 10px; }
+  #checkoutPage .boxInfor {
+    margin-bottom: 25px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 15px 10px; }
+    #checkoutPage .boxInfor h3 {
+      font-size: 26px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(220, 220, 220, 0.5); }
+    #checkoutPage .boxInfor.customer p strong {
+      font-size: 13px; }
+    #checkoutPage .boxInfor.products .item {
+      width: 100%;
+      clear: both;
+      margin-bottom: 15px;
+      overflow: hidden; }
+      #checkoutPage .boxInfor.products .item .img {
+        float: left;
+        text-align: left;
+        margin-right: 5px; }
+        #checkoutPage .boxInfor.products .item .img img {
+          float: left; }
+      #checkoutPage .boxInfor.products .item .infor > div {
+        margin-bottom: 10px; }
+  #checkoutPage .eachMethod {
     width: 100%;
-    clear: both;
-    margin-bottom: 15px;
-    overflow: hidden; }
-    #checkoutPage .boxInfor.products .item .img {
+    overflow: hidden;
+    margin-bottom: 15px; }
+    #checkoutPage .eachMethod input {
       float: left;
-      text-align: left;
-      margin-right: 5px; }
-      #checkoutPage .boxInfor.products .item .img img {
-        float: left; }
-    #checkoutPage .boxInfor.products .item .infor > div {
-      margin-bottom: 10px; }
-
-#checkoutPage .eachMethod {
-  width: 100%;
-  overflow: hidden;
-  margin-bottom: 15px; }
-  #checkoutPage .eachMethod input {
-    float: left;
-    margin: 3px 10px; }
-    #checkoutPage .eachMethod input:hover {
-      cursor: pointer; }
-  #checkoutPage .eachMethod label {
-    color: #1b1b1b; }
-    #checkoutPage .eachMethod label:hover {
-      cursor: pointer; }
-  #checkoutPage .eachMethod .roundMethod {
-    float: left; }
+      margin: 3px 10px; }
+      #checkoutPage .eachMethod input:hover {
+        cursor: pointer; }
+    #checkoutPage .eachMethod label {
+      color: #1b1b1b; }
+      #checkoutPage .eachMethod label:hover {
+        cursor: pointer; }
+    #checkoutPage .eachMethod .roundMethod {
+      float: left; }
+  #checkoutPage .fillInfo {
+    display: flex;
+    justify-content: center; }
