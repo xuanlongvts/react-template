@@ -27,6 +27,8 @@ const cart = (state = initialState, action) => {
             return state.setIn(['carts', 'listCarts', action.index], cartUpdate);
         case actList.DELETE_CART:
             return state.deleteIn(['carts', 'listCarts', action.index]);
+        case actList.CART_REMOVE:
+            return state.setIn(['carts', 'listCarts'], initialState.getIn(['carts', 'listCarts']));
         default:
             return state;
     }

@@ -7,22 +7,31 @@ class Checkout extends PureComponent {
         super(props);
 
         this.state = {
-            isSuccess: false
+            isSuccess: false,
+            inforCus: null
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(data) {
+        const inforCus = {
+            fullname: data.fullname,
+            email: data.email,
+            phone: data.phone,
+            address: data.address
+        };
+
         this.setState({
-            isSuccess: true
+            isSuccess: true,
+            inforCus
         });
     }
 
     render() {
-        const { isSuccess } = this.state;
+        const { isSuccess, inforCus } = this.state;
 
-        return <div id="checkoutPage">{!isSuccess ? <Form onSubmit={this.handleSubmit} /> : <Confirm />}</div>;
+        return <div id="checkoutPage">{!isSuccess ? <Form onSubmit={this.handleSubmit} /> : <Confirm inforCus={inforCus} />}</div>;
     }
 }
 

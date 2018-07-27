@@ -36,7 +36,7 @@ class Cart extends PureComponent {
         const { closeCart } = this.props;
 
         closeCart();
-        $('body').removeClass('openCart');
+        $('html').removeClass('openCart');
         $('.overlay').remove();
     }
 

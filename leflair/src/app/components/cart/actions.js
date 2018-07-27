@@ -49,3 +49,15 @@ export const updateCartItemMulti = (unit, index) => {
         index
     };
 };
+
+export const cartPay = () => {
+    return {
+        type: actList.CART_PAY
+    };
+};
+
+export const cartRemove = () => {
+    return {
+        type: actList.CART_REMOVE
+    };
+};

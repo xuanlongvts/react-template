@@ -5,7 +5,8 @@ class Footer extends PureComponent {
         return (
             <footer id="footer">
                 <div className="container">
-                    <div className="cpyRight">Copyright 2018 by Leflair All rights reserved.</div>
+                    <div className="cpyRight">Copyright 2018 by xuanlongvts@gmail.com.</div>
+                    {/* <p>All rights reserved</p> */}
                 </div>
             </footer>
         );

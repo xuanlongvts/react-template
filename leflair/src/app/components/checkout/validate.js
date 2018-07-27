@@ -18,6 +18,12 @@ const validate = values => {
         errors.address = 'Must be 10 characters or more';
     }
 
+    if (!values.phone) {
+        errors.phone = 'Required';
+    } else if (values.phone && values.phone.length < 10) {
+        errors.phone = 'Invalid phone number, must be 10 digits';
+    }
+
     return errors;
 };
 

@@ -1,10 +1,29 @@
-import { put, take, fork, select } from 'redux-saga/effects';
+import { all, put, take, fork, select } from 'redux-saga/effects';
 import _ from 'lodash';
 
 import * as actName from './consts';
 import * as actList from './actions';
+import { loadingClose } from '../_base/loading/actions';
+import { modalOpen } from '../_base/modal/actions';
 
 import { getCarts } from './selectors';
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+function* cartPay() {
+    while (true) {
+        yield take(actName.CART_PAY);
+        yield delay(1000);
+        yield put(loadingClose());
+        const modalType = {
+            title: 'Confirm',
+            content: 'Thanks you',
+            btnClose: 'Close',
+            btnAccept: null
+        };
+        yield put(modalOpen(modalType));
+    }
+}
 
 function* addToCart() {
     while (true) {
@@ -31,5 +50,5 @@ function* addToCart() {
 }
 
 export default function* root() {
-    yield fork(addToCart);
+    yield all([fork(addToCart), fork(cartPay)]);
 }

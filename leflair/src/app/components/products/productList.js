@@ -2,9 +2,10 @@ import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import LazyLoad from 'react-lazyload';
 import _ from 'lodash';
 import Helmet from '../../_utils/helmet';
+
 import { requestAddToCart, updateCartItemOne } from '../cart/actions';
 import dataBooks from '../../_data/dataBooks';
 
@@ -71,7 +72,9 @@ class ProductList extends PureComponent {
                                 <section className="item">
                                     <Link to={`${match.url}/${item.id}`} key={item.id}>
                                         <div className="img">
-                                            <img src={item.img} alt={item.title} />
+                                            <LazyLoad height={200} offset={200} once>
+                                                <img src={item.img} alt={item.title} />
+                                            </LazyLoad>
                                         </div>
                                         <div className="infor">
                                             <h4 className="title">{item.title}</h4>

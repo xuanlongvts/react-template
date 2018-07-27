@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import ScrollToTop from './scrollToTop';
+import Loading from '../components/_base/loading';
 
 import Header from './header';
 import Footer from './footer';
@@ -34,6 +35,8 @@ class Routers extends PureComponent {
                     <Footer />
 
                     <Carts />
+
+                    <Loading />
                 </div>
             </BrowserRouter>
         );

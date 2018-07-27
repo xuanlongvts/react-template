@@ -18,10 +18,11 @@ const renderField = ({ input, id, label, type, meta: { touched, error, warning }
 const CheckoutForm = ({ pristine, reset, submitting, handleSubmit }) => {
     return (
         <div className="container">
-            <h2 className="titlePage">Checkout</h2>
+            <h2 className="titlePage">Customer's information</h2>
             <form onSubmit={handleSubmit} className="frmCheckout">
                 <Field name="fullname" type="text" id="fullname" component={renderField} label="Full name" />
                 <Field name="email" type="email" id="email" component={renderField} label="Email" />
+                <Field name="phone" type="number" id="phone" component={renderField} label="Phone number" />
                 <Field name="address" type="text" id="address" component={renderField} label="Address" />
                 <div className="actForm">
                     <button type="submit" disabled={submitting}>

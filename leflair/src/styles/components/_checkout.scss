@@ -12,4 +12,76 @@
         .boxVal {
         }
     }
+
+    .boxInfor {
+        margin-bottom: 25px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 15px 10px;
+
+        h3 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(220, 220, 220, 0.5);
+        }
+
+        &.customer {
+            p {
+                strong {
+                    font-size: 13px;
+                }
+            }
+        }
+
+        &.products {
+            .item {
+                width: 100%;
+                clear: both;
+                margin-bottom: 15px;
+                overflow: hidden;
+
+                .img {
+                    float: left;
+                    text-align: left;
+                    margin-right: 5px;
+
+                    img {
+                        float: left;
+                    }
+                }
+
+                .infor {
+                    > div {
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    .eachMethod {
+        width: 100%;
+        overflow: hidden;
+        margin-bottom: 15px;
+
+        input {
+            float: left;
+            margin: 3px 10px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        label {
+            color: $black-grey;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .roundMethod {
+            float: left;
+        }
+    }
 }

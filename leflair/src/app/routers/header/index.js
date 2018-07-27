@@ -5,13 +5,11 @@ import { Route, Link, withRouter } from 'react-router-dom';
 import $ from 'jquery';
 import _ from 'lodash';
 
-import imgLogo from '../../../images/logo.png';
-
 import localStogeAdapter from '../../_utils/localStorage';
+
+import imgLogo from '../../../images/logo.png';
 import { isDesktop, totalQuantity } from '../../_utils/func';
-
 import RoutersAuthen from '../RoutersAuthen';
-
 import { openCart } from '../../components/cart/actions';
 
 class Header extends PureComponent {
@@ -42,6 +40,16 @@ class Header extends PureComponent {
         });
     }
 
+    componentDidUpdate(prevProps) {
+        const { carts } = this.props;
+
+        if (!_.isEqual(prevProps.carts, carts)) {
+            carts.length && localStogeAdapter.setItemJson('carts', carts);
+        }
+
+        return null;
+    }
+
     handleMenu() {
         const { isMenuToggle } = this.state;
 
@@ -57,18 +65,14 @@ class Header extends PureComponent {
         const { openCart } = this.props;
         openCart();
 
-        $('body')
-            .addClass('openCart')
-            .append('<div class="overlay">&nbsp;</div>');
+        $('html').addClass('openCart');
+        $('body').append('<div class="overlay">&nbsp;</div>');
     }
 
     render() {
         const { routes } = this.state;
         const { carts } = this.props;
-
-        carts.length && localStogeAdapter.setItemJson('carts', carts);
-
-        let quantity = totalQuantity(carts);
+        let quantity = carts.length ? totalQuantity(carts) : 0;
 
         return (
             <header id="header">
@@ -91,7 +95,7 @@ class Header extends PureComponent {
                                         if (route.path === '/cart') {
                                             return (
                                                 <li key={key}>
-                                                    <a href="javascript:;" onClick={this.handleOpenCart}>
+                                                    <a href="javascript:;" onClick={carts.length ? this.handleOpenCart : null}>
                                                         <span className="link">{route.title}</span>
                                                         <span className="numberCart">{quantity}</span>
                                                     </a>
