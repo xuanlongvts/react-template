@@ -295,6 +295,8 @@ body.menu-opened {
     margin: 20px 0; }
   #homePage .mainContent {
     margin-top: 30px; }
+    #homePage .mainContent .eachRow {
+      margin-bottom: 15px; }
 
 #prodPage {
   padding-bottom: 50px; }

@@ -109,7 +109,6 @@ class CheckoutForm extends PureComponent {
                         <button type="submit" disabled={submitting}>
                             Continue
                         </button>
-
                         <button type="button" disabled={pristine || submitting || isFill} onClick={reset}>
                             Clear Values
                         </button>

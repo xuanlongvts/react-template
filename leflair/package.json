@@ -36,7 +36,6 @@
         "build-js": "react-scripts build",
         "start": "npm-run-all -p watch-css start-js",
         "start-dev": "REACT_APP_ENV=dev npm-run-all -p watch-css start-js",
-        "start-uat": "REACT_APP_ENV=uat npm-run-all -p watch-css start-js",
         "build": "REACT_APP_ENV=production npm-run-all build-css build-js",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject"
