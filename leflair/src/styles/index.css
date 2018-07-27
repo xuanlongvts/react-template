@@ -288,6 +288,14 @@ body.menu-opened {
   text-align: center;
   padding-bottom: 40px; }
 
+#homePage {
+  padding: 40px 0; }
+  #homePage h4.title {
+    text-align: center;
+    margin: 20px 0; }
+  #homePage .mainContent {
+    margin-top: 30px; }
+
 #prodPage {
   padding-bottom: 50px; }
   #prodPage section {

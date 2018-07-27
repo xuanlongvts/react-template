@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import Form from './form';
 import Confirm from './confirm';
+import Helmet from '../../_utils/helmet';
 
 class Checkout extends PureComponent {
     constructor(props) {
@@ -31,7 +32,12 @@ class Checkout extends PureComponent {
     render() {
         const { isSuccess, inforCus } = this.state;
 
-        return <div id="checkoutPage">{!isSuccess ? <Form onSubmit={this.handleSubmit} /> : <Confirm inforCus={inforCus} />}</div>;
+        return (
+            <div id="checkoutPage">
+                <Helmet title="Checkout" description="checkout page" />
+                {!isSuccess ? <Form onSubmit={this.handleSubmit} /> : <Confirm inforCus={inforCus} />}
+            </div>
+        );
     }
 }
 
