@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import LazyLoad from 'react-lazyload';
 
 import Helmet from '../../_utils/helmet';
 import imgArchitect from '../../../images/architect.png';
@@ -12,9 +11,7 @@ class HomePage extends PureComponent {
                 <div className="container">
                     <h4 className="title">Guide</h4>
 
-                    <LazyLoad height={200} offset={200} once>
-                        <img src={imgArchitect} alt="architect" />
-                    </LazyLoad>
+                    <img src={imgArchitect} alt="architect" />
 
                     <div className="mainContent">
                         <div className="eachRow">
@@ -55,7 +52,7 @@ class HomePage extends PureComponent {
                                 <dd>- your cart menu, when quantity more than 0 must be able to click</dd>
                                 <dd>
                                     - chrome tab network (js), check slipt file bundle.js when user click menu on top right (avoid all file
-                                    js build into one bundle.js file, when scale up project, this is useful)
+                                    js build into one bundle.js file, when scale up project, this is very useful)
                                 </dd>
                             </dl>
                         </div>

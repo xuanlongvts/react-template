@@ -44,7 +44,9 @@ class Header extends PureComponent {
         const { carts } = this.props;
 
         if (!_.isEqual(prevProps.carts, carts)) {
-            carts.length && localStogeAdapter.setItemJson('carts', carts);
+            setTimeout(() => {
+                carts.length && localStogeAdapter.setItemJson('carts', carts);
+            }, 10);
         }
 
         return null;

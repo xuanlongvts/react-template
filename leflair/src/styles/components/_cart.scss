@@ -119,15 +119,12 @@ html {
     }
 
     .btn-success {
-        padding: 0;
-        a {
-            display: inline-block;
-            padding: 10px 20px;
-            color: $white;
+        display: inline-block;
+        padding: 10px 20px;
+        color: $white;
 
-            &:hover {
-                text-decoration: none;
-            }
+        &:hover {
+            text-decoration: none;
         }
     }
 }

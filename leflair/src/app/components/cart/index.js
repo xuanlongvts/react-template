@@ -65,7 +65,10 @@ class Cart extends PureComponent {
     }
 
     handleProcessCart() {
+        const { history } = this.props;
         this.handleCloseCart();
+
+        history.push('/checkout');
     }
 
     render() {
@@ -164,11 +167,8 @@ class Cart extends PureComponent {
                             $. <strong>{totalMoney}</strong>
                         </span>
                     </h6>
-                    <button className="btn btn-success">
-                        <Link to="/checkout" onClick={this.handleProcessCart}>
-                            {' '}
-                            PROCEED TO CHECKOUT{' '}
-                        </Link>
+                    <button className="btn btn-success" onClick={this.handleProcessCart}>
+                        PROCEED TO CHECKOUT
                     </button>
                 </div>
             </div>
@@ -182,7 +182,8 @@ Cart.propTypes = {
     deleteCartItem: PropTypes.func.isRequired,
     carts: PropTypes.array.isRequired,
     isOpen: PropTypes.bool.isRequired,
-    closeCart: PropTypes.func.isRequired
+    closeCart: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => {
@@ -205,3 +206,8 @@ export default withRouter(
         mapDispatchToProps
     )(Cart)
 );
+
+// export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(Cart);

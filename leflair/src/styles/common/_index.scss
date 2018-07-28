@@ -28,6 +28,21 @@
     }
 }
 
+.buttonGrey {
+    @include button {
+        background: #8c9ba0;
+        color: $white;
+        text-transform: uppercase;
+
+        &:hover {
+            @include gradientComm {
+                color: $white;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
 .buttonWhite {
     @include button {
         background: $white;

@@ -197,6 +197,38 @@ body.menu-opened {
       .notFound .txt {
         margin-top: -24px; } }
 
+.buttonGrey {
+  border-radius: 5px;
+  display: inline-block;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  min-width: 180px;
+  padding: 0 50px;
+  border: none;
+  outline: none;
+  background: #8c9ba0;
+  color: #fff;
+  text-transform: uppercase; }
+  .buttonGrey:hover {
+    cursor: pointer; }
+  .buttonGrey:active, .buttonGrey:focus, .buttonGrey:visited {
+    outline: none; }
+  .buttonGrey:hover {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#aff57a+0,54d169+100 */
+    background: #aff57a;
+    /* Old browsers */
+    background: -moz-linear-gradient(348.69deg, #aff57a 0%, #54d169 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(348.69deg, #aff57a 0%, #54d169 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #aff57a 0%, #54d169 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aff57a', endColorstr='#54d169',GradientType=0 );
+    /* IE6-9 */
+    color: #fff;
+    text-decoration: none; }
+
 .buttonWhite {
   border-radius: 5px;
   display: inline-block;
@@ -416,13 +448,11 @@ html.openCart {
   #cartPage .totalAmount .totalMoney {
     margin-left: 15px; }
   #cartPage .btn-success {
-    padding: 0; }
-    #cartPage .btn-success a {
-      display: inline-block;
-      padding: 10px 20px;
-      color: #fff; }
-      #cartPage .btn-success a:hover {
-        text-decoration: none; }
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff; }
+    #cartPage .btn-success:hover {
+      text-decoration: none; }
 
 #checkoutPage {
   padding: 20px 0; }
