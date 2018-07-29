@@ -44,16 +44,17 @@ class Cart extends PureComponent {
         let getValue = parseInt(e.target.value, 10);
         const { updateCartItemMulti } = this.props;
 
-        if (_.isNaN(getValue)) {
+        let valSend = 1;
+        if (_.isNaN(getValue) || getValue <= 0) {
             e.target.value = 1;
-            updateCartItemMulti(1, index);
         } else if (getValue > parseInt(maxQuantity, 10)) {
             e.target.value = maxQuantity;
-
-            updateCartItemMulti(maxQuantity, index);
+            valSend = maxQuantity;
         } else {
-            updateCartItemMulti(getValue, index);
+            valSend = getValue;
         }
+
+        updateCartItemMulti(valSend, index);
     }
 
     // handleBlurQuantity(e, index) {
