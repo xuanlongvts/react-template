@@ -103,7 +103,7 @@ body {
       margin-bottom: 5px; }
       #header .nav li:last-child {
         border-bottom: none; }
-        #header .nav li:last-child a {
+        #header .nav li:last-child .linkMenu {
           padding-right: 0; }
       #header .nav li.active a, #header .nav li:hover a {
         color: #0077b5; }
@@ -113,17 +113,22 @@ body {
           width: auto;
           border-bottom: none;
           margin-bottom: 0; } }
-    #header .nav a {
+    #header .nav a,
+    #header .nav .linkMenu {
       width: 100%;
       color: #1b1b1b;
       display: inline-block;
       padding: 10px 0;
       text-decoration: none; }
       @media screen and (min-width: 992px) {
-        #header .nav a {
+        #header .nav a,
+        #header .nav .linkMenu {
           padding: 8px 11px; } }
-      #header .nav a span {
+      #header .nav a span,
+      #header .nav .linkMenu span {
         vertical-align: top; }
+    #header .nav .linkMenu:hover {
+      cursor: pointer; }
 
 .numberCart {
   display: inline-block;
@@ -163,6 +168,21 @@ body.menu-opened {
           transform: translateY(4px) rotate(45deg); }
         body.menu-opened #header .burger-container #burger .bar.btmBar {
           transform: translateY(3px) rotate(-45deg); }
+
+.cartMobile {
+  width: 70px;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 25px;
+  transform: translateX(-50%); }
+  @media screen and (min-width: 992px) {
+    .cartMobile {
+      display: none; } }
+  .cartMobile .numberCart {
+    margin-top: 1px; }
+  .cartMobile .linkMenu span {
+    vertical-align: top; }
 
 #footer {
   background: #212121;

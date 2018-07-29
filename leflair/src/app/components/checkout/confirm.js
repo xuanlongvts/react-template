@@ -68,7 +68,7 @@ class Confirm extends PureComponent {
                             </p>
                         </div>
                         <div className="boxInfor products">
-                            <h3>Your orders (2 Items)</h3>
+                            <h3>Your orders ({carts.length} Items)</h3>
                             <div className="listProBuy">
                                 {dataBooks.map(book => {
                                     return carts.map((item, key) => {

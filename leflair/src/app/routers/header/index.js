@@ -43,7 +43,9 @@ class Header extends PureComponent {
     componentDidUpdate(prevProps) {
         const { carts } = this.props;
 
-        if (!_.isEqual(prevProps.carts, carts)) {
+        if (carts.length === 0) {
+            localStogeAdapter.removeItem('carts');
+        } else if (!_.isEqual(prevProps.carts, carts)) {
             setTimeout(() => {
                 carts.length && localStogeAdapter.setItemJson('carts', carts);
             }, 10);
@@ -89,6 +91,15 @@ class Header extends PureComponent {
                         </div>
                     </div>
 
+                    {quantity > 0 ? (
+                        <div className="cartMobile">
+                            <span className="linkMenu" onClick={this.handleOpenCart}>
+                                <span className="link">Cart</span>
+                                <span className="numberCart">{quantity}</span>
+                            </span>
+                        </div>
+                    ) : null}
+
                     <div id="menuSub">
                         {routes.length && (
                             <ul className="nav">
@@ -97,10 +108,10 @@ class Header extends PureComponent {
                                         if (route.path === '/cart') {
                                             return (
                                                 <li key={key}>
-                                                    <a href="javascript:;" onClick={carts.length ? this.handleOpenCart : null}>
+                                                    <span className="linkMenu" onClick={carts.length ? this.handleOpenCart : null}>
                                                         <span className="link">{route.title}</span>
                                                         <span className="numberCart">{quantity}</span>
-                                                    </a>
+                                                    </span>
                                                 </li>
                                             );
                                         }

@@ -167,9 +167,11 @@ class Cart extends PureComponent {
                             $. <strong>{totalMoney}</strong>
                         </span>
                     </h6>
-                    <button className="btn btn-success" onClick={this.handleProcessCart}>
-                        PROCEED TO CHECKOUT
-                    </button>
+                    {carts.length ? (
+                        <button className="btn btn-success" onClick={this.handleProcessCart}>
+                            PROCEED TO CHECKOUT
+                        </button>
+                    ) : null}
                 </div>
             </div>
         );
