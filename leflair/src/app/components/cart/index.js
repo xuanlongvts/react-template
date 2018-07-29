@@ -40,23 +40,28 @@ class Cart extends PureComponent {
         $('.overlay').remove();
     }
 
-    handleKeyUpQuantity(maxQuantity, e) {
+    handleKeyUpQuantity(maxQuantity, e, index) {
         let getValue = parseInt(e.target.value, 10);
+        const { updateCartItemMulti } = this.props;
 
         if (_.isNaN(getValue)) {
             e.target.value = 1;
-        }
-        if (getValue > parseInt(maxQuantity, 10)) {
+            updateCartItemMulti(1, index);
+        } else if (getValue > parseInt(maxQuantity, 10)) {
             e.target.value = maxQuantity;
+
+            updateCartItemMulti(maxQuantity, index);
+        } else {
+            updateCartItemMulti(getValue, index);
         }
     }
 
-    handleBlurQuantity(e, index) {
-        var getValue = e.target.value;
-        const { updateCartItemMulti } = this.props;
+    // handleBlurQuantity(e, index) {
+    //     var getValue = e.target.value;
+    //     const { updateCartItemMulti } = this.props;
 
-        updateCartItemMulti(getValue, index);
-    }
+    //     updateCartItemMulti(getValue, index);
+    // }
 
     handleDeleteCart(index) {
         const { deleteCartItem } = this.props;
@@ -116,8 +121,8 @@ class Cart extends PureComponent {
                                         min={1}
                                         max={each.stock}
                                         defaultValue={item.quantity}
-                                        onKeyUp={e => this.handleKeyUpQuantity(each.stock, e)}
-                                        onBlur={e => this.handleBlurQuantity(e, key)}
+                                        onKeyUp={e => this.handleKeyUpQuantity(each.stock, e, key)}
+                                        // onBlur={e => this.handleBlurQuantity(e, key)}
                                     />
                                     {stock}
                                 </div>
