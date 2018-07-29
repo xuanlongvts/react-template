@@ -26,9 +26,9 @@ class Confirm extends PureComponent {
     }
 
     handleModal() {
-        const { modalClose, history, cartRemove } = this.props;
+        const { modalClose, cartRemove } = this.props;
         modalClose();
-        history.push('/');
+
         localStogeAdapter.removeItem('carts');
         cartRemove();
 
