@@ -31,6 +31,8 @@ class Confirm extends PureComponent {
         history.push('/');
         localStogeAdapter.removeItem('carts');
         cartRemove();
+
+        window.location.reload();
     }
 
     render() {

@@ -71,6 +71,9 @@ class Header extends PureComponent {
 
         $('html').addClass('openCart');
         $('body').append('<div class="overlay">&nbsp;</div>');
+
+        $('body').removeClass('menu-opened');
+        $('#menuSub').slideUp(200);
     }
 
     render() {
