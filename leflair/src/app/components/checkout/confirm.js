@@ -32,7 +32,7 @@ class Confirm extends PureComponent {
         localStogeAdapter.removeItem('carts');
         cartRemove();
 
-        window.location.reload();
+        window.location.href = '/';
     }
 
     render() {
