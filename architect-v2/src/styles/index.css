@@ -1,0 +1,148 @@
+.App {
+  text-align: center; }
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px; }
+
+.App-header {
+  background-color: #222;
+  height: 200px;
+  padding: 20px;
+  color: white;
+  background: url("./imgs/bgBlue.svg") no-repeat 0 0;
+  background-size: cover; }
+
+.App-title {
+  font-size: 40px; }
+
+.App-intro {
+  font-size: large; }
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+
+p {
+  font-size: 50px; }
+
+body {
+  padding: 0;
+  margin: 0;
+  color: #333; }
+
+* {
+  box-sizing: border-box; }
+
+.main-container {
+  padding: 0 20px; }
+
+.loading {
+  font-size: 50px;
+  margin-top: 50px; }
+
+@keyframes rot {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+
+ul {
+  list-style: none;
+  -webkit-padding-start: 0; }
+
+.nav li {
+  display: inline-block; }
+  .nav li.active a {
+    color: #111; }
+  .nav li a {
+    display: inline-block;
+    padding: 5px 15px;
+    color: #9e5f00;
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: uppercase; }
+    .nav li a:hover {
+      color: #111; }
+
+.txtIntro {
+  font-size: 30px; }
+
+.cssTest {
+  margin-top: 50px;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  line-height: 200px;
+  text-transform: capitalize;
+  font-size: 22px;
+  box-shadow: 2px 2px 5px #ccc;
+  animation: rot 15s linear infinite; }
+
+.list-catagories li {
+  display: inline-block;
+  padding: 0 10px; }
+  .list-catagories li.curr a {
+    color: #555; }
+  .list-catagories li a {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 20px;
+    color: #999;
+    text-decoration: none;
+    text-transform: capitalize; }
+    .list-catagories li a:hover {
+      color: #555; }
+
+.cataDetail {
+  font-size: 20px;
+  margin-top: 50px; }
+
+.productsWrap {
+  overflow: hidden;
+  padding-top: 30px; }
+  .productsWrap .siderbar {
+    width: 25%;
+    padding: 10px;
+    display: block;
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-align: left;
+    font-size: 18px; }
+    .productsWrap .siderbar h3 {
+      color: #111; }
+    .productsWrap .siderbar li {
+      margin-bottom: 15px; }
+      .productsWrap .siderbar li.curr a {
+        text-decoration: underline; }
+    .productsWrap .siderbar a {
+      color: #333;
+      font-size: 15px;
+      text-decoration: none; }
+      .productsWrap .siderbar a:hover {
+        text-decoration: underline; }
+  .productsWrap .products {
+    width: 70%;
+    float: right; }
+  .productsWrap .productDetail p {
+    font-size: 22px; }
+
+.reddit-api ul {
+  text-align: left; }
+  .reddit-api ul.loaded {
+    opacity: 0.5; }
+  .reddit-api ul li {
+    margin-bottom: 10px; }
+
+.refresh {
+  cursor: default;
+  color: blue;
+  opacity: 0.2;
+  text-decoration: underline; }
+  .refresh.enable {
+    cursor: pointer;
+    opacity: 1; }
