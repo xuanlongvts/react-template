@@ -21,7 +21,7 @@ const Product = ({ match, data }) => {
 
 Product.propTypes = {
     match: PropTypes.object.isRequired,
-    data: PropTypes.array.isRequired
+    data: PropTypes.array.isRequired,
 };
 
 export default Product;

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Route, Switch } from 'react-router-dom';
 
-import NotFound from '../components/NotFound';
+import NotFound from './NotFound';
 
 class Catagories extends PureComponent {
     render() {
@@ -12,18 +12,18 @@ class Catagories extends PureComponent {
                 title: 'Shoes',
                 path: `${match.url}`,
                 exact: true,
-                component: () => <p className="cataDetail">Shoe</p>
+                component: () => <p className="cataDetail">Shoe</p>,
             },
             {
                 title: 'Boots',
                 path: `${match.url}/boots`,
-                component: () => <p className="cataDetail">Boots</p>
+                component: () => <p className="cataDetail">Boots</p>,
             },
             {
                 title: 'Footwear',
                 path: `${match.url}/footwear`,
-                component: () => <p className="cataDetail">Footwear</p>
-            }
+                component: () => <p className="cataDetail">Footwear</p>,
+            },
         ];
 
         return (
@@ -50,7 +50,7 @@ class Catagories extends PureComponent {
 }
 
 Catagories.propTypes = {
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
 };
 
 export default Catagories;

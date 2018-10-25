@@ -1,0 +1,80 @@
+@mixin iphone {
+    @media screen and (min-width: #{$iphone}) {
+        @content;
+    }
+}
+
+@mixin iphonePlus {
+    @media screen and (min-width: #{$iphonePlus}) {
+        @content;
+    }
+}
+
+@mixin phone {
+    @media screen and (min-width: #{$phone}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (min-width: #{$tablet}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media screen and (min-width: #{$desktop}) {
+        @content;
+    }
+}
+
+@mixin wideDesktop {
+    @media screen and (min-width: #{$wideDesktop}) {
+        @content;
+    }
+}
+
+@mixin cycleBox {
+    display: inline-block;
+    border-radius: 50%;
+    text-align: center;
+    overflow: hidden;
+    vertical-align: top;
+
+    @content;
+}
+
+@mixin button {
+    border-radius: 5px;
+    display: inline-block;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    min-width: 180px;
+    padding: 0 50px;
+    border: none;
+    outline: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:active,
+    &:focus,
+    &:visited {
+        outline: none;
+    }
+
+    @content;
+}
+
+@mixin gradientComm {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#aff57a+0,54d169+100 */
+    background: #aff57a; /* Old browsers */
+    background: -moz-linear-gradient(348.69deg, #aff57a 0%, #54d169 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(348.69deg, #aff57a 0%, #54d169 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #aff57a 0%, #54d169 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aff57a', endColorstr='#54d169',GradientType=0 ); /* IE6-9 */
+
+    @content;
+}

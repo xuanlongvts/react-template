@@ -1,13 +1,13 @@
 const env = process.env.REACT_APP_ENV;
 const listConfigs = {
     dev: {
-        API_SERVER: 'http://www.reddit.com',
+        API_SERVER: 'https://www.reddit.com',
         SOCKET: {
             secure: true,
-            hostname: 'http://www.reddit.com',
+            hostname: 'https://www.reddit.com',
             port: 443,
-            namespace: 'dev'
-        }
+            namespace: 'dev',
+        },
     },
     uat: {
         API_SERVER: 'https://uat-abc.com',
@@ -15,18 +15,18 @@ const listConfigs = {
             secure: true,
             hostname: 'https://uat-abc',
             port: 443,
-            namespace: 'uat'
-        }
+            namespace: 'uat',
+        },
     },
     production: {
-        API_SERVER: 'http://www.reddit.com',
+        API_SERVER: 'https://www.reddit.com',
         SOCKET: {
             secure: true,
-            hostname: 'http://www.reddit.com',
+            hostname: 'https://www.reddit.com',
             port: 443,
-            namespace: 'production'
-        }
-    }
+            namespace: 'production',
+        },
+    },
 };
 
 export const Config = listConfigs[env];

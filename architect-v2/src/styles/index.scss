@@ -1,4 +1,4 @@
-@import 'header';
+@import './common/index';
 
 body {
     padding: 0;
@@ -32,31 +32,6 @@ body {
 ul {
     list-style: none;
     -webkit-padding-start: 0;
-}
-
-.nav {
-    li {
-        display: inline-block;
-
-        &.active {
-            a {
-                color: #111;
-            }
-        }
-
-        a {
-            display: inline-block;
-            padding: 5px 15px;
-            color: rgb(158, 95, 0);
-            text-decoration: none;
-            font-size: 18px;
-            text-transform: uppercase;
-
-            &:hover {
-                color: #111;
-            }
-        }
-    }
 }
 
 .txtIntro {
@@ -110,12 +85,11 @@ ul {
 .productsWrap {
     overflow: hidden;
     padding-top: 30px;
+    padding-bottom: 30px;
 
     .siderbar {
-        width: 25%;
         padding: 10px;
         display: block;
-        float: left;
         border: 1px solid #ccc;
         border-radius: 3px;
         text-align: left;
@@ -144,11 +118,6 @@ ul {
                 text-decoration: underline;
             }
         }
-    }
-
-    .products {
-        width: 70%;
-        float: right;
     }
 
     .productDetail {
