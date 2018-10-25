@@ -3,6 +3,7 @@ import { lazy } from 'react';
 import RouterMain from './consts';
 import AsyncComponent from '../components/_asynComponent';
 
+import SubCompIndex from '../components/subNav';
 import SubComp1 from '../components/subNav/sub1';
 import SubComp2 from '../components/subNav/sub2';
 import SubComp3 from '../components/subNav/sub3';
@@ -36,7 +37,7 @@ const routersAuthen = [
     {
         title: 'Sub nav',
         path: RouterMain.subnav,
-        component: null,
+        component: SubCompIndex,
         sub: [
             {
                 title: 'Sub 1',
@@ -54,12 +55,12 @@ const routersAuthen = [
                 component: SubComp3,
                 sub: [
                     {
-                        title: 'Sub 1',
+                        title: 'Sub 3 1',
                         path: RouterMain.subnav3_nav1,
                         component: SubComp3_1,
                     },
                     {
-                        title: 'Sub 2',
+                        title: 'Sub 3 2',
                         path: RouterMain.subnav3_nav2,
                         component: SubComp3_2,
                     },

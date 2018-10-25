@@ -1,7 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { Container } from 'reactstrap';
 
 import Header from './header';
 import Footer from './footer';
@@ -15,7 +14,8 @@ class Routers extends PureComponent {
         super(props);
         this.state = {
             isLogin: true,
-            routes: RoutersUnAuthen,
+            routes: [],
+            routesMatch: [],
         };
     }
 
@@ -25,7 +25,35 @@ class Routers extends PureComponent {
             this.setState({
                 routes: RoutersAuthen,
             });
+        } else {
+            this.setState({
+                routes: RoutersUnAuthen,
+            });
         }
+    }
+
+    onceRouter(key, route) {
+        return <Route key={key} {...route} />;
+    }
+
+    listRouter(data) {
+        const { routesMatch } = this.state;
+        data.forEach((route, key) => {
+            if (route.hasOwnProperty('sub')) {
+                // let subSelf = {
+                //     title: route.title,
+                //     path: route.path,
+                //     component: route.component,
+                // };
+
+                // routesMatch.push(this.onceRouter(key, subSelf));
+                this.listRouter(route.sub);
+            } else {
+                routesMatch.push(this.onceRouter(key, route));
+            }
+        });
+
+        return routesMatch;
     }
 
     render() {
@@ -40,12 +68,10 @@ class Routers extends PureComponent {
 
                     <Header routes={routes} />
 
-                    <Container>
-                        <Switch>
-                            {routes.length && routes.map((route, key) => <Route key={key} {...route} />)}
-                            <Route component={NotFound} />
-                        </Switch>
-                    </Container>
+                    <Switch>
+                        {routes.length && this.listRouter(routes)}
+                        <Route component={NotFound} />
+                    </Switch>
 
                     <Footer />
                 </Fragment>

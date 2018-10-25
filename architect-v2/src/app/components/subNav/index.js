@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react';
 import { Container } from 'reactstrap';
 
-class SubNav3 extends PureComponent {
+class SubNav extends PureComponent {
     render() {
         return (
             <section className="sub">
-                <Container>Sub 3</Container>
+                <Container>Sub Index</Container>
             </section>
         );
     }
 }
 
-export default SubNav3;
+export default SubNav;

@@ -10,9 +10,9 @@ class Header extends PureComponent {
         data.forEach((iMenu, key) => {
             const { title, sub, exact, path } = iMenu;
 
-            if (data[key].hasOwnProperty('sub')) {
+            if (iMenu.hasOwnProperty('sub')) {
                 menuNew.push(this.renderItem(key, title, path, exact, sub));
-                this.menuDyn(data[key].sub);
+                this.menuDyn(iMenu.sub);
             } else {
                 menuNew.push(this.renderItem(key, title, path, exact, false));
             }
