@@ -26,10 +26,12 @@ class Header extends PureComponent {
         link = (
             <Route key={key} path={path} exact={exact}>
                 {({ match }) => {
+                    let isActive = match ? 'active ' : '';
+                    let hasSub = isSub ? 'hasSub' : '';
                     return (
-                        <li className={match ? 'active' : null}>
+                        <li className={`${isActive}${hasSub}`}>
                             <Link to={path}>{name}</Link>
-                            {isSub && <ul className="hasSub">{this.menuDyn(isSub)}</ul>}
+                            {isSub && <ul className="sub">{this.menuDyn(isSub)}</ul>}
                         </li>
                     );
                 }}

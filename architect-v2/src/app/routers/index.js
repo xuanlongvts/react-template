@@ -38,16 +38,17 @@ class Routers extends PureComponent {
 
     listRouter(data) {
         const { routesMatch } = this.state;
+
         data.forEach((route, key) => {
             if (route.hasOwnProperty('sub')) {
-                // let subSelf = {
-                //     title: route.title,
-                //     path: route.path,
-                //     component: route.component,
-                // };
-
-                // routesMatch.push(this.onceRouter(key, subSelf));
                 this.listRouter(route.sub);
+
+                let subSelf = {
+                    title: route.title,
+                    path: route.path,
+                    component: route.component,
+                };
+                routesMatch.push(this.onceRouter(key, subSelf));
             } else {
                 routesMatch.push(this.onceRouter(key, route));
             }

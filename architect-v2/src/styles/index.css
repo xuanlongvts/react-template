@@ -74,12 +74,13 @@ p {
   .nav li {
     display: inline-block;
     position: relative; }
-    .nav li:hover > .hasSub {
+    .nav li:hover > .sub {
       display: block; }
     .nav li.active > a {
       color: #111; }
     .nav li a {
       display: inline-block;
+      width: 100%;
       padding: 5px 15px;
       color: #9e5f00;
       text-decoration: none;
@@ -87,7 +88,7 @@ p {
       text-transform: uppercase; }
       .nav li a:hover {
         color: #111; }
-  .nav .hasSub {
+  .nav .sub {
     position: absolute;
     display: none;
     width: 200px;
@@ -97,11 +98,18 @@ p {
     border-radius: 2px;
     background: #fff;
     text-align: left; }
-    .nav .hasSub li {
+    .nav .sub li {
       width: 100%; }
-    .nav .hasSub .hasSub {
+    .nav .sub .sub {
       left: 200px;
       top: 0; }
+  .nav .hasSub .hasSub > a:after {
+    content: '>';
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 18px;
+    font-weight: 700; }
 
 #footer {
   background: #1b1b1b;
