@@ -2,7 +2,6 @@
 // export const postsByRedditSelector = state => state.rootReducer.postsByReddit;
 
 export const selectedRedditSelector = state => {
-    console.log(state.reducerMyComApi);
-    return state.reducerMyComApi.getIn(['selectedReddit']);
+    return state.reducerRedditApi.getIn(['selectedReddit']);
 };
-export const postsByRedditSelector = state => state.reducerMyComApi.getIn(['postsByReddit']);
+export const postsByRedditSelector = state => state.reducerRedditApi.getIn(['postsByReddit']);

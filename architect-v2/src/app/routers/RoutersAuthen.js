@@ -15,7 +15,7 @@ const AsyncAbout = AsyncComponent(lazy(() => import('../components/About')));
 const AsyncCatagories = AsyncComponent(lazy(() => import('../components/Categories')));
 // const AsyncSubNav = AsyncComponent(lazy(() => import('../components/subNav')));
 const AsyncProducts = AsyncComponent(lazy(() => import('../components/products/')));
-const AsyncMyComApi = AsyncComponent(lazy(() => import('../components/myComApi')));
+const AsyncMyComApi = AsyncComponent(lazy(() => import('../components/redditApi')));
 
 const routersAuthen = [
     {

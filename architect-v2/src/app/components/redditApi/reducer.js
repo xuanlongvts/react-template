@@ -1,13 +1,13 @@
-// import { combineReducers } from 'redux';
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
-import { SELECT_REDDIT, REQUEST_POSTS, RECEIVE_POSTS, INVALIDATE_REDDIT } from './consts';
+import { SELECT_REDDIT, REQUEST_POSTS, RECEIVE_POSTS, INVALIDATE_REDDIT, REQUEST_POSTS_FAILE } from './consts';
 
-// const initialState = fromJS({
-//     isFetching: true,
-//     items: [],
-//     lastUpdated: null
-// });
+const initialState = fromJS({
+    isFetching: true,
+    items: [],
+    lastUpdated: null,
+    errMess: null,
+});
 
 const selectedReddit = (state = 'reactjs', action) => {
     switch (action.type) {
@@ -18,7 +18,7 @@ const selectedReddit = (state = 'reactjs', action) => {
     }
 };
 
-const postsByReddit = (state = fromJS({}), action) => {
+const postsByReddit = (state = initialState, action) => {
     const key = action.reddit;
     switch (action.type) {
         case INVALIDATE_REDDIT:
@@ -28,7 +28,10 @@ const postsByReddit = (state = fromJS({}), action) => {
             return state
                 .setIn([key, 'isFetching'], false)
                 .setIn([key, 'items'], action.posts)
+                .setIn([key, 'errMess'], null)
                 .setIn([key, 'lastUpdated'], action.receivedAt);
+        case REQUEST_POSTS_FAILE:
+            return state.setIn([key, 'errMess'], action.errMess);
         default:
             return state;
     }
@@ -36,7 +39,7 @@ const postsByReddit = (state = fromJS({}), action) => {
 
 const rootReducer = combineReducers({
     postsByReddit,
-    selectedReddit
+    selectedReddit,
 });
 
 export default rootReducer;

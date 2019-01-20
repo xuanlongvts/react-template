@@ -1,9 +1,7 @@
 import { all, fork } from 'redux-saga/effects';
 
-import myCompApiSaga from '../components/myComApi/saga';
+import redditApiSaga from '../components/redditApi/saga';
 
-export default function* rootSaga(){
-    yield all([
-        fork(myCompApiSaga)
-    ]);
+export default function* rootSaga() {
+    yield all([fork(redditApiSaga)]);
 }

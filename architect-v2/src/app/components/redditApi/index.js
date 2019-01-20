@@ -29,7 +29,14 @@ class App extends PureComponent {
     }
 
     render() {
-        const { selectedReddit, posts, isFetching, lastUpdated } = this.props;
+        const { selectedReddit, posts, isFetching, lastUpdated, errMess } = this.props;
+        if (errMess) {
+            return (
+                <div className="reddit-api">
+                    <Container>{errMess}</Container>
+                </div>
+            );
+        }
 
         return (
             <div className="reddit-api">
@@ -73,17 +80,19 @@ App.propTypes = {
     selectReddit: PropTypes.func.isRequired,
     invalidateReddit: PropTypes.func.isRequired,
     lastUpdated: PropTypes.number.isRequired,
+    errMess: PropTypes.string,
 };
 
 const mapStateToProps = state => {
-    const selectedReddit = state.reducerMyComApi.getIn(['selectedReddit']);
-    const postsByReddit = state.reducerMyComApi.getIn(['postsByReddit']);
+    const selectedReddit = state.reducerRedditApi.getIn(['selectedReddit']);
+    const postsByReddit = state.reducerRedditApi.getIn(['postsByReddit']);
     const postsByRedditGetSelect = postsByReddit.getIn([selectedReddit]);
 
-    let { isFetching, lastUpdated, posts } = {
+    let { isFetching, lastUpdated, posts, errMess } = {
         isFetching: postsByRedditGetSelect === undefined ? true : postsByRedditGetSelect.getIn(['isFetching']),
         lastUpdated: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['lastUpdated'])) || Date.now(),
         posts: (postsByRedditGetSelect && postsByRedditGetSelect.getIn(['items'])) || [],
+        errMess: postsByRedditGetSelect && postsByRedditGetSelect.getIn(['errMess']),
     };
 
     return {
@@ -91,6 +100,7 @@ const mapStateToProps = state => {
         posts,
         isFetching,
         lastUpdated,
+        errMess,
     };
 };
 

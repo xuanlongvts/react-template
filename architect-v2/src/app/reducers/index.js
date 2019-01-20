@@ -2,11 +2,11 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import reducerMyComApi from '../components/myComApi/reducer';
+import reducerRedditApi from '../components/redditApi/reducer';
 
 const rootReducer = combineReducers({
     router: routerReducer,
-    reducerMyComApi,
+    reducerRedditApi,
 });
 
 export default rootReducer;

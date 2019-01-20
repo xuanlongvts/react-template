@@ -11,14 +11,12 @@ const fetchPostsApi = reddit => {
     return restApi
         .fetch(path)
         .then(res => {
-            return res.data.data.children.map(item => {
-                return item.data;
-            });
+            return res.data.data.children.map(item => item.data);
         })
         .catch(err => {
             return {
-                type: 'ERROR',
-                err,
+                status: 'ERROR',
+                errMess: err,
             };
         });
 };
@@ -33,7 +31,9 @@ function* fetchPosts() {
         getPostsFromState = getPostsFromState.getIn([reddit, 'items']);
         !isOnline && getPostsFromState ? (dataPosts = getPostsFromState) : (dataPosts = yield call(fetchPostsApi, reddit));
 
-        yield put(actionList.receivePosts(reddit, dataPosts));
+        dataPosts && dataPosts.status === 'ERROR'
+            ? yield put(actionList.requestFaile(reddit, dataPosts.errMess))
+            : yield put(actionList.receivePosts(reddit, dataPosts));
     }
 }
 
@@ -48,7 +48,9 @@ function* invalidateReddit() {
         getPostsFromState = getPostsFromState.getIn([reddit, 'items']);
         !isOnline && getPostsFromState ? (dataPosts = getPostsFromState) : (dataPosts = yield call(fetchPostsApi, reddit));
 
-        yield put(actionList.receivePosts(reddit, dataPosts));
+        dataPosts && dataPosts.status === 'ERROR'
+            ? yield put(actionList.requestFaile(reddit, dataPosts.errMess))
+            : yield put(actionList.receivePosts(reddit, dataPosts));
     }
 }
 
