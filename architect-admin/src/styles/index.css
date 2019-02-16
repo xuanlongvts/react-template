@@ -1,0 +1,273 @@
+html,
+body {
+  min-height: 100%;
+  height: 100%; }
+
+* {
+  font-family: 'Open Sans', sans-serif; }
+
+div {
+  max-width: initial; }
+
+ul,
+ol {
+  list-style: none;
+  padding-left: 0; }
+
+a {
+  outline: none; }
+
+input {
+  outline: none; }
+
+img {
+  max-width: 100%; }
+
+body {
+  position: relative; }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px; }
+
+.App-header {
+  background-color: #222;
+  height: 200px;
+  padding: 20px;
+  color: white;
+  background: url("./imgs/bgBlue.svg") no-repeat 0 0;
+  background-size: cover; }
+
+.App-title {
+  font-size: 40px; }
+
+.App-intro {
+  font-size: large; }
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+
+p {
+  font-size: 50px; }
+
+.nav {
+  justify-content: center; }
+  .nav li {
+    display: inline-block;
+    position: relative; }
+    .nav li:hover > .sub {
+      display: block; }
+    .nav li.active > a {
+      color: #111; }
+    .nav li a {
+      display: inline-block;
+      width: 100%;
+      padding: 5px 15px;
+      color: #9e5f00;
+      text-decoration: none;
+      font-size: 18px;
+      text-transform: uppercase; }
+      .nav li a:hover {
+        color: #111; }
+  .nav .sub {
+    position: absolute;
+    display: none;
+    width: 200px;
+    z-index: 10;
+    left: 0;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background: #fff;
+    text-align: left; }
+    .nav .sub li {
+      width: 100%; }
+    .nav .sub .sub {
+      left: 200px;
+      top: 0; }
+  .nav .hasSub .hasSub > a:after {
+    content: '>';
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 18px;
+    font-weight: 700; }
+
+#footer {
+  background: #1b1b1b;
+  padding: 30px 0;
+  text-align: center; }
+  #footer .cpyRight {
+    color: #fff;
+    margin-top: 12px;
+    font-size: 11px; }
+    @media screen and (min-width: 414px) {
+      #footer .cpyRight {
+        font-size: 14px; } }
+  #footer p {
+    color: #fff;
+    margin-top: 20px;
+    font-size: 11px; }
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px; }
+
+.App-title {
+  font-size: 40px; }
+
+.App-intro {
+  font-size: large; }
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+
+.boxLoading,
+.loadingComponent {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999; }
+  .boxLoading .loading,
+  .loadingComponent .loading {
+    position: absolute;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #4dae4a;
+    width: 60px;
+    height: 60px;
+    left: 50%;
+    top: 50%;
+    animation: spin 2s linear infinite;
+    margin-left: -30px;
+    margin-top: -30px; }
+
+.loadingComponent {
+  position: relative;
+  height: 230px;
+  background: #fff;
+  margin-bottom: 50px; }
+  @media screen and (min-width: 992px) {
+    .loadingComponent {
+      height: 500px; } }
+
+body {
+  padding: 0;
+  margin: 0;
+  color: #333; }
+
+* {
+  box-sizing: border-box; }
+
+.main-container {
+  padding: 0 20px; }
+
+.loading {
+  font-size: 50px;
+  margin-top: 50px; }
+
+@keyframes rot {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(360deg); } }
+
+ul {
+  list-style: none;
+  -webkit-padding-start: 0; }
+
+.txtIntro {
+  font-size: 30px; }
+
+.cssTest {
+  margin-top: 50px;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  line-height: 200px;
+  text-transform: capitalize;
+  font-size: 22px;
+  box-shadow: 2px 2px 5px #ccc;
+  animation: rot 15s linear infinite; }
+
+.list-catagories li {
+  display: inline-block;
+  padding: 0 10px; }
+  .list-catagories li.curr a {
+    color: #555; }
+  .list-catagories li a {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 20px;
+    color: #999;
+    text-decoration: none;
+    text-transform: capitalize; }
+    .list-catagories li a:hover {
+      color: #555; }
+
+.cataDetail {
+  font-size: 20px;
+  margin-top: 50px; }
+
+.productsWrap {
+  overflow: hidden;
+  padding-top: 30px;
+  padding-bottom: 30px; }
+  .productsWrap .siderbar {
+    padding: 10px;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-align: left;
+    font-size: 18px; }
+    .productsWrap .siderbar h3 {
+      color: #111; }
+    .productsWrap .siderbar li {
+      margin-bottom: 15px; }
+      .productsWrap .siderbar li.curr a {
+        text-decoration: underline; }
+    .productsWrap .siderbar a {
+      color: #333;
+      font-size: 15px;
+      text-decoration: none; }
+      .productsWrap .siderbar a:hover {
+        text-decoration: underline; }
+  .productsWrap .productDetail p {
+    font-size: 22px; }
+
+.reddit-api ul {
+  text-align: left; }
+  .reddit-api ul.loaded {
+    opacity: 0.5; }
+  .reddit-api ul li {
+    margin-bottom: 10px; }
+
+.refresh {
+  cursor: default;
+  color: blue;
+  opacity: 0.2;
+  text-decoration: underline; }
+  .refresh.enable {
+    cursor: pointer;
+    opacity: 1; }

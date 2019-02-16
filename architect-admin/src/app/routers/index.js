@@ -1,0 +1,90 @@
+import React, { PureComponent, Fragment } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import Header from './header';
+import Footer from './footer';
+
+import NotFound from '../components/NotFound';
+import RoutersUnAuthen from './RoutersUnAuthen';
+import RoutersAuthen from './RoutersAuthen';
+
+class Routers extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLogin: true,
+            routes: [],
+            routesMatch: [],
+        };
+    }
+
+    componentDidMount() {
+        const { isLogin } = this.state;
+        if (isLogin) {
+            this.setState({
+                routes: RoutersAuthen,
+            });
+        } else {
+            this.setState({
+                routes: RoutersUnAuthen,
+            });
+        }
+    }
+
+    onceRouter(key, route) {
+        return <Route key={key} {...route} />;
+    }
+
+    listRouter(data) {
+        const { routesMatch } = this.state;
+
+        data.forEach((route, key) => {
+            if (route.hasOwnProperty('sub')) {
+                this.listRouter(route.sub);
+
+                const subSelf = {
+                    title: route.title,
+                    path: route.path,
+                    component: route.component,
+                };
+                routesMatch.push(this.onceRouter(key, subSelf));
+            } else {
+                routesMatch.push(this.onceRouter(key, route));
+            }
+        });
+
+        return routesMatch;
+    }
+
+    render() {
+        const { isLogin, routes } = this.state;
+
+        if (!isLogin) {
+            return (
+                <BrowserRouter>
+                    <Switch>
+                        {this.listRouter(RoutersUnAuthen)}
+                        <Route component={NotFound} />
+                    </Switch>
+                </BrowserRouter>
+            );
+        }
+
+        return (
+            <BrowserRouter>
+                <Fragment>
+                    <Header routes={routes} />
+
+                    <Switch>
+                        {routes.length && this.listRouter(routes)}
+                        <Route component={NotFound} />
+                    </Switch>
+
+                    <Footer />
+                </Fragment>
+            </BrowserRouter>
+        );
+    }
+}
+
+export default Routers;
