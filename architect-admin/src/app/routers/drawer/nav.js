@@ -1,14 +1,20 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { Route, Link, withRouter } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import RoutersAuthen from '../RoutersAuthen';
 
 class Nav extends PureComponent {
+    constructor(props) {
+        super(props);
+    }
+
     menuDyn(data) {
         let menuNew = [];
         data.forEach((iMenu, key) => {
@@ -27,20 +33,31 @@ class Nav extends PureComponent {
     renderItem(key, name, path, exact, icon, isSub) {
         let link;
         let sub = [];
+        const { open } = this.props;
         link = (
             <Route key={key} path={path} exact={exact}>
                 {({ match }) => {
-                    let isActive = match ? 'active ' : '';
-                    let hasSub = isSub ? 'hasSub' : '';
+                    const isActive = match ? 'active ' : '';
+                    const hasSub = isSub ? 'hasSub' : '';
+                    const openStatus = !open ? 'notOpen' : '';
+                    let linkElement = (
+                        <Link to={path} className={`levDirec ${openStatus}`}>
+                            <ListItem button>
+                                <ListItemIcon>{icon && icon}</ListItemIcon>
+                                <ListItemText primary={name} />
+                                {hasSub && isActive ? <ExpandLess /> : hasSub && <ExpandMore />}
+                            </ListItem>
+                        </Link>
+                    );
+                    !open &&
+                        (linkElement = (
+                            <Tooltip title={name} placement="right-start">
+                                {linkElement}
+                            </Tooltip>
+                        ));
                     return (
                         <li className={`${isActive}${hasSub}`}>
-                            <Link to={path} className="levDirec">
-                                <ListItem button>
-                                    <ListItemIcon>{icon && icon}</ListItemIcon>
-                                    <ListItemText primary={name} />
-                                    {hasSub && isActive ? <ExpandLess /> : hasSub && <ExpandMore />}
-                                </ListItem>
-                            </Link>
+                            {linkElement}
                             {isSub && <ul className="sub">{this.menuDyn(isSub)}</ul>}
                         </li>
                     );
@@ -55,5 +72,9 @@ class Nav extends PureComponent {
         return <ul className="nav">{this.menuDyn(RoutersAuthen)}</ul>;
     }
 }
+
+Nav.propTypes = {
+    open: PropTypes.bool.isRequired,
+};
 
 export default withRouter(Nav);

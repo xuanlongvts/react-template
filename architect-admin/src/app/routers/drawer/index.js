@@ -14,9 +14,11 @@ import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import Avatar from '@material-ui/core/Avatar';
 
 import Footer from '../footer';
 import Nav from './nav';
+import imgNongNo from '../../../images/nong.jpg';
 
 const drawerWidth = 240;
 const styles = theme => ({
@@ -26,7 +28,7 @@ const styles = theme => ({
     toolbarIcon: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
         padding: '0 8px',
         ...theme.mixins.toolbar,
     },
@@ -130,14 +132,14 @@ class DrawerComp extends PureComponent {
                     }}
                     open={open}>
                     <div className={classes.toolbarIcon}>
+                        <Avatar alt="Remy Sharp" src={imgNongNo} className={classes.avatar} />
                         <IconButton onClick={this.handleDrawerClose}>
                             <ChevronLeftIcon />
                         </IconButton>
                     </div>
                     <Divider />
-                    <Nav />
-
-                    <Footer />
+                    <Nav open={open} />
+                    {open && <Footer />}
                 </Drawer>
             </Fragment>
         );

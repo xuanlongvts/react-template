@@ -6,7 +6,7 @@ class Footer extends PureComponent {
             <footer id="footer">
                 <div className="container">
                     <div className="cpyRight">Copyright 2019.</div>
-                    {/* <p>All rights reserved</p> */}
+                    <p>xuanlongvts@gmail.com</p>
                 </div>
             </footer>
         );

@@ -51,6 +51,10 @@
             width: 100%;
             > .levDirec {
                 padding-left: 16px;
+
+                &.notOpen {
+                    padding-left: 0;
+                }
             }
         }
 
@@ -58,6 +62,10 @@
             li {
                 > .levDirec {
                     padding-left: 32px;
+
+                    &.notOpen {
+                        padding-left: 0;
+                    }
                 }
             }
         }

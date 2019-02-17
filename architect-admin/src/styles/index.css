@@ -54,8 +54,12 @@
       width: 100%; }
       .nav .sub li > .levDirec {
         padding-left: 16px; }
+        .nav .sub li > .levDirec.notOpen {
+          padding-left: 0; }
     .nav .sub .sub li > .levDirec {
       padding-left: 32px; }
+      .nav .sub .sub li > .levDirec.notOpen {
+        padding-left: 0; }
 
 #footer {
   background: #1b1b1b;
@@ -67,8 +71,13 @@
   width: 100%; }
   #footer .cpyRight {
     color: #fff;
-    margin: 10px 0;
-    font-size: 13px; }
+    margin: 5px 0;
+    font-size: 13px;
+    color: #fff; }
+  #footer p {
+    margin: 5px 0;
+    color: #999;
+    font-size: 11px; }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
