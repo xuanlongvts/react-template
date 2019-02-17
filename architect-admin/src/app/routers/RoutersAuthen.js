@@ -1,4 +1,10 @@
-import { lazy } from 'react';
+import React, { lazy } from 'react';
+
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import PeopleIcon from '@material-ui/icons/People';
+import BarChartIcon from '@material-ui/icons/BarChart';
+import LayersIcon from '@material-ui/icons/Layers';
 
 import { RouterAuthen } from './consts';
 import AsyncComponent from '../components/_asynComponent';
@@ -23,47 +29,56 @@ const routersAuthen = [
         title: 'Home',
         path: RouterAuthen.home,
         component: AsyncDashboard,
+        icon: <DashboardIcon />,
         exact: true,
     },
     {
         title: 'About',
         path: RouterAuthen.about,
         component: AsyncAbout,
+        icon: <ShoppingCartIcon />,
     },
     {
         title: 'Categories',
         path: RouterAuthen.categories,
         component: AsyncCatagories,
+        icon: <PeopleIcon />,
     },
     {
         title: 'Sub nav',
         path: RouterAuthen.subnav,
         component: SubCompIndex,
+        icon: <BarChartIcon />,
         sub: [
             {
                 title: 'Sub 1',
                 path: RouterAuthen.subnav1,
                 component: SubComp1,
+                icon: <LayersIcon />,
             },
             {
                 title: 'Sub 2',
                 path: RouterAuthen.subnav2,
                 component: SubComp2,
+                icon: <LayersIcon />,
             },
             {
                 title: 'Sub 3',
                 path: RouterAuthen.subnav3,
                 component: SubComp3,
+                icon: <LayersIcon />,
                 sub: [
                     {
                         title: 'Sub 3 1',
                         path: RouterAuthen.subnav3_nav1,
                         component: SubComp3_1,
+                        icon: <LayersIcon />,
                     },
                     {
                         title: 'Sub 3 2',
                         path: RouterAuthen.subnav3_nav2,
                         component: SubComp3_2,
+                        icon: <LayersIcon />,
                     },
                 ],
             },
@@ -73,11 +88,13 @@ const routersAuthen = [
         title: 'Products',
         path: RouterAuthen.products,
         component: AsyncProducts,
+        icon: <LayersIcon />,
     },
     {
         title: 'Reddit api',
         path: RouterAuthen.apireddit,
         component: AsyncMyComApi,
+        icon: <LayersIcon />,
     },
 ];
 

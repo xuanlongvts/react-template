@@ -1,15 +1,15 @@
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
-import Footer from './footer';
 import Drawer from './drawer';
 import NotFound from '../components/NotFound';
 import RoutersUnAuthen from './RoutersUnAuthen';
 import RoutersAuthen from './RoutersAuthen';
 
 const styles = theme => ({
+    appBarSpacer: theme.mixins.toolbar,
     root: {
         display: 'flex',
     },
@@ -86,18 +86,16 @@ class Routers extends PureComponent {
 
         return (
             <BrowserRouter>
-                <Fragment>
-                    <div className={classes.root}>
-                        <Drawer />
-                        <main className={classes.content}>
-                            <Switch>
-                                {routes.length && this.listRouter(routes)}
-                                <Route component={NotFound} />
-                            </Switch>
-                        </main>
-                    </div>
-                    <Footer />
-                </Fragment>
+                <div className={classes.root}>
+                    <Drawer />
+                    <main className={classes.content}>
+                        <div className={classes.appBarSpacer} />
+                        <Switch>
+                            {routes.length && this.listRouter(routes)}
+                            <Route component={NotFound} />
+                        </Switch>
+                    </main>
+                </div>
             </BrowserRouter>
         );
     }

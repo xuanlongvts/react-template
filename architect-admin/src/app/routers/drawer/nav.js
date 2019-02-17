@@ -1,6 +1,10 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import { Route, Link, withRouter } from 'react-router-dom';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 import RoutersAuthen from '../RoutersAuthen';
 
@@ -8,19 +12,19 @@ class Nav extends PureComponent {
     menuDyn(data) {
         let menuNew = [];
         data.forEach((iMenu, key) => {
-            const { title, sub, exact, path } = iMenu;
+            const { title, sub, exact, path, icon } = iMenu;
 
             if (iMenu.hasOwnProperty('sub')) {
-                menuNew.push(this.renderItem(key, title, path, exact, sub));
+                menuNew.push(this.renderItem(key, title, path, exact, icon, sub));
                 this.menuDyn(iMenu.sub);
             } else {
-                menuNew.push(this.renderItem(key, title, path, exact, false));
+                menuNew.push(this.renderItem(key, title, path, exact, icon, false));
             }
         });
         return menuNew;
     }
 
-    renderItem(key, name, path, exact, isSub) {
+    renderItem(key, name, path, exact, icon, isSub) {
         let link;
         let sub = [];
         link = (
@@ -30,7 +34,13 @@ class Nav extends PureComponent {
                     let hasSub = isSub ? 'hasSub' : '';
                     return (
                         <li className={`${isActive}${hasSub}`}>
-                            <Link to={path}>{name}</Link>
+                            <Link to={path} className="levDirec">
+                                <ListItem button>
+                                    <ListItemIcon>{icon && icon}</ListItemIcon>
+                                    <ListItemText primary={name} />
+                                    {hasSub && isActive ? <ExpandLess /> : hasSub && <ExpandMore />}
+                                </ListItem>
+                            </Link>
                             {isSub && <ul className="sub">{this.menuDyn(isSub)}</ul>}
                         </li>
                     );

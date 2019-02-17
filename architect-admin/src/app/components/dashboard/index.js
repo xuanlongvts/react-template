@@ -5,8 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import SimpleLineChart from './SimpleLineChart';
 import SimpleTable from './SimpleTable';
 
-const styles = theme => ({
-    appBarSpacer: theme.mixins.toolbar,
+const styles = () => ({
     chartContainer: {
         marginLeft: -22,
     },
@@ -21,7 +20,6 @@ class Dashboard extends PureComponent {
 
         return (
             <section id="dashboard">
-                <div className={classes.appBarSpacer} />
                 <Typography variant="h4" gutterBottom component="h2">
                     Orders
                 </Typography>

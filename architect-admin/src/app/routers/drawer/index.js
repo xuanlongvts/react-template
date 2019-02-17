@@ -15,7 +15,7 @@ import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
-import { mainListItems } from './listItems';
+import Footer from '../footer';
 import Nav from './nav';
 
 const drawerWidth = 240;
@@ -135,9 +135,9 @@ class DrawerComp extends PureComponent {
                         </IconButton>
                     </div>
                     <Divider />
-                    {mainListItems}
-                    <Divider />
                     <Nav />
+
+                    <Footer />
                 </Drawer>
             </Fragment>
         );

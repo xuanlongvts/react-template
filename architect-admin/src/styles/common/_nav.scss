@@ -6,63 +6,58 @@
         position: relative;
         width: 100%;
 
-        &:hover {
+        .MuiButtonBase-root-60 {
+            &:hover,
+            &:focus {
+                background: none;
+            }
+        }
+
+        &.active {
             > .sub {
+                animation: fadeIn 0.3s ease-out;
                 display: block;
             }
         }
 
         &.active {
-            > a {
-                color: #111;
+            > .levDirec {
+                background: #ebebeb;
+                border-bottom: 1px solid #fff;
             }
         }
 
         a {
             display: inline-block;
             width: 100%;
-            padding: 5px 15px;
-            color: rgb(158, 95, 0);
             text-decoration: none;
             font-size: 18px;
+            color: #111;
 
             &:hover {
-                color: #111;
+                background: #ebebeb;
             }
         }
     }
 
     .sub {
-        position: absolute;
         display: none;
-        width: 200px;
-        z-index: 10;
-        left: 0;
-        border: 1px solid #ccc;
+        width: 100%;
         border-radius: 2px;
         background: $white;
         text-align: left;
 
         li {
             width: 100%;
+            > .levDirec {
+                padding-left: 16px;
+            }
         }
 
         .sub {
-            left: 200px;
-            top: 0;
-        }
-    }
-
-    .hasSub {
-        .hasSub {
-            > a {
-                &:after {
-                    content: '>';
-                    position: absolute;
-                    right: 5px;
-                    top: 5px;
-                    font-size: 18px;
-                    font-weight: 700;
+            li {
+                > .levDirec {
+                    padding-left: 32px;
                 }
             }
         }
