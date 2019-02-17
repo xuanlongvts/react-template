@@ -1,3 +1,7 @@
+* {
+  font-family: 'Roboto', 'Open Sans', sans-serif;
+  font-size: 14px; }
+
 @keyframes fadeIn {
   0% {
     opacity: 0; }
@@ -13,8 +17,9 @@
 .nav {
   justify-content: center; }
   .nav li {
-    display: inline-block;
-    position: relative; }
+    display: block;
+    position: relative;
+    width: 100%; }
     .nav li:hover > .sub {
       display: block; }
     .nav li.active > a {
