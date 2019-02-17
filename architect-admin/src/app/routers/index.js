@@ -1,12 +1,25 @@
 import React, { PureComponent, Fragment } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
-import Header from './header';
 import Footer from './footer';
-
+import Drawer from './drawer';
 import NotFound from '../components/NotFound';
 import RoutersUnAuthen from './RoutersUnAuthen';
 import RoutersAuthen from './RoutersAuthen';
+
+const styles = theme => ({
+    root: {
+        display: 'flex',
+    },
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing.unit * 3,
+        height: '100vh',
+        overflow: 'auto',
+    },
+});
 
 class Routers extends PureComponent {
     constructor(props) {
@@ -58,6 +71,7 @@ class Routers extends PureComponent {
 
     render() {
         const { isLogin, routes } = this.state;
+        const { classes } = this.props;
 
         if (!isLogin) {
             return (
@@ -73,13 +87,15 @@ class Routers extends PureComponent {
         return (
             <BrowserRouter>
                 <Fragment>
-                    <Header routes={routes} />
-
-                    <Switch>
-                        {routes.length && this.listRouter(routes)}
-                        <Route component={NotFound} />
-                    </Switch>
-
+                    <div className={classes.root}>
+                        <Drawer />
+                        <main className={classes.content}>
+                            <Switch>
+                                {routes.length && this.listRouter(routes)}
+                                <Route component={NotFound} />
+                            </Switch>
+                        </main>
+                    </div>
                     <Footer />
                 </Fragment>
             </BrowserRouter>
@@ -87,4 +103,8 @@ class Routers extends PureComponent {
     }
 }
 
-export default Routers;
+Routers.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Routers);

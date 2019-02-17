@@ -14,8 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-import { RouterUnAuthen } from '../../consts';
-import styles from '../style';
+import { RouterUnAuthen } from '../consts';
+import styles from './style';
 
 class SignIn extends PureComponent {
     constructor(props) {

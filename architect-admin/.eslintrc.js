@@ -41,6 +41,7 @@ module.exports = {
         'react/require-default-props': 0,
         'react/jsx-wrap-multilines': 0,
         'react/no-did-update-set-state': 0,
+        'react/jsx-closing-bracket-location': 0,
 
         'jsx-a11y/click-events-have-key-events': 0,
         'jsx-a11y/no-static-element-interactions': 0,

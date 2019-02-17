@@ -1,22 +1,23 @@
-import Login from './account/comp/login';
-import ResetPass from './account/comp/resetPass';
-import SignUp from './account/comp/signUp';
+import { RouterUnAuthen } from './consts';
+import Login from './account/compLogin';
+import ResetPass from './account/compResetPass';
+import SignUp from './account/compSignUp';
 
 const routersUnAuthen = [
     {
         title: 'Sing in',
-        path: '/',
+        path: RouterUnAuthen.signin,
         component: Login,
         exact: true,
     },
     {
         title: 'Sign up',
-        path: '/signup',
+        path: RouterUnAuthen.signup,
         component: SignUp,
     },
     {
         title: 'Reset pass',
-        path: '/resetpass',
+        path: RouterUnAuthen.resetpass,
         component: ResetPass,
     },
 ];

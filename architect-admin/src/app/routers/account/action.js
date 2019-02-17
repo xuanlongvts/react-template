@@ -53,7 +53,7 @@ export const getInforUserSuccess = inforUser => {
     };
 };
 
-export const updateProfile = inforAcc => {
+export const updateProfileCall = inforAcc => {
     return {
         type: nameConst.ACC_UPDATE_PROFILE,
         inforAcc,
@@ -72,7 +72,7 @@ export const updateProfileSuccess = succMess => {
     };
 };
 
-export const forgotPass = inforAcc => {
+export const forgotPassCall = inforAcc => {
     return {
         type: nameConst.ACC_FORGOT_PASS,
         inforAcc,
