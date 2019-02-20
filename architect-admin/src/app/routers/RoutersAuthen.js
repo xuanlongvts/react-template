@@ -5,6 +5,12 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
+import Send from '@material-ui/icons/Send';
+import SelectAll from '@material-ui/icons/SelectAll';
+import Markunread from '@material-ui/icons/Markunread';
+import NextWeek from '@material-ui/icons/NextWeek';
+import FontDownload from '@material-ui/icons/FontDownload';
+import Inbox from '@material-ui/icons/Inbox';
 
 import { RouterAuthen } from './consts';
 import AsyncComponent from '../components/_asynComponent';
@@ -60,25 +66,25 @@ const routersAuthen = [
                 title: 'Sub 2',
                 path: RouterAuthen.subnav2,
                 component: SubComp2,
-                icon: <LayersIcon />,
+                icon: <FontDownload />,
             },
             {
                 title: 'Sub 3',
                 path: RouterAuthen.subnav3,
                 component: SubComp3,
-                icon: <LayersIcon />,
+                icon: <NextWeek />,
                 sub: [
                     {
                         title: 'Sub 3 1',
                         path: RouterAuthen.subnav3_nav1,
                         component: SubComp3_1,
-                        icon: <LayersIcon />,
+                        icon: <Markunread />,
                     },
                     {
                         title: 'Sub 3 2',
                         path: RouterAuthen.subnav3_nav2,
                         component: SubComp3_2,
-                        icon: <LayersIcon />,
+                        icon: <Inbox />,
                     },
                 ],
             },
@@ -88,13 +94,13 @@ const routersAuthen = [
         title: 'Products',
         path: RouterAuthen.products,
         component: AsyncProducts,
-        icon: <LayersIcon />,
+        icon: <SelectAll />,
     },
     {
         title: 'Reddit api',
         path: RouterAuthen.apireddit,
         component: AsyncMyComApi,
-        icon: <LayersIcon />,
+        icon: <Send />,
     },
 ];
 
