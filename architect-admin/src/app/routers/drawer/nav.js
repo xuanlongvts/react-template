@@ -8,7 +8,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import RoutersAuthen from '../RoutersAuthen';
+import RoutersAuthen, { nameRouterApi } from '../RoutersAuthen';
 
 class Nav extends PureComponent {
     constructor(props) {
@@ -17,14 +17,16 @@ class Nav extends PureComponent {
 
     menuDyn(data) {
         let menuNew = [];
-        data.forEach((iMenu, key) => {
-            const { title, sub, exact, path, icon } = iMenu;
-
-            if (iMenu.hasOwnProperty('sub')) {
-                menuNew.push(this.renderItem(key, title, path, exact, icon, sub));
-                this.menuDyn(iMenu.sub);
-            } else {
-                menuNew.push(this.renderItem(key, title, path, exact, icon, false));
+        data.forEach((item, key) => {
+            const { title, name, sub, exact, path, icon } = item;
+            const isExistRouter = nameRouterApi.includes(name);
+            if (isExistRouter) {
+                if (item.hasOwnProperty('sub')) {
+                    menuNew.push(this.renderItem(key, title, path, exact, icon, sub));
+                    this.menuDyn(item.sub);
+                } else {
+                    menuNew.push(this.renderItem(key, title, path, exact, icon, false));
+                }
             }
         });
         return menuNew;

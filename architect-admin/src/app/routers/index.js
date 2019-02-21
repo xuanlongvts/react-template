@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Drawer from './drawer';
 import NotFound from '../components/NotFound';
 import RoutersUnAuthen from './RoutersUnAuthen';
-import RoutersAuthen from './RoutersAuthen';
+import RoutersAuthen, { nameRouterApi } from './RoutersAuthen';
 
 const styles = theme => ({
     appBarSpacer: theme.mixins.toolbar,
@@ -26,7 +26,7 @@ class Routers extends PureComponent {
         super(props);
         this.state = {
             isLogin: true,
-            routes: [],
+            routes: [], // not login is RoutersUnAuthen, else RoutersAuthen
             routesMatch: [],
         };
     }
@@ -48,21 +48,26 @@ class Routers extends PureComponent {
         return <Route key={key} {...route} />;
     }
 
+    notFoundRouter = () => <Route component={NotFound} />;
+
     listRouter(data) {
         const { routesMatch } = this.state;
 
         data.forEach((route, key) => {
-            if (route.hasOwnProperty('sub')) {
-                this.listRouter(route.sub);
+            const isExistRouter = nameRouterApi.includes(route.name);
+            if (isExistRouter) {
+                if (route.hasOwnProperty('sub')) {
+                    this.listRouter(route.sub);
 
-                const subSelf = {
-                    title: route.title,
-                    path: route.path,
-                    component: route.component,
-                };
-                routesMatch.push(this.onceRouter(key, subSelf));
-            } else {
-                routesMatch.push(this.onceRouter(key, route));
+                    const subSelf = {
+                        title: route.title,
+                        path: route.path,
+                        component: route.component,
+                    };
+                    routesMatch.push(this.onceRouter(key, subSelf));
+                } else {
+                    routesMatch.push(this.onceRouter(key, route));
+                }
             }
         });
 
@@ -78,7 +83,7 @@ class Routers extends PureComponent {
                 <BrowserRouter>
                     <Switch>
                         {this.listRouter(RoutersUnAuthen)}
-                        <Route component={NotFound} />
+                        {this.notFoundRouter()}
                     </Switch>
                 </BrowserRouter>
             );
@@ -92,7 +97,7 @@ class Routers extends PureComponent {
                         <div className={classes.appBarSpacer} />
                         <Switch>
                             {routes.length && this.listRouter(routes)}
-                            <Route component={NotFound} />
+                            {this.notFoundRouter()}
                         </Switch>
                     </main>
                 </div>
