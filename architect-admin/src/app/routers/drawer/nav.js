@@ -8,7 +8,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import RoutersAuthen, { nameRouterApi } from '../RoutersAuthen';
+import RoutersAuthen, { nameRouterApi, nameRouterApiFull } from '../RoutersAuthen';
 
 class Nav extends PureComponent {
     constructor(props) {

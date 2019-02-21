@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Drawer from './drawer';
 import NotFound from '../components/NotFound';
 import RoutersUnAuthen from './RoutersUnAuthen';
-import RoutersAuthen, { nameRouterApi } from './RoutersAuthen';
+import RoutersAuthen, { nameRouterApi, nameRouterApiFull } from './RoutersAuthen';
 
 const styles = theme => ({
     appBarSpacer: theme.mixins.toolbar,
@@ -27,7 +27,6 @@ class Routers extends PureComponent {
         this.state = {
             isLogin: true,
             routes: [], // not login is RoutersUnAuthen, else RoutersAuthen
-            routesMatch: [],
         };
     }
 
@@ -51,7 +50,7 @@ class Routers extends PureComponent {
     notFoundRouter = () => <Route component={NotFound} />;
 
     listRouter(data) {
-        const { routesMatch } = this.state;
+        const routesMatch = [];
 
         data.forEach((route, key) => {
             const isExistRouter = nameRouterApi.includes(route.name);
@@ -70,7 +69,6 @@ class Routers extends PureComponent {
                 }
             }
         });
-
         return routesMatch;
     }
 
