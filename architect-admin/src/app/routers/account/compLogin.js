@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link as RouterLink, withRouter } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
 
@@ -18,7 +19,7 @@ import TextField from '@material-ui/core/TextField';
 
 import { RouterUnAuthen } from '../consts';
 import styles from './style';
-import { validate, asyncValidate } from './validate';
+import { validate } from './validate';
 
 const renderTextField = ({ label, input, type, meta: { touched, invalid, error }, ...custom }) => (
     <TextField
@@ -40,6 +41,12 @@ const renderFromHelper = ({ touched, error }) => {
     }
 };
 
+const renderCheckbox = ({ input, label }) => (
+    <div>
+        <FormControlLabel control={<Checkbox checked={input.value ? true : false} onChange={input.onChange} />} label={label} />
+    </div>
+);
+
 class SignIn extends PureComponent {
     constructor(props) {
         super(props);
@@ -49,11 +56,12 @@ class SignIn extends PureComponent {
 
     handleSubmit = e => {
         e.preventDefault();
-        console.log('aaa');
+        const { handleSubmit, valEmail, valPassword } = this.props;
+        handleSubmit(valEmail, valPassword);
     };
 
     render() {
-        const { classes, pristine, submitting, reset } = this.props;
+        const { classes, pristine, submitting, reset, hasErr } = this.props;
 
         return (
             <main className={classes.main}>
@@ -68,26 +76,21 @@ class SignIn extends PureComponent {
                         <FormControl margin="normal" required fullWidth>
                             <Field name="email" type="email" component={renderTextField} label="Email" />
                         </FormControl>
-
                         <FormControl margin="normal" required fullWidth>
                             <Field name="password" type="password" component={renderTextField} label="Password" />
                         </FormControl>
-                        <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Remember me" />
+
+                        <Field name="remember" component={renderCheckbox} label="Remember me" />
+
+                        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} disabled={hasErr}>
+                            Sign in
+                        </Button>
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
-                            color="primary"
+                            color="secondary"
                             className={classes.submit}
-                            disabled={pristine || submitting}>
-                            Sign in
-                        </Button>
-
-                        <Button
-                            type="button"
-                            fullWidth
-                            variant="contained"
-                            color="primary"
                             disabled={pristine || submitting}
                             onClick={reset}>
                             Reset
@@ -113,6 +116,9 @@ SignIn.propTypes = {
     pristine: PropTypes.bool.isRequired,
     reset: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
+    valEmail: PropTypes.string,
+    valPassword: PropTypes.string,
+    hasErr: PropTypes.bool.isRequired,
 };
 
 renderTextField.propTypes = {
@@ -127,10 +133,26 @@ renderFromHelper.propTypes = {
     error: PropTypes.string,
 };
 
+renderCheckbox.propTypes = {
+    label: PropTypes.string.isRequired,
+    input: PropTypes.object,
+};
+
+const mapStateToProps = state => {
+    const getFrm = state.form.frmLogin;
+    const getVal = getFrm ? getFrm.values : {};
+    const getErr = getFrm ? getFrm.syncErrors : {};
+    const hasErr = getErr && (getErr.email || getErr.password) ? true : false;
+    return {
+        valEmail: getVal ? getVal.email : '',
+        valPassword: getVal ? getVal.password : '',
+        hasErr,
+    };
+};
+
 export default withRouter(
     reduxForm({
         form: 'frmLogin',
         validate,
-        asyncValidate,
-    })(withStyles(styles)(SignIn)),
+    })(withStyles(styles)(connect(mapStateToProps)(SignIn))),
 );

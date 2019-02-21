@@ -25,7 +25,7 @@ class Routers extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            isLogin: false,
+            isLogin: true,
             routes: [],
             routesMatch: [],
         };
