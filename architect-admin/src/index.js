@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
@@ -10,6 +10,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import './styles/index.css';
 import store from './app/stores';
 import Routes from './app/routers';
+import LoadingApp from './app/components/_base/loadingApp';
 
 const theme = createMuiTheme({
     palette: {
@@ -30,13 +31,15 @@ const theme = createMuiTheme({
 });
 
 ReactDOM.render(
-    <div className="App">
+    <Fragment>
         <Provider store={store()}>
             <MuiThemeProvider theme={theme}>
                 <CssBaseline />
                 <Routes />
+
+                <LoadingApp />
             </MuiThemeProvider>
         </Provider>
-    </div>,
+    </Fragment>,
     document.getElementById('root'),
 );

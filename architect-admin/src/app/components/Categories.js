@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Route, Switch } from 'react-router-dom';
 
-import NotFound from './NotFound';
+import NotFound from '../components/_base/notFound';
 
 class Catagories extends PureComponent {
     render() {

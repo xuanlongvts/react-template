@@ -20,6 +20,8 @@ import TextField from '@material-ui/core/TextField';
 import { RouterUnAuthen } from '../consts';
 import styles from './style';
 import { validate } from './validate';
+import { loginCall } from './action';
+import { loadingOpen } from '../../components/_base/loadingApp/action';
 
 const renderTextField = ({ label, input, type, meta: { touched, invalid, error }, ...custom }) => (
     <TextField
@@ -56,8 +58,13 @@ class SignIn extends PureComponent {
 
     handleSubmit = e => {
         e.preventDefault();
-        const { handleSubmit, valEmail, valPassword } = this.props;
-        handleSubmit(valEmail, valPassword);
+        const { loginCall, loadingOpen, valEmail, valPassword } = this.props;
+        const inforAcc = {
+            valEmail,
+            valPassword,
+        };
+        loadingOpen();
+        loginCall(inforAcc);
     };
 
     render() {
@@ -112,9 +119,10 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
     classes: PropTypes.object.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
+    loginCall: PropTypes.func.isRequired,
     pristine: PropTypes.bool.isRequired,
     reset: PropTypes.func.isRequired,
+    loadingOpen: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
     valEmail: PropTypes.string,
     valPassword: PropTypes.string,
@@ -143,6 +151,7 @@ const mapStateToProps = state => {
     const getVal = getFrm ? getFrm.values : {};
     const getErr = getFrm ? getFrm.syncErrors : {};
     const hasErr = getErr && (getErr.email || getErr.password) ? true : false;
+
     return {
         valEmail: getVal ? getVal.email : '',
         valPassword: getVal ? getVal.password : '',
@@ -150,9 +159,21 @@ const mapStateToProps = state => {
     };
 };
 
+const mapDispatchToProps = {
+    loginCall,
+    loadingOpen,
+};
+
 export default withRouter(
     reduxForm({
         form: 'frmLogin',
         validate,
-    })(withStyles(styles)(connect(mapStateToProps)(SignIn))),
+    })(
+        withStyles(styles)(
+            connect(
+                mapStateToProps,
+                mapDispatchToProps,
+            )(SignIn),
+        ),
+    ),
 );
