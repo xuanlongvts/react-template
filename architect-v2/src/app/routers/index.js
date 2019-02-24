@@ -53,7 +53,7 @@ class Routers extends PureComponent {
                 routesMatch.push(this.onceRouter(key, route));
             }
         });
-
+        console.log(routesMatch);
         return routesMatch;
     }
 

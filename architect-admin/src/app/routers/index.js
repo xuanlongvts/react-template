@@ -28,6 +28,7 @@ class Routers extends PureComponent {
         this.state = {
             routes: [], // not login is RoutersUnAuthen, else RoutersAuthen
             routeAuthen: [],
+            routesMatch: [],
         };
     }
 
@@ -48,7 +49,8 @@ class Routers extends PureComponent {
     notFoundRouter = () => <Route component={NotFound} />;
 
     authenRouterList(data, routeAuthen) {
-        const routesMatch = [];
+        const { routesMatch } = this.state; // decalre in state to hold value
+
         data.forEach((route, key) => {
             const isExistRouter = routeAuthen.includes(route.name);
             if (isExistRouter) {
@@ -66,6 +68,7 @@ class Routers extends PureComponent {
                 }
             }
         });
+
         return routesMatch;
     }
 
