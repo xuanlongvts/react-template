@@ -82,8 +82,7 @@
 .notFound {
   background: #ebeff2;
   text-align: center;
-  padding: 50px 0 150px;
-  margin-bottom: -70px; }
+  padding: 50px 0 150px; }
   .notFound .txt {
     color: #8c9ba0;
     font-size: 24px;

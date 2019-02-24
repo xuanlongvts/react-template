@@ -31,3 +31,7 @@ export const messAcc = {
     updateSucc: 'Update account success',
     resetSucc: 'Reset password success',
 };
+
+// ================================================ TMP  Remove later
+export const AUTHEN_FULL = `${NAMESPACE_ACCOUNT}AUTHEN_FULL`;
+export const AUTHEN_NOT_FULL = `${NAMESPACE_ACCOUNT}AUTHEN_NOT_FULL`;

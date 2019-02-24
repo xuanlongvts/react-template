@@ -44,6 +44,7 @@ export const nameRouterApiFull = [
     'redditApi',
 ];
 export const nameRouterApi = ['home', 'about', 'subNav', 'sub3', 'sub3_2', 'redditApi'];
+
 const nameRouter = {
     home: 'home',
     about: 'about',

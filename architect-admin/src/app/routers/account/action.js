@@ -19,6 +19,7 @@ export const loginSuccess = (memToken, succMess) => {
         succMess,
     };
 };
+// End login
 
 export const registerCall = inforAcc => {
     return {
@@ -39,6 +40,25 @@ export const registerSuccess = (memToken, succMess) => {
         succMess,
     };
 };
+// End register
+
+export const logoutCall = () => {
+    return {
+        type: nameConst.ACC_LOGOUT,
+    };
+};
+export const logoutSuccess = () => {
+    return {
+        type: nameConst.ACC_LOGOUT_SUCCESS,
+    };
+};
+export const logoutFaile = errMess => {
+    return {
+        type: nameConst.ACC_LOGOUT_FAILE,
+        errMess,
+    };
+};
+// End logout
 
 export const getInforUserFaile = errMess => {
     return {
@@ -52,6 +72,7 @@ export const getInforUserSuccess = inforUser => {
         inforUser,
     };
 };
+// End get infor user
 
 export const updateProfileCall = inforAcc => {
     return {
@@ -71,6 +92,7 @@ export const updateProfileSuccess = succMess => {
         succMess,
     };
 };
+// End update profile
 
 export const forgotPassCall = inforAcc => {
     return {
@@ -90,9 +112,25 @@ export const forgotPassSuccess = succMess => {
         succMess,
     };
 };
+// End forgot password
 
 export const accErrResetMess = () => {
     return {
         type: nameConst.ACC_ERR_RESET,
+    };
+};
+// End account reset mess error
+
+// ================================================ TMP  Remove later
+export const routerFull = () => {
+    return {
+        type: nameConst.AUTHEN_FULL,
+        isRouterFull: true,
+    };
+};
+export const routerNotFull = () => {
+    return {
+        type: nameConst.AUTHEN_NOT_FULL,
+        isRouterFull: false,
     };
 };

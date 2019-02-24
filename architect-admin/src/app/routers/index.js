@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -25,38 +26,34 @@ class Routers extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            isLogin: true,
             routes: [], // not login is RoutersUnAuthen, else RoutersAuthen
+            routeAuthen: [],
         };
     }
 
-    componentDidMount() {
-        const { isLogin } = this.state;
-        if (isLogin) {
-            this.setState({
+    static getDerivedStateFromProps(props) {
+        if (props.memToken) {
+            return {
                 routes: RoutersAuthen,
-            });
-        } else {
-            this.setState({
-                routes: RoutersUnAuthen,
-            });
+                routeAuthen: props.isRouterFull ? nameRouterApiFull : nameRouterApi,
+            };
         }
+        return {
+            routes: RoutersUnAuthen,
+        };
     }
 
-    onceRouter(key, route) {
-        return <Route key={key} {...route} />;
-    }
+    onceRouter = (key, route) => <Route key={key} {...route} />;
 
     notFoundRouter = () => <Route component={NotFound} />;
 
-    listRouterAuthen(data) {
+    authenRouterList(data, routeAuthen) {
         const routesMatch = [];
-
         data.forEach((route, key) => {
-            const isExistRouter = nameRouterApi.includes(route.name);
+            const isExistRouter = routeAuthen.includes(route.name);
             if (isExistRouter) {
                 if (route.hasOwnProperty('sub')) {
-                    this.listRouterAuthen(route.sub);
+                    this.authenRouterList(route.sub, routeAuthen);
 
                     const subSelf = {
                         title: route.title,
@@ -72,19 +69,19 @@ class Routers extends PureComponent {
         return routesMatch;
     }
 
-    listRouterUnAuthen(data) {
+    unAuthenRouterList(data) {
         return data.map((route, key) => this.onceRouter(key, route));
     }
 
     render() {
-        const { isLogin, routes } = this.state;
-        const { classes } = this.props;
+        const { routes, routeAuthen } = this.state;
+        const { classes, memToken } = this.props;
 
-        if (!isLogin) {
+        if (!memToken) {
             return (
                 <BrowserRouter>
                     <Switch>
-                        {routes.length && this.listRouterUnAuthen(RoutersUnAuthen)}
+                        {routes.length && this.unAuthenRouterList(RoutersUnAuthen)}
                         {this.notFoundRouter()}
                     </Switch>
                 </BrowserRouter>
@@ -98,7 +95,7 @@ class Routers extends PureComponent {
                     <main className={classes.content}>
                         <div className={classes.appBarSpacer} />
                         <Switch>
-                            {routes.length && this.listRouterAuthen(routes)}
+                            {routeAuthen.length && this.authenRouterList(routes, routeAuthen)}
                             {this.notFoundRouter()}
                         </Switch>
                     </main>
@@ -110,6 +107,15 @@ class Routers extends PureComponent {
 
 Routers.propTypes = {
     classes: PropTypes.object.isRequired,
+    isRouterFull: PropTypes.bool.isRequired, // remover later
+    memToken: PropTypes.string,
 };
 
-export default withStyles(styles)(Routers);
+const mapStateToProps = state => {
+    return {
+        isRouterFull: state.reducerAccount.get('isRouterFull'),
+        memToken: state.reducerAccount.get('memToken'),
+    };
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(Routers));

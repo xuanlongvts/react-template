@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Route, Link, withRouter } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
@@ -13,28 +14,39 @@ import RoutersAuthen, { nameRouterApi, nameRouterApiFull } from '../RoutersAuthe
 class Nav extends PureComponent {
     constructor(props) {
         super(props);
+
+        this.state = {
+            routeAuthen: [],
+        };
     }
 
-    menuDyn(data) {
+    static getDerivedStateFromProps(props) {
+        return {
+            routeAuthen: props.isRouterFull ? nameRouterApiFull : nameRouterApi,
+        };
+    }
+
+    menuDyn(data, routeAuthen) {
         let menuNew = [];
         data.forEach((item, key) => {
             const { title, name, sub, exact, path, icon } = item;
-            const isExistRouter = nameRouterApi.includes(name);
+            const isExistRouter = routeAuthen.includes(name);
             if (isExistRouter) {
                 if (item.hasOwnProperty('sub')) {
-                    menuNew.push(this.renderItem(key, title, path, exact, icon, sub));
-                    this.menuDyn(item.sub);
+                    menuNew.push(this.renderItem(routeAuthen, key, title, path, exact, icon, sub));
+                    this.menuDyn(item.sub, routeAuthen);
                 } else {
-                    menuNew.push(this.renderItem(key, title, path, exact, icon, false));
+                    menuNew.push(this.renderItem(routeAuthen, key, title, path, exact, icon, false));
                 }
             }
         });
         return menuNew;
     }
 
-    renderItem(key, name, path, exact, icon, isSub) {
+    renderItem(routeAuthen, key, name, path, exact, icon, isSub) {
         let link;
         let sub = [];
+
         const { open } = this.props;
         link = (
             <Route key={key} path={path} exact={exact}>
@@ -60,7 +72,7 @@ class Nav extends PureComponent {
                     return (
                         <li className={`${isActive}${hasSub}`}>
                             {linkElement}
-                            {isSub && <ul className="sub">{this.menuDyn(isSub)}</ul>}
+                            {isSub && <ul className="sub">{this.menuDyn(isSub, routeAuthen)}</ul>}
                         </li>
                     );
                 }}
@@ -71,7 +83,9 @@ class Nav extends PureComponent {
     }
 
     render() {
-        return <ul className="nav">{this.menuDyn(RoutersAuthen)}</ul>;
+        const { routeAuthen } = this.state;
+
+        return <ul className="nav">{routeAuthen.length && this.menuDyn(RoutersAuthen, routeAuthen)}</ul>;
     }
 }
 
@@ -79,4 +93,10 @@ Nav.propTypes = {
     open: PropTypes.bool.isRequired,
 };
 
-export default withRouter(Nav);
+const mapStateToProps = state => {
+    return {
+        isRouterFull: state.reducerAccount.get('isRouterFull'),
+    };
+};
+
+export default withRouter(connect(mapStateToProps)(Nav));

@@ -8,11 +8,11 @@ export default () => (
         <div className="container">
             <img src={imgNotFound} alt="Not found" />
             <p className="txt">Opps! Sorry, we could not find this page</p>
-            <Button variant="contained" color="primary">
-                <Link to="/" style={{ color: '#fff', textDecoration: 'none' }}>
+            <Link to="/" style={{ color: '#fff', textDecoration: 'none' }}>
+                <Button variant="contained" color="primary">
                     Go home
-                </Link>
-            </Button>
+                </Button>
+            </Link>
         </div>
     </div>
 );
