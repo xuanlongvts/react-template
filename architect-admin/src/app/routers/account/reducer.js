@@ -4,7 +4,7 @@ import * as nameConst from './const';
 
 const initState = fromJS({
     errMess: null,
-    memToken: null,
+    memToken: '123',
     inforUser: null,
     isRouterFull: false, // tmp remove later
 });

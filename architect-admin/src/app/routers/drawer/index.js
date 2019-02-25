@@ -1,8 +1,9 @@
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
+
 import Drawer from '@material-ui/core/Drawer';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -18,7 +19,10 @@ import Avatar from '@material-ui/core/Avatar';
 
 import Footer from '../footer';
 import Nav from './nav';
-import imgNongNo from '../../../images/nong.jpg';
+import { RouterAuthen } from '../consts';
+import imgLogo from '../../../images/logo.svg';
+
+import AccountMenu from './account';
 
 const drawerWidth = 240;
 const styles = theme => ({
@@ -123,6 +127,8 @@ class DrawerComp extends PureComponent {
                                 <NotificationsIcon />
                             </Badge>
                         </IconButton>
+
+                        <AccountMenu />
                     </Toolbar>
                 </AppBar>
                 <Drawer
@@ -132,7 +138,9 @@ class DrawerComp extends PureComponent {
                     }}
                     open={open}>
                     <div className={classes.toolbarIcon}>
-                        <Avatar alt="Remy Sharp" src={imgNongNo} className={classes.avatar} />
+                        <Link to={RouterAuthen.home}>
+                            <Avatar alt="Remy Sharp" src={imgLogo} />
+                        </Link>
                         <IconButton onClick={this.handleDrawerClose}>
                             <ChevronLeftIcon />
                         </IconButton>

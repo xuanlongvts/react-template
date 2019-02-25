@@ -120,6 +120,12 @@
     .loadingComponent {
       height: 500px; } }
 
+.boxAccount {
+  position: relative;
+  margin-left: 20px; }
+  .boxAccount:hover {
+    cursor: pointer; }
+
 body {
   padding: 0;
   margin: 0;

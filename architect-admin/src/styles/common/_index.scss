@@ -51,3 +51,12 @@
         height: 500px;
     }
 }
+
+.boxAccount {
+    position: relative;
+    margin-left: 20px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
