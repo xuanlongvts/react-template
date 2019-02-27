@@ -138,7 +138,7 @@ class DrawerComp extends PureComponent {
                     }}
                     open={open}>
                     <div className={classes.toolbarIcon}>
-                        <Link to={RouterApp.home}>
+                        <Link to={RouterApp.dashboard}>
                             <Avatar alt="Remy Sharp" src={imgLogo} />
                         </Link>
                         <IconButton onClick={this.handleDrawerClose}>

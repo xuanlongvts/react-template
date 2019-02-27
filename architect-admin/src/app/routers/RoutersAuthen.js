@@ -74,6 +74,7 @@ const routersAuthen = [
         name: nameRouter.signin,
         path: RouterApp.signin,
         component: AsyncLogin,
+        icon: <DashboardIcon />,
         exact: true,
     },
     {
@@ -81,12 +82,14 @@ const routersAuthen = [
         name: nameRouter.signup,
         path: RouterApp.signup,
         component: AsyncResetSignUp,
+        icon: <DashboardIcon />,
     },
     {
         title: 'Reset pass',
         name: nameRouter.resetpass,
         path: RouterApp.resetpass,
         component: AsyncResetPass,
+        icon: <DashboardIcon />,
     },
     {
         title: 'Dashboard',
