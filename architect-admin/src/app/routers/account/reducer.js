@@ -1,10 +1,11 @@
 import { fromJS } from 'immutable';
 
 import * as nameConst from './const';
+import localStogeAdapter from '../../_utils/localStorage';
 
 const initState = fromJS({
     errMess: null,
-    memToken: '123',
+    memToken: localStogeAdapter.getItemJson('memToken') || null,
     inforUser: null,
     isRouterFull: false, // tmp remove later
 });

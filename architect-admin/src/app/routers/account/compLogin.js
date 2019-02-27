@@ -17,22 +17,13 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextField from '@material-ui/core/TextField';
 
-import { RouterUnAuthen } from '../consts';
+import RouterApp from '../consts';
 import styles from './style';
 import { validate } from './validate';
 import { loginCall } from './action';
-import { loadingOpen } from '../../components/_base/loadingApp/action';
 
 const renderTextField = ({ label, input, type, meta: { touched, invalid, error }, ...custom }) => (
-    <TextField
-        label={label}
-        type={type}
-        placeholder={label}
-        error={touched && invalid}
-        helperText={touched && error}
-        {...input}
-        {...custom}
-    />
+    <TextField label={label} type={type} placeholder={label} error={touched && invalid} helperText={touched && error} {...input} {...custom} />
 );
 
 const renderFromHelper = ({ touched, error }) => {
@@ -58,12 +49,11 @@ class SignIn extends PureComponent {
 
     handleSubmit = e => {
         e.preventDefault();
-        const { loginCall, loadingOpen, valEmail, valPassword } = this.props;
+        const { loginCall, valEmail, valPassword } = this.props;
         const inforAcc = {
             valEmail,
             valPassword,
         };
-        loadingOpen();
         loginCall(inforAcc);
     };
 
@@ -104,10 +94,10 @@ class SignIn extends PureComponent {
                         </Button>
                     </form>
                     <div className={classes.linkMore}>
-                        <Link component={RouterLink} to={RouterUnAuthen.signup} color="textPrimary">
+                        <Link component={RouterLink} to={RouterApp.signup} color="textPrimary">
                             Sign up
                         </Link>
-                        <Link component={RouterLink} to={RouterUnAuthen.resetpass} color="textPrimary">
+                        <Link component={RouterLink} to={RouterApp.resetpass} color="textPrimary">
                             Forgot password?
                         </Link>
                     </div>
@@ -122,7 +112,6 @@ SignIn.propTypes = {
     loginCall: PropTypes.func.isRequired,
     pristine: PropTypes.bool.isRequired,
     reset: PropTypes.func.isRequired,
-    loadingOpen: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired,
     valEmail: PropTypes.string,
     valPassword: PropTypes.string,
@@ -161,7 +150,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     loginCall,
-    loadingOpen,
 };
 
 export default withRouter(

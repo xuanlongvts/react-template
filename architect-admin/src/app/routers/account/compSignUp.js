@@ -15,20 +15,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextField from '@material-ui/core/TextField';
 
-import { RouterUnAuthen } from '../consts';
+import RouterApp from '../consts';
 import styles from './style';
 import { validate, asyncValidate } from './validate';
 
 const renderTextField = ({ label, input, type, meta: { touched, invalid, error }, ...custom }) => (
-    <TextField
-        label={label}
-        type={type}
-        placeholder={label}
-        error={touched && invalid}
-        helperText={touched && error}
-        {...input}
-        {...custom}
-    />
+    <TextField label={label} type={type} placeholder={label} error={touched && invalid} helperText={touched && error} {...input} {...custom} />
 );
 
 const renderFromHelper = ({ touched, error }) => {
@@ -90,10 +82,10 @@ class SignUp extends PureComponent {
                         </Button>
                     </form>
                     <div className={classes.linkMore}>
-                        <Link component={RouterLink} to={RouterUnAuthen.signin} color="textPrimary">
+                        <Link component={RouterLink} to={RouterApp.signin} color="textPrimary">
                             Sign in
                         </Link>
-                        <Link component={RouterLink} to={RouterUnAuthen.resetpass} color="textPrimary">
+                        <Link component={RouterLink} to={RouterApp.resetpass} color="textPrimary">
                             Forgot password?
                         </Link>
                     </div>

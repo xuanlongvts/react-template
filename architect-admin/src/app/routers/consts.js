@@ -1,4 +1,8 @@
-const home = '/';
+const signin = '/';
+const signup = '/signup';
+const resetpass = '/resetpass';
+
+const dashboard = '/dashboard';
 const about = '/about';
 const categories = '/categories';
 const products = '/products';
@@ -11,25 +15,21 @@ const subnav3 = `${subnav}/sub3`;
 const subnav3_nav1 = `${subnav3}/nav1`;
 const subnav3_nav2 = `${subnav3}/nav2`;
 
-export const RouterAuthen = {
-    home: home,
-    about: about,
-    categories: categories,
-    products: products,
-    apireddit: apireddit,
-
-    subnav: subnav,
-    subnav1: subnav1,
-    subnav2: subnav2,
-    subnav3: subnav3,
-    subnav3_nav1: subnav3_nav1,
-    subnav3_nav2: subnav3_nav2,
-};
-
-const signup = '/signup';
-const resetpass = '/resetpass';
-export const RouterUnAuthen = {
-    signin: home,
+export default {
+    signin,
     signup,
     resetpass,
+
+    dashboard,
+    about,
+    categories,
+    products,
+    apireddit,
+
+    subnav,
+    subnav1,
+    subnav2,
+    subnav3,
+    subnav3_nav1,
+    subnav3_nav2,
 };

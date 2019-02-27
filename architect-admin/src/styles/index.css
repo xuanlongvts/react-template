@@ -28,7 +28,7 @@
     display: block;
     position: relative;
     width: 100%; }
-    .nav li .MuiButtonBase-root-60:hover, .nav li .MuiButtonBase-root-60:focus {
+    .nav li .linkTo:hover, .nav li .linkTo:focus {
       background: none; }
     .nav li.active > .sub {
       animation: fadeIn 0.3s ease-out;
@@ -36,6 +36,8 @@
     .nav li.active > .levDirec {
       background: #ebebeb;
       border-bottom: 1px solid #fff; }
+    .nav li.active.hasSub > .levDirec {
+      background: none; }
     .nav li a {
       display: inline-block;
       width: 100%;

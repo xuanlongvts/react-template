@@ -1,4 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -10,8 +13,9 @@ import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import imgNongNo from '../../../images/nong.jpg';
+import { logoutCall } from '../account/action';
 
-function AccountMenu() {
+const AccountMenu = props => {
     const [open, setOpen] = React.useState(false);
     const anchorEl = React.useRef(null);
 
@@ -27,6 +31,12 @@ function AccountMenu() {
         setOpen(false);
     }
 
+    function handleLogout(e) {
+        handleClose(e);
+        const { logoutCall } = props;
+        logoutCall();
+    }
+
     return (
         <div className="boxAccount">
             <Button buttonRef={anchorEl} aria-owns={open ? 'menu-list-grow' : undefined} aria-haspopup="true" onMouseEnter={handleToggle}>
@@ -40,7 +50,7 @@ function AccountMenu() {
                                 <MenuList>
                                     <MenuItem onClick={handleClose}>Profile</MenuItem>
                                     <MenuItem onClick={handleClose}>My account</MenuItem>
-                                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                                    <MenuItem onClick={e => handleLogout(e)}>Logout</MenuItem>
                                 </MenuList>
                             </ClickAwayListener>
                         </Paper>
@@ -49,6 +59,24 @@ function AccountMenu() {
             </Popper>
         </div>
     );
-}
+};
 
-export default AccountMenu;
+AccountMenu.propTypes = {
+    logoutCall: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = {
+    logoutCall,
+};
+
+export default connect(
+    null,
+    mapDispatchToProps,
+)(AccountMenu);
+
+// export default withRouter(
+//     connect(
+//         null,
+//         mapDispatchToProps,
+//     )(AccountMenu),
+// );

@@ -1,6 +1,8 @@
 import * as nameConst from './const';
+import { loadingOpen } from '../../components/_base/loadingApp/action';
 
 export const loginCall = inforAcc => {
+    loadingOpen();
     return {
         type: nameConst.ACC_LOGIN,
         inforAcc,

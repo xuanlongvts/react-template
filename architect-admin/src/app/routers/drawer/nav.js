@@ -56,7 +56,7 @@ class Nav extends PureComponent {
                     const openStatus = !open ? 'notOpen' : '';
                     let linkElement = (
                         <Link to={path} className={`levDirec ${openStatus}`}>
-                            <ListItem button>
+                            <ListItem button className="linkTo">
                                 <ListItemIcon>{icon && icon}</ListItemIcon>
                                 <ListItemText primary={name} />
                                 {hasSub && isActive ? <ExpandLess /> : hasSub && <ExpandMore />}

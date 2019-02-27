@@ -19,7 +19,7 @@ import Avatar from '@material-ui/core/Avatar';
 
 import Footer from '../footer';
 import Nav from './nav';
-import { RouterAuthen } from '../consts';
+import RouterApp from '../consts';
 import imgLogo from '../../../images/logo.svg';
 
 import AccountMenu from './account';
@@ -138,7 +138,7 @@ class DrawerComp extends PureComponent {
                     }}
                     open={open}>
                     <div className={classes.toolbarIcon}>
-                        <Link to={RouterAuthen.home}>
+                        <Link to={RouterApp.home}>
                             <Avatar alt="Remy Sharp" src={imgLogo} />
                         </Link>
                         <IconButton onClick={this.handleDrawerClose}>

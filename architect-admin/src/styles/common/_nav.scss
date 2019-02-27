@@ -6,7 +6,7 @@
         position: relative;
         width: 100%;
 
-        .MuiButtonBase-root-60 {
+        .linkTo {
             &:hover,
             &:focus {
                 background: none;
@@ -24,6 +24,12 @@
             > .levDirec {
                 background: #ebebeb;
                 border-bottom: 1px solid #fff;
+            }
+
+            &.hasSub {
+                > .levDirec {
+                    background: none;
+                }
             }
         }
 
