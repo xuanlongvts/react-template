@@ -24,7 +24,7 @@ import SubComp3_2 from '../components/subNav/sub3_2';
 
 const AsyncLogin = AsyncComponent(lazy(() => import('./account/compLogin')));
 const AsyncResetPass = AsyncComponent(lazy(() => import('./account/compResetPass')));
-const AsyncResetSignUp = AsyncComponent(lazy(() => import('./account/compSignUp')));
+const AsyncSignUp = AsyncComponent(lazy(() => import('./account/compSignUp')));
 
 const AsyncAbout = AsyncComponent(lazy(() => import('../components/About')));
 const AsyncCatagories = AsyncComponent(lazy(() => import('../components/Categories')));
@@ -34,23 +34,12 @@ const AsyncMyComApi = AsyncComponent(lazy(() => import('../components/redditApi'
 
 const AsyncDashboard = AsyncComponent(lazy(() => import('../components/dashboard')));
 
-export const nameRouterApiFull = [
-    'signin',
-    'signup',
-    'resetpass',
-    'dashboard',
-    'about',
-    'categories',
-    'subNav',
-    'sub1',
-    'sub2',
-    'sub3',
-    'sub3_1',
-    'sub3_2',
-    'products',
-    'redditApi',
-];
-export const nameRouterApi = ['signin', 'signup', 'resetpass', 'dashboard', 'about', 'subNav', 'sub3', 'sub3_2', 'redditApi'];
+export const AccUnAuthen = ['signin', 'signup', 'resetpass'];
+const routerApiFull = ['dashboard', 'about', 'categories', 'subNav', 'sub1', 'sub2', 'sub3', 'sub3_1', 'sub3_2', 'products', 'redditApi'];
+const routerApi = ['dashboard', 'about', 'subNav', 'sub3', 'sub3_2', 'redditApi'];
+
+export const nameRouterApiFull = routerApiFull.concat(AccUnAuthen);
+export const nameRouterApiLess = routerApi.concat(AccUnAuthen);
 
 const nameRouter = {
     signin: 'signin',
@@ -68,28 +57,29 @@ const nameRouter = {
     products: 'products',
     redditApi: 'redditApi',
 };
+
 const routersAuthen = [
     {
         title: 'Sing in',
         name: nameRouter.signin,
         path: RouterApp.signin,
         component: AsyncLogin,
-        icon: <DashboardIcon />,
         exact: true,
+        isAccUn: true,
     },
     {
         title: 'Sign up',
         name: nameRouter.signup,
         path: RouterApp.signup,
-        component: AsyncResetSignUp,
-        icon: <DashboardIcon />,
+        component: AsyncSignUp,
+        isAccUn: true,
     },
     {
         title: 'Reset pass',
         name: nameRouter.resetpass,
         path: RouterApp.resetpass,
         component: AsyncResetPass,
-        icon: <DashboardIcon />,
+        isAccUn: true,
     },
     {
         title: 'Dashboard',

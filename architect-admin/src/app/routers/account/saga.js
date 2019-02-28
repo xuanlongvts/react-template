@@ -1,7 +1,7 @@
 import { put, take, fork, delay } from 'redux-saga/effects';
-import { push } from 'react-router-redux';
-
+import { createBrowserHistory } from 'history';
 import localStogeAdapter from '../../_utils/localStorage';
+import RouterURL from '../consts';
 import * as nameConst from './const';
 import { loadingOpen, loadingClose } from '../../components/_base/loadingApp/action';
 import { routerFull, routerNotFull, loginSuccess, logoutSuccess } from './action';
@@ -19,8 +19,11 @@ function* login() {
             yield put(routerNotFull());
         }
         yield put(loadingClose());
-        yield put(loginSuccess('123', 'Success'));
         localStogeAdapter.setItemJson('memToken', '123');
+        yield put(loginSuccess('123', 'Success'));
+
+        createBrowserHistory().push(RouterURL.dashboard);
+        // window.location.href = RouterURL.dashboard;
     }
 }
 
@@ -30,11 +33,12 @@ function* logout() {
         yield put(loadingOpen());
         yield delay(1000);
 
+        localStogeAdapter.removeItem('memToken');
         yield put(logoutSuccess());
         yield put(loadingClose());
-        localStogeAdapter.removeItem('memToken');
-        window.location.href = '/';
-        // yield put(push('/'));
+
+        createBrowserHistory().push(RouterURL.signin);
+        // window.location.href = RouterURL.signin;
     }
 }
 

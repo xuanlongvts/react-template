@@ -9,7 +9,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import RoutersAuthen, { nameRouterApi, nameRouterApiFull } from '../RoutersAuthen';
+import RoutersAuthen, { nameRouterApiLess, nameRouterApiFull } from '../RoutersAuthen';
 
 class Nav extends PureComponent {
     constructor(props) {
@@ -22,7 +22,7 @@ class Nav extends PureComponent {
 
     static getDerivedStateFromProps(props) {
         return {
-            routeAuthen: props.isRouterFull ? nameRouterApiFull : nameRouterApi,
+            routeAuthen: props.isRouterFull ? nameRouterApiFull : nameRouterApiLess,
         };
     }
 
@@ -30,7 +30,7 @@ class Nav extends PureComponent {
         let menuNew = [];
         data.forEach((item, key) => {
             const { title, name, sub, exact, path, icon } = item;
-            const isExistRouter = routeAuthen.includes(name);
+            const isExistRouter = routeAuthen.includes(name) && !item.isAccUn;
             if (isExistRouter) {
                 if (item.hasOwnProperty('sub')) {
                     menuNew.push(this.renderItem(routeAuthen, key, title, path, exact, icon, sub));

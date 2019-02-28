@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 import Drawer from './drawer';
 import NotFound from '../components/_base/notFound';
-import RoutersApp, { nameRouterApi, nameRouterApiFull } from './RoutersAuthen';
+import RoutersApp, { nameRouterApiLess, nameRouterApiFull } from './RoutersAuthen';
 
 const styles = theme => ({
     appBarSpacer: theme.mixins.toolbar,
@@ -30,16 +30,20 @@ class Routers extends PureComponent {
         };
     }
 
-    // static getDerivedStateFromProps(props) {
-    //     if (props.memToken) {
-    //         return {
-    //             routeAuthen: props.isRouterFull ? nameRouterApiFull : nameRouterApi,
-    //         };
-    //     }
-    //     return {
-    //         routeAuthen: nameRouterApi,
-    //     };
-    // }
+    static getDerivedStateFromProps(props) {
+        if (props.memToken) {
+            return {
+                routeAuthen: props.isRouterFull ? nameRouterApiFull : nameRouterApiLess,
+            };
+        }
+        return null;
+    }
+
+    componentDidMount() {
+        this.setState({
+            routeAuthen: nameRouterApiFull,
+        });
+    }
 
     onceRouter = (key, route) => <Route key={key} {...route} />;
 
@@ -71,19 +75,21 @@ class Routers extends PureComponent {
 
     render() {
         const { routeAuthen } = this.state;
-        const { classes } = this.props;
+        const { classes, memToken } = this.props;
 
         return (
             <BrowserRouter>
                 <div className={classes.root}>
-                    <Drawer />
-                    <main className={classes.content}>
-                        <div className={classes.appBarSpacer} />
-                        <Switch>
-                            {RoutersApp.length && this.authenRouterList(RoutersApp, routeAuthen)}
-                            {this.notFoundRouter()}
-                        </Switch>
-                    </main>
+                    <Fragment>
+                        <Drawer />
+                        <main className={classes.content}>
+                            <div className={classes.appBarSpacer} />
+                            <Switch>
+                                {RoutersApp.length && this.authenRouterList(RoutersApp, routeAuthen)}
+                                {this.notFoundRouter()}
+                            </Switch>
+                        </main>
+                    </Fragment>
                 </div>
             </BrowserRouter>
         );
