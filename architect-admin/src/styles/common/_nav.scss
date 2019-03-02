@@ -1,3 +1,5 @@
+$bgHover: #ebebeb;
+
 .nav {
     justify-content: center;
 
@@ -5,6 +7,15 @@
         display: block;
         position: relative;
         width: 100%;
+
+        &.hasSub {
+            &:hover {
+                background: $bgHover;
+                > .sub {
+                    display: block;
+                }
+            }
+        }
 
         .linkTo {
             &:hover,
@@ -22,7 +33,7 @@
 
         &.active {
             > .levDirec {
-                background: #ebebeb;
+                background: $bgHover;
                 border-bottom: 1px solid #fff;
             }
 

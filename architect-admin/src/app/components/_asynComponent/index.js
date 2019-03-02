@@ -1,5 +1,8 @@
 import React, { PureComponent, Suspense } from 'react';
 import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import { withRouter } from 'react-router-dom';
+
 import LoadingComp from '../_base/loadingComp';
 
 export default ImportComponent => {
@@ -9,8 +12,9 @@ export default ImportComponent => {
         }
 
         componentDidMount() {
-            const { memToken } = this.props;
+            const { memToken, push } = this.props;
             console.log('mem: ', memToken);
+            !memToken && push('/');
         }
 
         render() {
@@ -30,5 +34,14 @@ export default ImportComponent => {
         };
     };
 
-    return connect(mapStateToProps)(AsyncComponent);
+    const mapDispatchToProps = {
+        push,
+    };
+
+    return withRouter(
+        connect(
+            mapStateToProps,
+            mapDispatchToProps,
+        )(AsyncComponent),
+    );
 };

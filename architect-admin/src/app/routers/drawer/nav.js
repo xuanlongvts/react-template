@@ -10,6 +10,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import Tooltip from '@material-ui/core/Tooltip';
 
 import RoutersAuthen, { nameRouterApiLess, nameRouterApiFull } from '../RoutersAuthen';
+import localStogeAdapter from '../../_utils/localStorage';
 
 class Nav extends PureComponent {
     constructor(props) {
@@ -21,9 +22,8 @@ class Nav extends PureComponent {
     }
 
     static getDerivedStateFromProps(props) {
-        // props.history.replace('/aaa');
         return {
-            routeAuthen: props.isRouterFull ? nameRouterApiFull : nameRouterApiLess,
+            routeAuthen: props.isRouterFull || localStogeAdapter.getItemJson('memToken') === 'admin' ? nameRouterApiFull : nameRouterApiLess,
         };
     }
 
@@ -55,13 +55,19 @@ class Nav extends PureComponent {
                     const isActive = match ? 'active ' : '';
                     const hasSub = isSub ? 'hasSub' : '';
                     const openStatus = !open ? 'notOpen' : '';
-                    let linkElement = (
+
+                    const eachItem = (
+                        <ListItem button className="linkTo">
+                            <ListItemIcon>{icon && icon}</ListItemIcon>
+                            <ListItemText primary={name} />
+                            {hasSub && isActive ? <ExpandLess /> : hasSub && <ExpandMore />}
+                        </ListItem>
+                    );
+                    let linkElement = hasSub ? (
+                        <div className={`levDirec subParent ${openStatus} `}>{eachItem}</div>
+                    ) : (
                         <Link to={path} className={`levDirec ${openStatus}`}>
-                            <ListItem button className="linkTo">
-                                <ListItemIcon>{icon && icon}</ListItemIcon>
-                                <ListItemText primary={name} />
-                                {hasSub && isActive ? <ExpandLess /> : hasSub && <ExpandMore />}
-                            </ListItem>
+                            {eachItem}
                         </Link>
                     );
                     !open &&

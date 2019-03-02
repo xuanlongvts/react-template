@@ -15,20 +15,18 @@ import Inbox from '@material-ui/icons/Inbox';
 import RouterApp from './consts';
 import AsyncComponent from '../components/_asynComponent';
 
-import SubCompIndex from '../components/subNav';
-import SubComp1 from '../components/subNav/sub1';
-import SubComp2 from '../components/subNav/sub2';
-import SubComp3 from '../components/subNav/sub3';
-import SubComp3_1 from '../components/subNav/sub3_1';
-import SubComp3_2 from '../components/subNav/sub3_2';
-
 const AsyncLogin = AsyncComponent(lazy(() => import('./account/compLogin')));
 const AsyncResetPass = AsyncComponent(lazy(() => import('./account/compResetPass')));
 const AsyncSignUp = AsyncComponent(lazy(() => import('./account/compSignUp')));
 
 const AsyncAbout = AsyncComponent(lazy(() => import('../components/About')));
 const AsyncCatagories = AsyncComponent(lazy(() => import('../components/Categories')));
-// const AsyncSubNav = AsyncComponent(lazy(() => import('../components/subNav')));
+const AsyncSubCompIndex = AsyncComponent(lazy(() => import('../components/subNav')));
+const AsyncSubComp1 = AsyncComponent(lazy(() => import('../components/subNav/sub1')));
+const AsyncSubComp2 = AsyncComponent(lazy(() => import('../components/subNav/sub2')));
+const AsyncSubComp3 = AsyncComponent(lazy(() => import('../components/subNav/sub3')));
+const AsyncSubComp3_1 = AsyncComponent(lazy(() => import('../components/subNav/sub3_1')));
+const AsyncSubComp3_2 = AsyncComponent(lazy(() => import('../components/subNav/sub3_2')));
 const AsyncProducts = AsyncComponent(lazy(() => import('../components/products')));
 const AsyncMyComApi = AsyncComponent(lazy(() => import('../components/redditApi')));
 
@@ -38,8 +36,11 @@ export const AccUnAuthen = ['signin', 'signup', 'resetpass'];
 const routerApiFull = ['dashboard', 'about', 'categories', 'subNav', 'sub1', 'sub2', 'sub3', 'sub3_1', 'sub3_2', 'products', 'redditApi'];
 const routerApi = ['dashboard', 'about', 'subNav', 'sub3', 'sub3_2', 'redditApi'];
 
-export const nameRouterApiFull = routerApiFull.concat(AccUnAuthen);
-export const nameRouterApiLess = routerApi.concat(AccUnAuthen);
+// export const nameRouterApiFull = routerApiFull.concat(AccUnAuthen);
+// export const nameRouterApiLess = routerApi.concat(AccUnAuthen);
+
+export const nameRouterApiFull = routerApiFull;
+export const nameRouterApiLess = routerApi;
 
 const nameRouter = {
     signin: 'signin',
@@ -84,28 +85,6 @@ export const routerUnAuthen = [
 ];
 
 const routersAuthen = [
-    // {
-    //     title: 'Sing in',
-    //     name: nameRouter.signin,
-    //     path: RouterApp.signin,
-    //     component: AsyncLogin,
-    //     exact: true,
-    //     isAccUn: true,
-    // },
-    // {
-    //     title: 'Sign up',
-    //     name: nameRouter.signup,
-    //     path: RouterApp.signup,
-    //     component: AsyncSignUp,
-    //     isAccUn: true,
-    // },
-    // {
-    //     title: 'Reset pass',
-    //     name: nameRouter.resetpass,
-    //     path: RouterApp.resetpass,
-    //     component: AsyncResetPass,
-    //     isAccUn: true,
-    // },
     {
         title: 'Dashboard',
         name: nameRouter.dashboard,
@@ -132,42 +111,42 @@ const routersAuthen = [
         title: 'Sub nav',
         name: nameRouter.subNav,
         path: RouterApp.subnav,
-        component: SubCompIndex,
+        component: AsyncSubCompIndex,
         icon: <BarChartIcon />,
         sub: [
             {
                 title: 'Sub 1',
                 name: nameRouter.sub1,
                 path: RouterApp.subnav1,
-                component: SubComp1,
+                component: AsyncSubComp1,
                 icon: <LayersIcon />,
             },
             {
                 title: 'Sub 2',
                 name: nameRouter.sub2,
                 path: RouterApp.subnav2,
-                component: SubComp2,
+                component: AsyncSubComp2,
                 icon: <FontDownload />,
             },
             {
                 title: 'Sub 3',
                 name: nameRouter.sub3,
                 path: RouterApp.subnav3,
-                component: SubComp3,
+                component: AsyncSubComp3,
                 icon: <NextWeek />,
                 sub: [
                     {
                         title: 'Sub 3 1',
                         name: nameRouter.sub3_1,
                         path: RouterApp.subnav3_nav1,
-                        component: SubComp3_1,
+                        component: AsyncSubComp3_1,
                         icon: <Markunread />,
                     },
                     {
                         title: 'Sub 3 2',
                         name: nameRouter.sub3_2,
                         path: RouterApp.subnav3_nav2,
-                        component: SubComp3_2,
+                        component: AsyncSubComp3_2,
                         icon: <Inbox />,
                     },
                 ],

@@ -28,6 +28,10 @@
     display: block;
     position: relative;
     width: 100%; }
+    .nav li.hasSub:hover {
+      background: #ebebeb; }
+      .nav li.hasSub:hover > .sub {
+        display: block; }
     .nav li .linkTo:hover, .nav li .linkTo:focus {
       background: none; }
     .nav li.active > .sub {

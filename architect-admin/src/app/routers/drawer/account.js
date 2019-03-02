@@ -69,14 +69,14 @@ const mapDispatchToProps = {
     logoutCall,
 };
 
-export default connect(
-    null,
-    mapDispatchToProps,
-)(AccountMenu);
+// export default connect(
+//     null,
+//     mapDispatchToProps,
+// )(AccountMenu);
 
-// export default withRouter(
-//     connect(
-//         null,
-//         mapDispatchToProps,
-//     )(AccountMenu),
-// );
+export default withRouter(
+    connect(
+        null,
+        mapDispatchToProps,
+    )(AccountMenu),
+);

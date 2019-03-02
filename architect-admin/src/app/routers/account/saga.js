@@ -1,5 +1,6 @@
 import { put, take, fork, delay } from 'redux-saga/effects';
 import { createBrowserHistory } from 'history';
+import { push } from 'react-router-redux';
 import localStogeAdapter from '../../_utils/localStorage';
 import RouterURL from '../consts';
 import * as nameConst from './const';
@@ -16,15 +17,19 @@ function* login() {
 
         if (valEmail === 'admin@gmail.com') {
             yield put(routerFull());
+            localStogeAdapter.setItemJson('memToken', 'admin');
+            yield put(loginSuccess('admin', 'Success'));
         } else {
             yield put(routerNotFull());
+
+            localStogeAdapter.setItemJson('memToken', '123');
+            yield put(loginSuccess('123', 'Success'));
         }
         yield put(loadingClose());
-        localStogeAdapter.setItemJson('memToken', '123');
-        yield put(loginSuccess('123', 'Success'));
 
-        createBrowserHistory().push(RouterURL.dashboard);
-        // window.location.href = RouterURL.dashboard;
+        // createBrowserHistory().push(RouterURL.dashboard);
+        // yield put(push(RouterURL.dashboard));
+        window.location.href = RouterURL.dashboard;
     }
 }
 
@@ -37,9 +42,9 @@ function* logout() {
         localStogeAdapter.removeItem('memToken');
         yield put(logoutSuccess());
         yield put(loadingClose());
-
-        createBrowserHistory().push(RouterURL.signin);
-        // window.location.href = RouterURL.signin;
+        window.location.href = RouterURL.signin;
+        // createBrowserHistory().push(RouterURL.signin);
+        // yield put(push(RouterURL.signin));
     }
 }
 
