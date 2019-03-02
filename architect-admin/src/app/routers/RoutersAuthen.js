@@ -58,7 +58,7 @@ const nameRouter = {
     redditApi: 'redditApi',
 };
 
-const routersAuthen = [
+export const routerUnAuthen = [
     {
         title: 'Sing in',
         name: nameRouter.signin,
@@ -81,11 +81,37 @@ const routersAuthen = [
         component: AsyncResetPass,
         isAccUn: true,
     },
+];
+
+const routersAuthen = [
+    // {
+    //     title: 'Sing in',
+    //     name: nameRouter.signin,
+    //     path: RouterApp.signin,
+    //     component: AsyncLogin,
+    //     exact: true,
+    //     isAccUn: true,
+    // },
+    // {
+    //     title: 'Sign up',
+    //     name: nameRouter.signup,
+    //     path: RouterApp.signup,
+    //     component: AsyncSignUp,
+    //     isAccUn: true,
+    // },
+    // {
+    //     title: 'Reset pass',
+    //     name: nameRouter.resetpass,
+    //     path: RouterApp.resetpass,
+    //     component: AsyncResetPass,
+    //     isAccUn: true,
+    // },
     {
         title: 'Dashboard',
         name: nameRouter.dashboard,
         path: RouterApp.dashboard,
         component: AsyncDashboard,
+        exact: true,
         icon: <DashboardIcon />,
     },
     {

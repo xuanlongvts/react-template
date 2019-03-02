@@ -1,12 +1,12 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
 import Drawer from './drawer';
 import NotFound from '../components/_base/notFound';
-import RoutersApp, { nameRouterApiLess, nameRouterApiFull } from './RoutersAuthen';
+import RoutersApp, { nameRouterApiLess, nameRouterApiFull, routerUnAuthen } from './RoutersAuthen';
 
 const styles = theme => ({
     appBarSpacer: theme.mixins.toolbar,
@@ -73,23 +73,45 @@ class Routers extends PureComponent {
         return routesMatch;
     }
 
+    unAuthRouter(data) {
+        const routers = [];
+        data.forEach((route, key) => {
+            routers.push(this.onceRouter(key, route));
+        });
+
+        return routers;
+    }
+
     render() {
         const { routeAuthen } = this.state;
         const { classes, memToken } = this.props;
 
+        const listRouter = (
+            <Switch>
+                {memToken && RoutersApp.length ? this.authenRouterList(RoutersApp, routeAuthen) : this.unAuthRouter(routerUnAuthen)}
+                {!memToken && (
+                    <Route exact path="*">
+                        <Redirect to="/" />
+                    </Route>
+                )}
+                {this.notFoundRouter()}
+            </Switch>
+        );
+
         return (
             <BrowserRouter>
                 <div className={classes.root}>
-                    <Fragment>
-                        <Drawer />
-                        <main className={classes.content}>
-                            <div className={classes.appBarSpacer} />
-                            <Switch>
-                                {RoutersApp.length && this.authenRouterList(RoutersApp, routeAuthen)}
-                                {this.notFoundRouter()}
-                            </Switch>
-                        </main>
-                    </Fragment>
+                    {!memToken ? (
+                        listRouter
+                    ) : (
+                        <Fragment>
+                            <Drawer />
+                            <main className={classes.content}>
+                                <div className={classes.appBarSpacer} />
+                                {listRouter}
+                            </main>
+                        </Fragment>
+                    )}
                 </div>
             </BrowserRouter>
         );

@@ -44,6 +44,8 @@ class SignIn extends PureComponent {
     constructor(props) {
         super(props);
 
+        this.state = {};
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 

@@ -15,6 +15,10 @@ const styles = () => ({
 });
 
 class Dashboard extends PureComponent {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         const { classes } = this.props;
 

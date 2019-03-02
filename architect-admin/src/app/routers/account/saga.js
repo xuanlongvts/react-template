@@ -10,6 +10,7 @@ function* login() {
     while (true) {
         const { inforAcc } = yield take(nameConst.ACC_LOGIN);
         const { valEmail } = inforAcc;
+
         yield put(loadingOpen());
         yield delay(1000);
 

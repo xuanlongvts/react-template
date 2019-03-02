@@ -21,6 +21,7 @@ class Nav extends PureComponent {
     }
 
     static getDerivedStateFromProps(props) {
+        // props.history.replace('/aaa');
         return {
             routeAuthen: props.isRouterFull ? nameRouterApiFull : nameRouterApiLess,
         };
