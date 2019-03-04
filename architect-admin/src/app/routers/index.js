@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Router, Route, Redirect } from 'react-router-dom';
+import { Router, Route, Redirect, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -88,17 +88,19 @@ class Routers extends PureComponent {
             <Router history={history}>
                 <div className={classes.root}>
                     {!memToken ? (
-                        <Fragment>
+                        <Switch>
                             {this.unAuthRouter(routerUnAuthen)}
-                            <Redirect from="*" to="/" />
-                        </Fragment>
+                            <Redirect to="/" />
+                        </Switch>
                     ) : (
                         <Fragment>
                             <Drawer />
                             <main className={classes.content}>
                                 <div className={classes.appBarSpacer} />
-                                {routeAuthen.length && this.authenRouterList(RoutersApp, routeAuthen)}
-                                {/* {this.notFoundRouter()} */}
+                                <Switch>
+                                    {routeAuthen.length && this.authenRouterList(RoutersApp, routeAuthen)}
+                                    {this.notFoundRouter()}
+                                </Switch>
                             </main>
                         </Fragment>
                     )}

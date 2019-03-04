@@ -8,6 +8,9 @@
 }
 
 .box-loading {
+    width: 400px;
+    margin: 30px auto;
+
     [class*='box-'] {
         height: 6px;
         width: 400px;
