@@ -8,7 +8,7 @@ import { history } from '../stores';
 import localStogeAdapter from '../_utils/localStorage';
 import Drawer from './drawer';
 import NotFound from '../components/_base/notFound';
-import RoutersApp, { nameRouterApiLess, nameRouterApiFull, routerUnAuthen } from './RoutersAuthen';
+import RoutersApp, { nameRouterApiLess, nameRouterApiFull, routerUnAuthen, personalDoc } from './RoutersAuthen';
 
 const styles = theme => ({
     appBarSpacer: theme.mixins.toolbar,
@@ -99,6 +99,7 @@ class Routers extends PureComponent {
                                 <div className={classes.appBarSpacer} />
                                 <Switch>
                                     {routeAuthen.length && this.authenRouterList(RoutersApp, routeAuthen)}
+                                    {personalDoc.length && this.unAuthRouter(personalDoc)}
                                     {this.notFoundRouter()}
                                 </Switch>
                             </main>

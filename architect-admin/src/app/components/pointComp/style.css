@@ -1,0 +1,13 @@
+.point li {
+  font-size: 30px;
+  margin-bottom: 30px; }
+
+.point strong {
+  font-size: 40px; }
+
+.point a {
+  font-size: 30px;
+  color: blue;
+  text-decoration: none; }
+  .point a:hover {
+    color: red; }

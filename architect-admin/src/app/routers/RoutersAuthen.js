@@ -15,6 +15,10 @@ import Inbox from '@material-ui/icons/Inbox';
 import RouterApp from './consts';
 import AsyncComponent from '../components/_asynComponent';
 
+import ArchitectComp from '../components/architect';
+import WhyChooseComp from '../components/whyChoose';
+import PointComp from '../components/pointComp';
+
 const AsyncLogin = AsyncComponent(lazy(() => import('./account/compLogin')));
 const AsyncResetPass = AsyncComponent(lazy(() => import('./account/compResetPass')));
 const AsyncSignUp = AsyncComponent(lazy(() => import('./account/compSignUp')));
@@ -41,6 +45,24 @@ const routerApi = ['dashboard', 'about', 'redditApi'];
 
 export const nameRouterApiFull = routerApiFull;
 export const nameRouterApiLess = routerApi;
+
+export const personalDoc = [
+    {
+        title: 'Architect',
+        path: RouterApp.architect,
+        component: ArchitectComp,
+    },
+    {
+        title: 'Why choose',
+        path: RouterApp.whychoose,
+        component: WhyChooseComp,
+    },
+    {
+        title: 'Point',
+        path: RouterApp.point,
+        component: PointComp,
+    },
+];
 
 const nameRouter = {
     signin: 'signin',

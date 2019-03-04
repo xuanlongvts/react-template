@@ -1,0 +1,11 @@
+.refer {
+    a:any-link,
+    a:-webkit-any-link {
+        color: blue;
+
+        &:hover {
+            color: red;
+            cursor: pointer;
+        }
+    }
+}

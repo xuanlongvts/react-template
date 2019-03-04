@@ -1,0 +1,19 @@
+.whyChoose {
+    li {
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+    strong {
+        font-size: 40px;
+    }
+
+    a {
+        font-size: 30px;
+        color: blue;
+        text-decoration: none;
+
+        &:hover {
+            color: red;
+        }
+    }
+}

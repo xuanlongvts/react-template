@@ -15,6 +15,10 @@ const subnav3 = `${subnav}/sub3`;
 const subnav3_nav1 = `${subnav3}/nav1`;
 const subnav3_nav2 = `${subnav3}/nav2`;
 
+const architect = '/architect';
+const whychoose = '/why';
+const point = '/point';
+
 export default {
     signin,
     signup,
@@ -32,4 +36,7 @@ export default {
     subnav3,
     subnav3_nav1,
     subnav3_nav2,
+    architect,
+    whychoose,
+    point,
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -12,6 +12,7 @@ import Avatar from '@material-ui/core/Avatar';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import RouterConst from '../consts';
 import imgNongNo from '../../../images/nong.jpg';
 import { logoutCall } from '../account/action';
 
@@ -48,8 +49,15 @@ const AccountMenu = props => {
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList>
-                                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                                    <Link to={RouterConst.point} style={{ color: '#111', textDecoration: 'none' }}>
+                                        <MenuItem onClick={handleClose}>Point</MenuItem>
+                                    </Link>
+                                    <Link to={RouterConst.whychoose} style={{ color: '#111', textDecoration: 'none' }}>
+                                        <MenuItem onClick={handleClose}>Why</MenuItem>
+                                    </Link>
+                                    <Link to={RouterConst.architect} style={{ color: '#111', textDecoration: 'none' }}>
+                                        <MenuItem onClick={handleClose}>Architect</MenuItem>
+                                    </Link>
                                     <MenuItem onClick={e => handleLogout(e)}>Logout</MenuItem>
                                 </MenuList>
                             </ClickAwayListener>
@@ -69,14 +77,7 @@ const mapDispatchToProps = {
     logoutCall,
 };
 
-// export default connect(
-//     null,
-//     mapDispatchToProps,
-// )(AccountMenu);
-
-export default withRouter(
-    connect(
-        null,
-        mapDispatchToProps,
-    )(AccountMenu),
-);
+export default connect(
+    null,
+    mapDispatchToProps,
+)(AccountMenu);
