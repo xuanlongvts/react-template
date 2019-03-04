@@ -9,7 +9,9 @@ class Point extends PureComponent {
                     <li>
                         + Config App flow <strong>ReactJS</strong>, <strong>Airbnb</strong> and <strong>Eslint</strong> convention
                     </li>
+                    <li>+ Code clear</li>
                     <li>+ Scale, maintain</li>
+                    <li>+ Authorized</li>
                 </ul>
             </div>
         );
