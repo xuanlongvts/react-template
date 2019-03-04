@@ -21,10 +21,10 @@ class Nav extends PureComponent {
         };
     }
 
-    static getDerivedStateFromProps(props) {
-        return {
-            routeAuthen: props.isRouterFull || localStogeAdapter.getItemJson('memToken') === 'admin' ? nameRouterApiFull : nameRouterApiLess,
-        };
+    componentDidMount() {
+        this.setState({
+            routeAuthen: localStogeAdapter.getItemJson('memToken') === 'admin' ? nameRouterApiFull : nameRouterApiLess,
+        });
     }
 
     menuDyn(data, routeAuthen) {

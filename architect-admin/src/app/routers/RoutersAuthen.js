@@ -34,7 +34,7 @@ const AsyncDashboard = AsyncComponent(lazy(() => import('../components/dashboard
 
 export const AccUnAuthen = ['signin', 'signup', 'resetpass'];
 const routerApiFull = ['dashboard', 'about', 'categories', 'subNav', 'sub1', 'sub2', 'sub3', 'sub3_1', 'sub3_2', 'products', 'redditApi'];
-const routerApi = ['dashboard', 'about', 'subNav', 'sub3', 'sub3_2', 'redditApi'];
+const routerApi = ['dashboard', 'about', 'redditApi'];
 
 // export const nameRouterApiFull = routerApiFull.concat(AccUnAuthen);
 // export const nameRouterApiLess = routerApi.concat(AccUnAuthen);
@@ -90,7 +90,6 @@ const routersAuthen = [
         name: nameRouter.dashboard,
         path: RouterApp.dashboard,
         component: AsyncDashboard,
-        exact: true,
         icon: <DashboardIcon />,
     },
     {

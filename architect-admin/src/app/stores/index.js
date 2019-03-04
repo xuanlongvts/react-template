@@ -1,16 +1,16 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 
 import ENV from '../../config';
-
 import rootReducer from '../reducers';
 import rootSaga from '../sagas';
 
+export const history = createBrowserHistory();
 const storeConfig = () => {
     const sagaMiddleware = createSagaMiddleware();
-    const routesMiddleware = routerMiddleware(createHistory());
+    const routesMiddleware = routerMiddleware(history);
 
     const middlewares = [sagaMiddleware, routesMiddleware];
 
