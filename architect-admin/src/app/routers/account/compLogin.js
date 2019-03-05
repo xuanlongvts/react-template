@@ -110,7 +110,7 @@ class SignIn extends PureComponent {
                         Full authorized: <strong>Email: </strong>admin@gmail.com / <strong>pass:</strong> any
                     </p>
                     <p>
-                        Unauthorized: <strong>Email: </strong>any / <strong>pass:</strong> any
+                        Not full authorized: <strong>Email: </strong>any / <strong>pass:</strong> any
                     </p>
                 </div>
             </main>

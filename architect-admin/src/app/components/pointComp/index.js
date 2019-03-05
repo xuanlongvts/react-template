@@ -16,6 +16,11 @@ class Point extends PureComponent {
                         - chrome tab network (js), check slipt file bundle.js when user click menu (avoid all file js build into one bundle.js file, when scale
                         up project, this is very useful)
                     </li>
+                    <li>
+                        <a href="https://bigbom.com/" target="_blank" rel="noopener noreferrer">
+                            i had build bigbom site
+                        </a>
+                    </li>
                 </ul>
             </div>
         );
