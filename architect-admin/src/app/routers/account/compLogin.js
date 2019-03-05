@@ -104,6 +104,15 @@ class SignIn extends PureComponent {
                         </Link>
                     </div>
                 </Paper>
+
+                <div style={{ marginTop: '20px' }}>
+                    <p>
+                        Full authorized: <strong>Email: </strong>admin@gmail.com / <strong>pass:</strong> any
+                    </p>
+                    <p>
+                        Unauthorized: <strong>Email: </strong>any / <strong>pass:</strong> any
+                    </p>
+                </div>
             </main>
         );
     }

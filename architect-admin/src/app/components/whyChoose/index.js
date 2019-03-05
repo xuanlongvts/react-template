@@ -26,6 +26,13 @@ class WhyChoose extends PureComponent {
                         </a>
                     </li>
                     <li>
+                        Relay was born out of our experiences building large applications at Facebook. Our overarching goal is to enable developers to create
+                        correct, high-performance applications in a straightforward and obvious way. The design enables even large teams to make changes with a
+                        high degree of isolation and confidence. Fetching data is hard, dealing with ever-changing data is hard, and performance is hard. Relay
+                        aims to reduce these problems to simple ones, moving the tricky bits into the framework and freeing you to concentrate on building your
+                        application.
+                    </li>
+                    <li>
                         At Facebook, we have apps built entirely using Flux, entirely using Relay, or with both. One pattern we see emerging is letting Relay
                         manage the bulk of the data flow for an application, but using Flux stores on the side to handle a subset of application state.
                     </li>

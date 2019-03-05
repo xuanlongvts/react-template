@@ -32,7 +32,7 @@
         "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
         "start-js": "react-scripts start",
         "build-js": "react-scripts build",
-        "dev": "REACT_APP_ENV=dev HTTPS=true npm-run-all -p watch-css start-js",
+        "dev": "REACT_APP_ENV=dev npm-run-all -p watch-css start-js",
         "uat": "REACT_APP_ENV=uat npm-run-all -p watch-css start-js",
         "build": "REACT_APP_ENV=production npm-run-all build-css build-js",
         "analyze": "source-map-explorer build/static/js/main.*",

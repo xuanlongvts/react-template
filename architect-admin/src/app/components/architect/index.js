@@ -13,6 +13,7 @@ class Architect extends PureComponent {
                 <hr />
                 <div className="refer">
                     <h2>Refer:</h2>
+                    Dan Abramov: Working on @reactjs. Co-author of Redux and Create React App.
                     <p>
                         <a href="https://github.com/gaearon" target="_blank" rel="noopener noreferrer">
                             <strong>Github:</strong>: <span>Dan Abramov</span>
