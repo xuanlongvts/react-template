@@ -39,7 +39,6 @@
     border-radius: 50%;
     text-align: center;
     overflow: hidden;
-    vertical-align: top;
 
     @content;
 }

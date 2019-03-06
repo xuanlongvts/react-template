@@ -10,16 +10,12 @@ import Drawer from './drawer';
 import NotFound from '../components/_base/notFound';
 import RoutersApp, { nameRouterApiLess, nameRouterApiFull, routerUnAuthen, personalDoc } from './RoutersAuthen';
 
-const styles = theme => ({
-    appBarSpacer: theme.mixins.toolbar,
-    root: {
-        display: 'flex',
-    },
+const styles = () => ({
     content: {
         flexGrow: 1,
-        padding: theme.spacing.unit * 3,
         height: '100vh',
         overflow: 'auto',
+        paddingTop: '64px',
     },
 });
 
@@ -54,14 +50,6 @@ class Routers extends PureComponent {
             if (isExistRouter) {
                 if (route.hasOwnProperty('sub')) {
                     this.authenRouterList(route.sub, routeAuthen);
-
-                    // const subSelf = {
-                    //     title: route.title,
-                    //     path: route.path,
-                    //     component: route.component,
-                    //     exact: route.exact,
-                    // };
-                    // routesMatch.push(this.onceRouter(key, subSelf));
                 } else {
                     routesMatch.push(this.onceRouter(key, route));
                 }
@@ -86,26 +74,23 @@ class Routers extends PureComponent {
 
         return (
             <Router history={history}>
-                <div className={classes.root}>
-                    {!memToken ? (
-                        <Switch>
-                            {this.unAuthRouter(routerUnAuthen)}
-                            <Redirect to="/" />
-                        </Switch>
-                    ) : (
-                        <Fragment>
-                            <Drawer />
-                            <main className={classes.content}>
-                                <div className={classes.appBarSpacer} />
-                                <Switch>
-                                    {routeAuthen.length && this.authenRouterList(RoutersApp, routeAuthen)}
-                                    {personalDoc.length && this.unAuthRouter(personalDoc)}
-                                    {this.notFoundRouter()}
-                                </Switch>
-                            </main>
-                        </Fragment>
-                    )}
-                </div>
+                {!memToken ? (
+                    <Switch>
+                        {this.unAuthRouter(routerUnAuthen)}
+                        <Redirect to="/" />
+                    </Switch>
+                ) : (
+                    <Fragment>
+                        <Drawer />
+                        <main className={classes.content}>
+                            <Switch>
+                                {routeAuthen.length && this.authenRouterList(RoutersApp, routeAuthen)}
+                                {personalDoc.length && this.unAuthRouter(personalDoc)}
+                                {this.notFoundRouter()}
+                            </Switch>
+                        </main>
+                    </Fragment>
+                )}
             </Router>
         );
     }

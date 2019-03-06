@@ -19,16 +19,6 @@ body {
     margin-top: 50px;
 }
 
-@keyframes rot {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 ul {
     list-style: none;
     -webkit-padding-start: 0;
@@ -36,19 +26,6 @@ ul {
 
 .txtIntro {
     font-size: 30px;
-}
-
-.cssTest {
-    margin-top: 50px;
-    display: inline-block;
-    width: 200px;
-    height: 200px;
-    text-align: center;
-    line-height: 200px;
-    text-transform: capitalize;
-    font-size: 22px;
-    box-shadow: 2px 2px 5px #ccc;
-    animation: rot 15s linear infinite;
 }
 
 .list-catagories {

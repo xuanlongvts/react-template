@@ -4,6 +4,14 @@
 @import './nav';
 @import './footer';
 
+.hidden {
+    opacity: 0;
+}
+
+.mLef-15 {
+    margin-left: 15px !important;
+}
+
 .notFound {
     background: #ebeff2;
     text-align: center;
@@ -58,5 +66,90 @@
 
     &:hover {
         cursor: pointer;
+    }
+}
+
+.btnComm {
+    color: $coloWhite !important;
+}
+
+#root {
+    display: flex;
+}
+
+.headTop {
+    background: #e5e8ec;
+    height: 70px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    justify-content: space-between;
+
+    $widthHeightBtn: 40px;
+    .btnCycle {
+        padding: 7px 0;
+        color: #fff;
+
+        @include cycleBox {
+            min-width: $widthHeightBtn;
+            height: $widthHeightBtn;
+            width: $widthHeightBtn;
+        }
+    }
+
+    .inputFile {
+        display: inline-block !important;
+        width: 100%;
+        height: 100%;
+        border: 1px solid red;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .btnImport {
+        position: relative;
+        background-color: $coloBlueLight;
+
+        &:hover {
+            background-color: $coloBlueLightHover;
+        }
+    }
+
+    .btnExport {
+        background-color: $coloYellowLight;
+
+        &:hover {
+            background-color: $coloYellowLightHover;
+        }
+    }
+
+    .btnSave {
+        background-color: $coloBlueLight;
+
+        &:hover {
+            background-color: $coloBlueLightHover;
+        }
+    }
+
+    .btnCreate {
+        background-color: $coloRedLight;
+
+        &:hover {
+            background-color: $coloRedLightHover;
+        }
+    }
+
+    .btnCancel {
+        background-color: $coloBlackLight;
+
+        &:hover {
+            background-color: $coloBlackLightHover;
+        }
     }
 }

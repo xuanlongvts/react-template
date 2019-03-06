@@ -85,6 +85,12 @@
     color: #999;
     font-size: 11px; }
 
+.hidden {
+  opacity: 0; }
+
+.mLef-15 {
+  margin-left: 15px !important; }
+
 .notFound {
   background: #ebeff2;
   text-align: center;
@@ -132,6 +138,62 @@
   .boxAccount:hover {
     cursor: pointer; }
 
+.btnComm {
+  color: #fff !important; }
+
+#root {
+  display: flex; }
+
+.headTop {
+  background: #e5e8ec;
+  height: 70px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  justify-content: space-between; }
+  .headTop .btnCycle {
+    padding: 7px 0;
+    color: #fff;
+    display: inline-block;
+    border-radius: 50%;
+    text-align: center;
+    overflow: hidden;
+    min-width: 40px;
+    height: 40px;
+    width: 40px; }
+  .headTop .inputFile {
+    display: inline-block !important;
+    width: 100%;
+    height: 100%;
+    border: 1px solid red;
+    position: absolute;
+    left: 0;
+    top: 0; }
+    .headTop .inputFile:hover {
+      cursor: pointer; }
+  .headTop .btnImport {
+    position: relative;
+    background-color: #33bab1; }
+    .headTop .btnImport:hover {
+      background-color: #24a69d; }
+  .headTop .btnExport {
+    background-color: #f7b84b; }
+    .headTop .btnExport:hover {
+      background-color: #fbae2c; }
+  .headTop .btnSave {
+    background-color: #33bab1; }
+    .headTop .btnSave:hover {
+      background-color: #24a69d; }
+  .headTop .btnCreate {
+    background-color: #ff6f61; }
+    .headTop .btnCreate:hover {
+      background-color: #fb4c3b; }
+  .headTop .btnCancel {
+    background-color: #2d323e; }
+    .headTop .btnCancel:hover {
+      background-color: #0f1117; }
+
 body {
   padding: 0;
   margin: 0;
@@ -147,30 +209,12 @@ body {
   font-size: 50px;
   margin-top: 50px; }
 
-@keyframes rot {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
-
 ul {
   list-style: none;
   -webkit-padding-start: 0; }
 
 .txtIntro {
   font-size: 30px; }
-
-.cssTest {
-  margin-top: 50px;
-  display: inline-block;
-  width: 200px;
-  height: 200px;
-  text-align: center;
-  line-height: 200px;
-  text-transform: capitalize;
-  font-size: 22px;
-  box-shadow: 2px 2px 5px #ccc;
-  animation: rot 15s linear infinite; }
 
 .list-catagories li {
   display: inline-block;

@@ -1,14 +1,20 @@
-$iphone: 375px;
-$iphonePlus: 414px;
-$phone: 576px;
-$tablet: 768px;
 $desktop: 992px;
-$wideDesktop: 1200px;
 
-$black: #000;
-$blackGrey: #1b1b1b;
-$white: #fff;
-$linkAct: #0077b5;
+$coloBlack: #000;
+$coloBlackGrey: #1b1b1b;
+$coloWhite: #fff;
+
+$coloYellowLight: #f7b84b;
+$coloYellowLightHover: #fbae2c;
+
+$coloBlueLight: #33bab1;
+$coloBlueLightHover: #24a69d;
+
+$coloRedLight: #ff6f61;
+$coloRedLightHover: #fb4c3b;
+
+$coloBlackLight: #2d323e;
+$coloBlackLightHover: #0f1117;
 
 * {
     font-family: 'Roboto', 'Open Sans', sans-serif;
