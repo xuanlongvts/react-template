@@ -23,7 +23,7 @@ const AsyncLogin = AsyncComponent(lazy(() => import('./account/compLogin')));
 const AsyncResetPass = AsyncComponent(lazy(() => import('./account/compResetPass')));
 const AsyncSignUp = AsyncComponent(lazy(() => import('./account/compSignUp')));
 
-const AsyncAbout = AsyncComponent(lazy(() => import('../components/About')));
+const AsyncAbout = AsyncComponent(lazy(() => import('../components/about')));
 const AsyncCatagories = AsyncComponent(lazy(() => import('../components/Categories')));
 const AsyncSubCompIndex = AsyncComponent(lazy(() => import('../components/subNav')));
 const AsyncSubComp1 = AsyncComponent(lazy(() => import('../components/subNav/sub1')));
