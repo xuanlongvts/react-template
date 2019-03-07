@@ -22,7 +22,7 @@ const BreadcrumbEle = data => {
 };
 
 const HeadTop = props => {
-    const { titleShow, breadcrumbs } = props;
+    const { titleShow, breadcrumbs, btnSave, btnSaveContinue, btnCreate, btnCacel } = props;
     let bredCrumEle = BreadcrumbEle(breadcrumbs);
 
     return (
@@ -46,18 +46,26 @@ const HeadTop = props => {
                     </Button>
                 </Tooltip>
 
-                <Button variant="contained" className="mLef-15 btnComm btnSave">
-                    Save
-                </Button>
-                <Button variant="contained" className="mLef-15 btnComm btnSave">
-                    Save and Continue
-                </Button>
-                <Button variant="contained" className="mLef-15 btnComm btnCreate">
-                    Create
-                </Button>
-                <Button variant="contained" disabled className="mLef-15 btnComm btnCancel">
-                    Cancel
-                </Button>
+                {btnSave && (
+                    <Button variant="contained" disabled={btnSave.disabled} className="mLef-15 btnComm btnSave" onClick={btnSave.callBack}>
+                        Save
+                    </Button>
+                )}
+                {btnSaveContinue && (
+                    <Button variant="contained" disabled={btnSaveContinue.disabled} className="mLef-15 btnComm btnSave" onClick={btnSaveContinue.callBack}>
+                        Save and Continue
+                    </Button>
+                )}
+                {btnCreate && (
+                    <Button variant="contained" disabled={btnCreate.disabled} className="mLef-15 btnComm btnCreate" onClick={btnCreate.callBack}>
+                        Create
+                    </Button>
+                )}
+                {btnCacel && (
+                    <Button variant="contained" disabled={btnCacel.disabled} className="mLef-15 btnComm btnCancel" onClick={btnCacel.callBack}>
+                        Cancel
+                    </Button>
+                )}
             </div>
         </div>
     );
@@ -66,6 +74,10 @@ const HeadTop = props => {
 HeadTop.propTypes = {
     titleShow: PropTypes.string.isRequired,
     breadcrumbs: PropTypes.array.isRequired,
+    btnSave: PropTypes.object,
+    btnSaveContinue: PropTypes.object,
+    btnCreate: PropTypes.object,
+    btnCacel: PropTypes.object,
 };
 
 export default HeadTop;

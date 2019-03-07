@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import Paper from '@material-ui/core/Paper';
 import { PagingState, IntegratedPaging } from '@devexpress/dx-react-grid';
 import { Grid, Table, TableHeaderRow, TableFixedColumns, PagingPanel, VirtualTable } from '@devexpress/dx-react-grid-material-ui';
 
@@ -43,15 +42,99 @@ class About extends PureComponent {
             leftColumns: ['region', 'channel'],
             rightColumns: ['amount'],
             pageSizes: [10, 15, 50, 0],
+
+            btnStatus: {
+                saveStatus: false,
+                saveContinueStatus: true,
+                createStatus: false,
+                cancelStatus: true,
+            },
         };
+
+        this.handleSave = this.handleSave.bind(this);
+        this.handleSaveContinue = this.handleSaveContinue.bind(this);
+        this.handleSaveCreate = this.handleSaveCreate.bind(this);
+        this.handleSaveCancel = this.handleSaveCancel.bind(this);
+    }
+
+    handleSave() {
+        console.log('handle Save');
+
+        const {
+            btnStatus,
+            btnStatus: { saveStatus, saveContinueStatus },
+        } = this.state;
+        this.setState({
+            btnStatus: {
+                ...btnStatus,
+                saveContinueStatus: !saveContinueStatus,
+                saveStatus: !saveStatus,
+            },
+        });
+    }
+
+    handleSaveContinue() {
+        console.log('Continue Save');
+
+        const {
+            btnStatus,
+            btnStatus: { saveStatus, saveContinueStatus },
+        } = this.state;
+        this.setState({
+            btnStatus: {
+                ...btnStatus,
+                saveContinueStatus: !saveContinueStatus,
+                saveStatus: !saveStatus,
+            },
+        });
+    }
+
+    handleSaveCreate() {
+        console.log('Create');
+    }
+
+    handleSaveCancel() {
+        console.log('Cancel');
     }
 
     render() {
-        const { rows, columns, tableColumnExtensions, leftColumns, rightColumns, pageSizes } = this.state;
+        const {
+            rows,
+            columns,
+            tableColumnExtensions,
+            leftColumns,
+            rightColumns,
+            pageSizes,
+            btnStatus: { saveStatus, saveContinueStatus, createStatus, cancelStatus },
+        } = this.state;
+
+        const btnSave = {
+            disabled: saveStatus,
+            callBack: this.handleSave,
+        };
+        const btnSaveContinue = {
+            disabled: saveContinueStatus,
+            callBack: this.handleSaveContinue,
+        };
+        const btnCreate = {
+            disabled: createStatus,
+            callBack: this.handleSaveCreate,
+        };
+        const btnCacel = {
+            disabled: cancelStatus,
+            callBack: this.handleSaveCancel,
+        };
 
         return (
             <section className="aboutPage">
-                <HeadTop titleShow={titleShow} breadcrumbs={bredCrumArr} />
+                <HeadTop
+                    titleShow={titleShow}
+                    breadcrumbs={bredCrumArr}
+                    btnSave={btnSave}
+                    btnSaveContinue={btnSaveContinue}
+                    btnCreate={btnCreate}
+                    btnCacel={btnCacel}
+                />
                 <div className="mainContent">
                     <BoxSearch />
                     <div className="wrapTable">
