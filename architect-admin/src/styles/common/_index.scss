@@ -73,12 +73,24 @@
     color: $coloWhite !important;
 }
 
+.mainContent {
+    padding: 20px;
+
+    .wrapTable {
+        background-color: $coloWhite;
+
+        table {
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+        }
+    }
+}
+
 #root {
     display: flex;
 }
 
 .headTop {
-    background: #e5e8ec;
+    background: #f8f8f8;
     height: 70px;
     overflow: hidden;
     display: flex;
@@ -154,6 +166,25 @@
     }
 }
 
-.mainContent {
-    padding: 20px;
+.boxSearch {
+    background: $coloWhite;
+
+    .expanPanel {
+        box-shadow: none;
+    }
+
+    .expanTop {
+        height: 48px !important;
+        min-height: 48px !important;
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    }
+
+    .fromSearch {
+        padding: 0 15px;
+        display: none;
+    }
 }

@@ -1,6 +1,5 @@
 * {
-  font-family: 'Roboto', 'Open Sans', sans-serif;
-  font-size: 14px; }
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif; }
 
 @keyframes fadeIn {
   0% {
@@ -141,11 +140,18 @@
 .btnComm {
   color: #fff !important; }
 
+.mainContent {
+  padding: 20px; }
+  .mainContent .wrapTable {
+    background-color: #fff; }
+    .mainContent .wrapTable table {
+      border-top: 1px solid rgba(0, 0, 0, 0.12); }
+
 #root {
   display: flex; }
 
 .headTop {
-  background: #e5e8ec;
+  background: #f8f8f8;
   height: 70px;
   overflow: hidden;
   display: flex;
@@ -194,8 +200,19 @@
     .headTop .btnCancel:hover {
       background-color: #0f1117; }
 
-.mainContent {
-  padding: 20px; }
+.boxSearch {
+  background: #fff; }
+  .boxSearch .expanPanel {
+    box-shadow: none; }
+  .boxSearch .expanTop {
+    height: 48px !important;
+    min-height: 48px !important; }
+    .boxSearch .expanTop:hover {
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.04); }
+  .boxSearch .fromSearch {
+    padding: 0 15px;
+    display: none; }
 
 body {
   padding: 0;

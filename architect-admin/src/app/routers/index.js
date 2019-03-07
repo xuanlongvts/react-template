@@ -16,6 +16,7 @@ const styles = () => ({
         height: '100vh',
         overflow: 'auto',
         paddingTop: '64px',
+        backgroundColor: '#e5e8ec',
     },
 });
 

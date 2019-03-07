@@ -4,6 +4,7 @@ import { PagingState, IntegratedPaging } from '@devexpress/dx-react-grid';
 import { Grid, Table, TableHeaderRow, TableFixedColumns, PagingPanel, VirtualTable } from '@devexpress/dx-react-grid-material-ui';
 
 import HeadTop from '../_base/headTop';
+import BoxSearch from '../_base/boxSearch';
 import { generateRows, globalSalesValues } from './generator';
 
 const bredCrumArr = ['Material-UI', 'Lap', 'Breadcrumbs'];
@@ -52,7 +53,8 @@ class About extends PureComponent {
             <section className="aboutPage">
                 <HeadTop titleShow={titleShow} breadcrumbs={bredCrumArr} />
                 <div className="mainContent">
-                    <Paper>
+                    <BoxSearch />
+                    <div className="wrapTable">
                         <Grid rows={rows} columns={columns}>
                             <VirtualTable />
                             <PagingState defaultCurrentPage={0} defaultPageSize={pageSizes[0]} />
@@ -63,7 +65,7 @@ class About extends PureComponent {
 
                             <PagingPanel pageSizes={pageSizes} />
                         </Grid>
-                    </Paper>
+                    </div>
                 </div>
             </section>
         );

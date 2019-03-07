@@ -18,7 +18,7 @@ class Point extends PureComponent {
                     </li>
                     <li>
                         <a href="https://bigbom.com/" target="_blank" rel="noopener noreferrer">
-                            i had build bigbom site
+                            i had built bigbom site
                         </a>
                     </li>
                 </ul>
