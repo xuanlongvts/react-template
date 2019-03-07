@@ -11,6 +11,10 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 
+import moment from 'moment';
+import MomentUtils from '@date-io/moment';
+import { MuiPickersUtilsProvider, DateTimePicker } from 'material-ui-pickers';
+
 const renderFromHelper = ({ touched, error }) => {
     if (!(touched && error)) {
         return;
@@ -24,36 +28,61 @@ export const renderTextField = ({ label, input, type, meta: { touched, invalid, 
 );
 
 export const renderCheckbox = ({ input, label }) => (
-    <div className="chkBox">
-        <FormControlLabel control={<Checkbox checked={input.value ? true : false} onChange={input.onChange} />} label={label} />
-    </div>
+    <FormControlLabel control={<Checkbox checked={input.value ? true : false} onChange={input.onChange} />} label={label} labelPlacement="start" />
 );
 
-export const radioButton = ({ input, label, ...rest }) => (
-    <FormControl>
-        <RadioGroup {...input} {...rest}>
-            <FormControlLabel value="female" control={<Radio />} label="aaa" />
-            <FormControlLabel value="male" control={<Radio />} label="bbb" />
+export const radioButton = ({ input, valueReceive, label, ...rest }) => {
+    return (
+        <RadioGroup {...input} {...rest} className="radioButton">
+            <FormControlLabel value={valueReceive} control={<Radio />} label={label} labelPlacement="start" />
         </RadioGroup>
-    </FormControl>
-);
+    );
+};
 
-export const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
-    <FormControl error={touched && error}>
-        <InputLabel htmlFor="age-native-simple">{label}</InputLabel>
-        <Select
-            native
-            {...input}
-            {...custom}
-            inputProps={{
-                name: 'age',
-                id: 'age-native-simple',
-            }}>
-            {children}
-        </Select>
-        {renderFromHelper({ touched, error })}
-    </FormControl>
-);
+export const renderSelectField = ({ input, id, label, meta: { touched, error }, children, ...custom }) => {
+    return (
+        <FormControl error={touched && error}>
+            <InputLabel htmlFor="age-native-simple">{label}</InputLabel>
+            <Select
+                native
+                {...input}
+                {...custom}
+                inputProps={{
+                    id: id,
+                }}>
+                {children}
+            </Select>
+            {renderFromHelper({ touched, error })}
+        </FormControl>
+    );
+};
+
+export const renderDatePicker = ({ input, label, defaultValue, disablePast, handleDateChange, meta: { touched, error } }) => {
+    return (
+        <FormControl error={touched && error}>
+            <MuiPickersUtilsProvider utils={MomentUtils} moment={moment}>
+                <DateTimePicker
+                    {...input}
+                    value={defaultValue}
+                    onChange={handleDateChange}
+                    format="DD/MM/YYYY hh:mm:ss"
+                    disablePast={disablePast}
+                    label={label}
+                />
+            </MuiPickersUtilsProvider>
+            {renderFromHelper({ touched, error })}
+        </FormControl>
+    );
+};
+
+renderDatePicker.propTypes = {
+    label: PropTypes.string.isRequired,
+    input: PropTypes.object,
+    meta: PropTypes.object,
+    defaultValue: PropTypes.instanceOf(Date),
+    disablePast: PropTypes.bool,
+    handleDateChange: PropTypes.func,
+};
 
 renderTextField.propTypes = {
     label: PropTypes.string.isRequired,
@@ -75,11 +104,13 @@ renderCheckbox.propTypes = {
 radioButton.propTypes = {
     input: PropTypes.object,
     label: PropTypes.string,
+    valueReceive: PropTypes.string,
 };
 
 renderSelectField.propTypes = {
+    id: PropTypes.string,
     label: PropTypes.string.isRequired,
     input: PropTypes.object,
     meta: PropTypes.object,
-    children: PropTypes.object,
+    children: PropTypes.array,
 };

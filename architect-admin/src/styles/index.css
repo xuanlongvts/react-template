@@ -213,6 +213,8 @@
   .boxSearch .fromSearch {
     padding: 0 15px;
     display: none; }
+  .boxSearch .frmComm {
+    width: 100%; }
 
 body {
   padding: 0;

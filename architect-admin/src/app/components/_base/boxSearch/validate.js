@@ -1,6 +1,6 @@
 const validate = values => {
     const errors = {};
-    const requiredFields = ['email', 'password', 'rePassword'];
+    const requiredFields = ['email'];
     requiredFields.forEach(field => {
         if (!values[field]) {
             errors[field] = 'Required';

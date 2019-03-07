@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { Field, reduxForm } from 'redux-form';
-import Radio from '@material-ui/core/Radio';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Search from '@material-ui/icons/Search';
 import FormControl from '@material-ui/core/FormControl';
@@ -13,14 +13,22 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import { renderTextField, renderCheckbox, radioButton } from '../formComp';
+import MomentUtils from '@date-io/moment';
+import { MuiPickersUtilsProvider, DateTimePicker } from 'material-ui-pickers';
+
+import { renderTextField, renderCheckbox, radioButton, renderSelectField, renderDatePicker } from '../formComp';
 import { validate } from './validate';
 
 class BoxSearch extends PureComponent {
     constructor(props) {
         super(props);
 
+        this.state = {
+            selectedDate: new Date(),
+        };
+
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
     }
 
     handleSubmit = e => {
@@ -28,36 +36,77 @@ class BoxSearch extends PureComponent {
         console.log('handleSubmit');
     };
 
+    handleDateChange(aa) {
+        console.log('aaa', aa);
+    }
+
     render() {
         const { hasErr } = this.props;
+        const { selectedDate } = this.state;
 
+        // expanded
         return (
             <div className="boxSearch">
-                <ExpansionPanel className="expanPanel" expanded>
+                <ExpansionPanel className="expanPanel">
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} className="expanTop">
                         <Typography>
                             <Search />
                         </Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <form onSubmit={this.handleSubmit}>
-                            <div>
-                                <Field name="firstName" component={renderTextField} label="First Name" />
-                            </div>
-                            <div>
-                                <Field name="sex" component={radioButton}>
-                                    <Radio value="male" label="male" />
-                                    <Radio value="female" label="female" />
-                                </Field>
-                            </div>
-                            <FormControl margin="normal" required fullWidth>
-                                <Field name="email" type="email" component={renderTextField} label="Email" />
-                            </FormControl>
+                        <form onSubmit={this.handleSubmit} className="frmComm">
+                            <Grid container spacing={24}>
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth>
+                                        <Field name="firstName" component={renderTextField} type="text" label="Text *" />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth>
+                                        <Field name="num" component={renderTextField} type="number" label="Number" />
+                                    </FormControl>
+                                </Grid>
 
-                            <Field name="remember" component={renderCheckbox} label="Remember me" />
-
-                            <Button type="submit" fullWidth variant="contained" color="primary" disabled={hasErr}>
-                                Sign in
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth>
+                                        <Field name="favoriteColor" component={renderSelectField} label="Favorite Color" id="favColor">
+                                            <option value="" />
+                                            <option value="ff0000">Red</option>
+                                            <option value="00ff00">Green</option>
+                                            <option value="0000ff">Blue</option>
+                                        </Field>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth>
+                                        <Field name="email" type="email" component={renderTextField} label="Email" />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <FormControl>
+                                        <Field name="remember" component={renderCheckbox} label="Remember me" />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <FormControl>
+                                        <Field name="sex" component={radioButton} valueReceive="nam" label="Male" />
+                                        <Field name="sex" component={radioButton} valueReceive="nu" label="Female" />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <FormControl fullWidth>
+                                        <Field
+                                            name="dateTimePicker"
+                                            component={renderDatePicker}
+                                            defaultValue={selectedDate}
+                                            handleDateChange={this.handleDateChange}
+                                            label="DateTimePicker"
+                                        />
+                                    </FormControl>
+                                </Grid>
+                            </Grid>
+                            <Button type="submit" variant="contained" color="primary" disabled={hasErr}>
+                                Search
                             </Button>
                         </form>
                     </ExpansionPanelDetails>
@@ -72,15 +121,10 @@ BoxSearch.propTypes = {
 };
 
 const mapStateToProps = state => {
-    const getFrm = state.form.frmSearch;
-    const getVal = getFrm ? getFrm.values : {};
-    const getErr = getFrm ? getFrm.syncErrors : {};
-    const hasErr = getErr && (getErr.email || getErr.password) ? true : false;
+    // const getFrm = state.form.frmSearch;
 
     return {
-        valEmail: getVal ? getVal.email : '',
-        valPassword: getVal ? getVal.password : '',
-        hasErr,
+        hasErr: false,
     };
 };
 
