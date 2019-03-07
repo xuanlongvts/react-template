@@ -12,15 +12,11 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import TextField from '@material-ui/core/TextField';
 
 import RouterApp from '../consts';
 import styles from './style';
 import { validate } from './validate';
-
-const renderTextField = ({ label, input, type, meta: { touched, invalid, error }, ...custom }) => (
-    <TextField label={label} type={type} placeholder={label} error={touched && invalid} helperText={touched && error} {...input} {...custom} />
-);
+import { renderTextField } from '../../components/_base/formComp';
 
 class ForgotPass extends PureComponent {
     constructor(props) {
@@ -88,13 +84,6 @@ ForgotPass.propTypes = {
     submitting: PropTypes.bool.isRequired,
     valEmail: PropTypes.string,
     hasErr: PropTypes.bool.isRequired,
-};
-
-renderTextField.propTypes = {
-    label: PropTypes.string.isRequired,
-    input: PropTypes.object,
-    meta: PropTypes.object,
-    type: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => {

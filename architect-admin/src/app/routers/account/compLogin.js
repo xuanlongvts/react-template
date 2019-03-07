@@ -8,37 +8,16 @@ import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import TextField from '@material-ui/core/TextField';
 
 import RouterApp from '../consts';
 import styles from './style';
 import { validate } from './validate';
 import { loginCall } from './action';
-
-const renderTextField = ({ label, input, type, meta: { touched, invalid, error }, ...custom }) => (
-    <TextField label={label} type={type} placeholder={label} error={touched && invalid} helperText={touched && error} {...input} {...custom} />
-);
-
-const renderFromHelper = ({ touched, error }) => {
-    if (!(touched && error)) {
-        return;
-    } else {
-        return <FormHelperText>{touched && error}</FormHelperText>;
-    }
-};
-
-const renderCheckbox = ({ input, label }) => (
-    <div>
-        <FormControlLabel control={<Checkbox checked={input.value ? true : false} onChange={input.onChange} />} label={label} />
-    </div>
-);
+import { renderTextField, renderCheckbox } from '../../components/_base/formComp';
 
 class SignIn extends PureComponent {
     constructor(props) {
@@ -127,23 +106,6 @@ SignIn.propTypes = {
     valEmail: PropTypes.string,
     valPassword: PropTypes.string,
     hasErr: PropTypes.bool.isRequired,
-};
-
-renderTextField.propTypes = {
-    label: PropTypes.string.isRequired,
-    input: PropTypes.object,
-    meta: PropTypes.object,
-    type: PropTypes.string.isRequired,
-};
-
-renderFromHelper.propTypes = {
-    touched: PropTypes.bool,
-    error: PropTypes.string,
-};
-
-renderCheckbox.propTypes = {
-    label: PropTypes.string.isRequired,
-    input: PropTypes.object,
 };
 
 const mapStateToProps = state => {
