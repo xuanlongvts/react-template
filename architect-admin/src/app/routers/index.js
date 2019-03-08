@@ -42,7 +42,7 @@ class Routers extends PureComponent {
 
     notFoundRouter = () => <Route path="*" component={NotFound} />;
 
-    authenRouterList(data, routeAuthen) {
+    authenRouterListNav(data, routeAuthen) {
         const { routesMatch } = this.state; // decalre in state to hold value
 
         data.forEach((route, key) => {
@@ -50,7 +50,7 @@ class Routers extends PureComponent {
             const isExistRouter = routeAuthen.includes(route.name);
             if (isExistRouter) {
                 if (route.hasOwnProperty('sub')) {
-                    this.authenRouterList(route.sub, routeAuthen);
+                    this.authenRouterListNav(route.sub, routeAuthen);
                 } else {
                     routesMatch.push(this.onceRouter(key, route));
                 }
@@ -60,7 +60,7 @@ class Routers extends PureComponent {
         return routesMatch;
     }
 
-    unAuthRouter(data) {
+    routerListNotNav(data) {
         const routers = [];
         data.forEach((route, key) => {
             routers.push(this.onceRouter(key, route));
@@ -77,7 +77,7 @@ class Routers extends PureComponent {
             <Router history={history}>
                 {!memToken ? (
                     <Switch>
-                        {this.unAuthRouter(routerUnAuthen)}
+                        {this.routerListNotNav(routerUnAuthen)}
                         <Redirect to="/" />
                     </Switch>
                 ) : (
@@ -85,8 +85,8 @@ class Routers extends PureComponent {
                         <Drawer />
                         <main className={classes.content}>
                             <Switch>
-                                {routeAuthen.length && this.authenRouterList(RoutersApp, routeAuthen)}
-                                {personalDoc.length && this.unAuthRouter(personalDoc)}
+                                {routeAuthen.length && this.authenRouterListNav(RoutersApp, routeAuthen)}
+                                {personalDoc.length && this.routerListNotNav(personalDoc)}
                                 {this.notFoundRouter()}
                             </Switch>
                         </main>

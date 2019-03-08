@@ -13,9 +13,6 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import MomentUtils from '@date-io/moment';
-import { MuiPickersUtilsProvider, DateTimePicker } from 'material-ui-pickers';
-
 import { renderTextField, renderCheckbox, radioButton, renderSelectField, renderDatePicker } from '../formComp';
 import { validate } from './validate';
 
@@ -36,8 +33,10 @@ class BoxSearch extends PureComponent {
         console.log('handleSubmit');
     };
 
-    handleDateChange(aa) {
-        console.log('aaa', aa);
+    handleDateChange(dateChange) {
+        this.setState({
+            selectedDate: dateChange,
+        });
     }
 
     render() {
@@ -105,9 +104,11 @@ class BoxSearch extends PureComponent {
                                     </FormControl>
                                 </Grid>
                             </Grid>
-                            <Button type="submit" variant="contained" color="primary" disabled={hasErr}>
-                                Search
-                            </Button>
+                            <div className="center">
+                                <Button type="submit" variant="contained" color="primary" disabled={hasErr} className="btnSearch">
+                                    Search
+                                </Button>
+                            </div>
                         </form>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>

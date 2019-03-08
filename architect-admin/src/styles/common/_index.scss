@@ -8,6 +8,10 @@
     opacity: 0;
 }
 
+.center {
+    text-align: center;
+}
+
 .mLef-15 {
     margin-left: 15px !important;
 }
@@ -190,5 +194,6 @@
 
     .frmComm {
         width: 100%;
+        justify-content: center;
     }
 }

@@ -27,14 +27,15 @@ export const renderTextField = ({ label, input, type, meta: { touched, invalid, 
     <TextField label={label} type={type} placeholder={label} error={touched && invalid} helperText={touched && error} {...input} {...custom} />
 );
 
+// labelPlacement="start"
 export const renderCheckbox = ({ input, label }) => (
-    <FormControlLabel control={<Checkbox checked={input.value ? true : false} onChange={input.onChange} />} label={label} labelPlacement="start" />
+    <FormControlLabel control={<Checkbox checked={input.value ? true : false} onChange={input.onChange} />} label={label} />
 );
 
 export const radioButton = ({ input, valueReceive, label, ...rest }) => {
     return (
         <RadioGroup {...input} {...rest} className="radioButton">
-            <FormControlLabel value={valueReceive} control={<Radio />} label={label} labelPlacement="start" />
+            <FormControlLabel value={valueReceive} control={<Radio />} label={label} />
         </RadioGroup>
     );
 };
@@ -63,8 +64,8 @@ export const renderDatePicker = ({ input, label, defaultValue, disablePast, hand
             <MuiPickersUtilsProvider utils={MomentUtils} moment={moment}>
                 <DateTimePicker
                     {...input}
-                    value={defaultValue}
                     onChange={handleDateChange}
+                    value={defaultValue}
                     format="DD/MM/YYYY hh:mm:ss"
                     disablePast={disablePast}
                     label={label}

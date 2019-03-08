@@ -87,6 +87,9 @@
 .hidden {
   opacity: 0; }
 
+.center {
+  text-align: center; }
+
 .mLef-15 {
   margin-left: 15px !important; }
 
@@ -214,7 +217,8 @@
     padding: 0 15px;
     display: none; }
   .boxSearch .frmComm {
-    width: 100%; }
+    width: 100%;
+    justify-content: center; }
 
 body {
   padding: 0;
